@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound, PermissionDenied
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from .serializers import PropertySerializer
 
 # import requests
@@ -15,6 +16,8 @@ from .models import Property
 #  --------------------------- INDEX PROPERTIES CONTROLLERS ---------------------------------
 
 class PropertyList(APIView):
+  
+    permission_classes = (IsAuthenticated,)
     
     def get_properties(self):
         try:

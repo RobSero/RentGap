@@ -12,6 +12,7 @@ User = get_user_model()
 class Register(APIView):
     
     def post(self,req):
+        req.data['money'] = 500000
         created_user = UserSerializer(data=req.data) #converts json to python object and runs the validator function
         if created_user.is_valid():
             created_user.save()

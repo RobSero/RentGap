@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'jwt_auth',
     'properties',
-    'market_data'
+    'market_data',
+    'orders'
 ]
 
 REST_FRAMEWORK = {
