@@ -20,5 +20,5 @@ class Order(models.Model):
     )
     
     def __str__(self):
-        return f'Order - {self.property_id} - Investment: {self.investment} - Ownership: {self.ownership}%'
+        return f'Order - {self.property_detail} - Investment: {self.investment} - Ownership: {self.ownership}%'
     

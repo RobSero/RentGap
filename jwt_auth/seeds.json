@@ -1,0 +1,46 @@
+[
+{
+  "model": "jwt_auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$180000$mbaBaQHZlG7X$+gm6U08tjMkdm2kFcWyAMiIr5QCL8ni4UdNOqx7t+yk=",
+    "last_login": "2020-06-05T09:23:51.305Z",
+    "is_superuser": true,
+    "username": "rob",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2020-06-04T18:06:54.567Z",
+    "email": "rob@email.com",
+    "profile_image": "",
+    "bio": "",
+    "first_name": "",
+    "last_name": "",
+    "money": 100000,
+    "experience": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$180000$7id70Uyme4FE$MtA7pKO3S6VVvWYTqTvayzoZhVUK7TwZS0PxmfDf7as=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Robbo",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2020-06-05T13:02:57Z",
+    "email": "robbo@email.com",
+    "profile_image": "https://ga-core.s3.amazonaws.com/production/uploads/instructor/image/14618/thumb_Screen_Shot_2019-05-30_at_16.42.14.png",
+    "bio": "Software Engineering Instructor in LDN",
+    "first_name": "Rob",
+    "last_name": "Sero",
+    "money": 217000,
+    "experience": "mid",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]

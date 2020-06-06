@@ -1,0 +1,42 @@
+[
+{
+  "model": "properties.property",
+  "pk": 1,
+  "fields": {
+    "title": "3 Bed Detached House - South London",
+    "postcode": "SE27",
+    "address": "St. Julians Farm Road",
+    "latitude": -0.109437,
+    "longitude": 51.429076,
+    "prop_type": "detached_house",
+    "construction_date": "1914_2000",
+    "area": 1634.0,
+    "bedrooms": 3,
+    "bathrooms": 1,
+    "finish": "high",
+    "outdoor_space": "garden",
+    "parking": 0,
+    "current_valuation": 600000,
+    "margin": 40000,
+    "rental_value": 546.0,
+    "gross_yield": 3.7,
+    "image_main": "https://media.rightmove.co.uk/dir/101k/100624/68838435/100624_29533477_IMG_09_0000_max_656x437.jpg",
+    "image_one": "https://media.rightmove.co.uk/dir/101k/100624/68838435/100624_29533477_IMG_02_0000_max_656x437.jpg",
+    "image_two": "https://media.rightmove.co.uk/dir/101k/100624/68838435/100624_29533477_IMG_03_0000_max_656x437.jpg",
+    "image_three": null,
+    "image_four": null,
+    "image_five": null,
+    "image_six": null,
+    "image_seven": null,
+    "image_eight": null,
+    "image_nine": null,
+    "image_floorplan": null,
+    "growth_2015": 459823.0,
+    "growth_2016": 525651.0,
+    "growth_2017": 535999.0,
+    "growth_2018": 540202.0,
+    "growth_2019": 541595.0,
+    "growth_2020": 556441.0
+  }
+}
+]
