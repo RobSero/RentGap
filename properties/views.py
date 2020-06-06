@@ -4,11 +4,15 @@ from rest_framework.response import Response
 from rest_framework.exceptions import NotFound, PermissionDenied
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
-from .serializers import PropertySerializer
+from .serializers import PropertySerializer, SimplePropertySerializer
+from django.contrib.auth import get_user_model
 
 # import requests
 from .models import Property
-
+from orders.models import Order
+from orders.serializers import OrderSerializer
+from orders.value_changes import value_change
+User = get_user_model()
 
 
 
@@ -19,6 +23,8 @@ class PropertyList(APIView):
   
     permission_classes = (IsAuthenticated,)
     
+    
+    
     def get_properties(self):
         try:
             return Property.objects.all()
@@ -27,10 +33,12 @@ class PropertyList(APIView):
         
 
     #   -------- DISPLAY PROPERTY INDEX -----------
+      # GET request to baseURL/property 
+      # no body required - valid token required
     def get(self,req):
         properties_list = self.get_properties()
         print(f'PROPERTY LIST RIGHT HERE: {properties_list}')
-        properties_json = PropertySerializer(properties_list, many=True)
+        properties_json = SimplePropertySerializer(properties_list, many=True)
         return Response(properties_json.data, status=status.HTTP_200_OK)
 
 
@@ -40,7 +48,20 @@ class PropertyList(APIView):
 
 #  --------------------------- ONE PROPERTY CONTROLLERS ---------------------------------
 
+def get_active_order(user_id,property_id):
+      return Order.objects.filter(user=user_id).filter(property_detail=property_id).filter(active=True)
+   
+    
+def get_user(pk):
+    try:
+      return User.objects.get(pk=pk)
+    except User.DoesNotExist:
+      raise NotFound()
+
+
 class OneProperty(APIView):
+  
+    permission_classes = (IsAuthenticated,)
     
     def get_property(self, pk):
         try:
@@ -50,19 +71,29 @@ class OneProperty(APIView):
         
     
         #   -------- DISPLAY PROPERTY DATA -----------
-    
+      # GET request to baseURL/property/<int:pk> (property ID) 
+      # no body required - valid token required
+      
     def get(self, req, pk):
+      # Get Property Data
         property_info = self.get_property(pk)
         property_json = PropertySerializer(property_info)
-        return Response(property_json.data, status=status.HTTP_200_OK )
-    
-    # TEST HTTP REQUESTS
-    # def post(self,req,pk):
+      # Get Order (if found)
+        order = get_active_order(req.user.id, pk )
         
-    #         payload = {'key': 'ZPN3BFTUC4', 'bedrooms': 3, 'postcode': 'SE270RS'}
-    #         httpReq = requests.get("https://api.propertydata.co.uk/yields", params=payload)
-    #         print(f'THE URL SENT WITH PARAMS: {httpReq}')
-    #         print(f'Value of Status Code: {httpReq.status_code}')
-    #         print(f'Value of Json: {httpReq.json()}')
-    #         print(f'Value of Text: {httpReq.text}')
-    #         return Response(httpReq.json(), status=status.HTTP_200_OK)
+      # Send JSON data to client with or without order details if necessary
+        if len(order) != 0:
+          order_json = OrderSerializer(order[0])
+          order_json.data['value_change'] = value_change(previous=order_json.data['value_at_time'], current=property_json.data['current_valuation'])  
+          return Response({'property':property_json.data,
+                         'order': order_json.data}
+                        , status=status.HTTP_200_OK )
+        
+        return Response({'property':property_json.data,
+                         'order': None}
+                        , status=status.HTTP_200_OK )
+        
+       
+      
+        
+    

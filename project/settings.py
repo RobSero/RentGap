@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'jwt_auth',
     'properties',
     'market_data',
-    'orders'
+    'orders',
+    'portfolio'
 ]
 
 REST_FRAMEWORK = {

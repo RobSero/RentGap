@@ -10,6 +10,7 @@ class Property(models.Model):
     prop_type = models.CharField(max_length=20)
     construction_date = models.CharField(max_length=20)
     area = models.FloatField()
+    region = models.CharField(max_length=30)
     bedrooms = models.IntegerField()
     bathrooms = models.IntegerField()
     finish = models.CharField(max_length=20)
