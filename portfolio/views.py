@@ -8,6 +8,8 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 from orders.models import Order
+from properties.models import Property
+from properties.serializers import SimplePropertySerializer
 from orders.serializers import OrderSerializer, PopulatedOrderSerializer
 from orders.value_changes import value_change
 
@@ -33,14 +35,14 @@ class Portfolio(APIView):
       
   
   #  ------------------- Send over portfolio data: orders/properties ---------------
-  #  GET request to /portfolio/<int:id> userId required
+  #  GET request to /portfolio/ userId required
   #  No body required
   #  Valid Token required
   
-  def get(self,req,pk):
+  def get(self,req):
     # Check if authenticated
     # get user
-    user = self.get_user(pk=pk)
+    user = self.get_user(pk=req.user.id)
     print(user)
     # get orders
     orderList = self.get_active_orders(user_id=user.id)
@@ -53,4 +55,39 @@ class Portfolio(APIView):
     return Response(order_json.data, status=status.HTTP_200_OK)
     # compare price differences and add json property: Percentage change
     # send json
+  
+  
+  
+
+class Watchlist(APIView):
+  
+  permission_classes = (IsAuthenticated,)
+  
+  def get_user(self,pk):
+    try: 
+      return User.objects.get(pk=pk)
+    except User.DoesNotExist:
+      raise NotFound()
     
+
+      
+  
+  #  ------------------- Send over watchlist Data ---------------
+  #  GET request to /portfolio/<int:id>/watchlist  iduserId
+  #  No body required
+  #  Valid Token required
+  
+  def get(self,req):
+    # Check if authenticated
+    # get user
+    user = self.get_user(pk=req.user.id)
+    print(user)
+    # get users watchlist queryset
+    watchlist = Property.objects.filter(watchers__id=user.id)
+    # populate the watchlist 
+    serialized_watchlist = SimplePropertySerializer(watchlist, many=True)
+    # response
+    return Response(serialized_watchlist.data, status=status.HTTP_200_OK)
+   
+  
+  

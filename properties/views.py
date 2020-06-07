@@ -97,3 +97,22 @@ class OneProperty(APIView):
       
         
     
+    #   -------- ADD PROPERTY TO WATCHLIST -----------
+      # PUT request to baseURL/property/<int:pk> (property ID) 
+      # no body required - valid token required
+      
+    def put(self,req,pk):
+      # get property
+      single_property = self.get_property(pk)
+      print(single_property)
+      # get user
+      user = get_user(req.user.id)
+      print(user)
+      # check if relationship exists
+      if single_property.watchers.filter(pk=user.id).exists():
+        single_property.watchers.remove(user)
+        return Response({'message': 'REMOVED TO WATCHLIST'}, status=status.HTTP_201_CREATED)
+      else:
+        single_property.watchers.add(user)
+        return Response({'message': 'ADDED TO WATCHLIST'}, status=status.HTTP_201_CREATED)
+      

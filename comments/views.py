@@ -12,26 +12,31 @@ User = get_user_model()
 from properties.models import Property
 from .models import Comment
 
-# Create your views here.
-class CommentHandler(APIView):
-  
-  permission_classes = (IsAuthenticated,)
-  
-  def get_user(self,pk):
+def get_user(pk):
     try:
       return User.objects.get(pk=pk)
     except User.DoesNotExist:
       raise NotFound()
     
-  def get_property(self,pk):
+def get_property(pk):
     try:
       return Property.objects.get(pk=pk)
     except Property.DoesNotExist:
       raise NotFound()
+    
+def get_comment(pk):
+    try:
+      return Comment.objects.get(pk=pk)
+    except Comment.DoesNotExist:
+      raise NotFound()
+
+# Create your views here.
+class CommentHandler(APIView):
   
+  permission_classes = (IsAuthenticated,)
   
   #  -------------------- Create a Comment  -------------------------
-  # POST request to '/comment/property/<int:pk>/'  pk=propertyId
+  # POST request to '/comment/properties/<int:pk>/'  pk=propertyId
   # body required = {
   #  'content' : String
   # }
@@ -39,13 +44,64 @@ class CommentHandler(APIView):
   
   def post(self,req,pk):
     # get user
-    owner = self.get_user(req.user.id) 
-    
+    owner = get_user(req.user.id) 
+    req.data['owner'] = owner.id
     
     # get property
-    property_to_comment = self.get_property(pk)
-    print(property_to_comment)
-    # attach body and owner to comment
-    # new_comment = CommentSerializer(new_comment)   
-    # serialize and send
-    return Response({'test': 'yo'}, status=status.HTTP_200_OK)
+    property_to_comment = get_property(pk)
+    req.data['property_detail'] = property_to_comment.id
+    
+     # serialize and send
+    new_comment = CommentSerializer(data=req.data)   
+    if new_comment.is_valid():
+      new_comment.save()
+      return Response({'test': 'yo'}, status=status.HTTP_200_OK)
+   
+    return Response(new_comment.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+  
+  
+
+
+class CommentEdit(APIView):
+  permission_classes = (IsAuthenticated,)
+  
+   #  -------------------- Delete a Comment  -------------------------
+  # DELETE request to '/comment/<int:pk>/'  pk=commentId
+  # no body required
+  # Valid Token Required - Owner of comment or admin
+  def is_owner(self, comment, user):
+    if comment.owner.id == user.id:
+      return 
+    raise PermissionDenied()
+  
+  
+  def delete(self,req,pk):
+    # get user
+    user = get_user(req.user.id) 
+    # Get Comment
+    comment_to_delete = get_comment(pk)
+    self.is_owner(comment=comment_to_delete, user=user)
+    comment_to_delete.delete()
+    return Response({'message': 'Deleted Successfully'}, status=status.HTTP_200_OK)
+  
+  
+    #  -------------------- Edit a Comment  -------------------------
+  # PUT request to '/comment/<int:pk>/'  pk=commentId
+  # body required = { "content" : String }
+  # Valid Token Required - Owner of comment or admin
+  
+  def put(self,req,pk):
+      # get user
+    user = get_user(req.user.id) 
+    print(user)
+    # Get Comment
+    comment_to_edit = get_comment(pk)
+    self.is_owner(comment=comment_to_edit, user=user)
+    req.data['owner'] = req.user.id
+    req.data['property_detail'] = comment_to_edit.property_detail.id
+    updated_comment = CommentSerializer(comment_to_edit, data=req.data)
+    if updated_comment.is_valid():
+        updated_comment.save()
+        return Response({'message': 'Edit Successfully'}, status=status.HTTP_200_OK)
+    return Response(updated_comment.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+   
