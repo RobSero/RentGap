@@ -1,7 +1,7 @@
 import React from 'react'
 import Sidebar from '../common/Sidebar'
 
-class DashboardPage extends React.Component {
+class SettingsPage extends React.Component {
   state={
 
   }
@@ -12,7 +12,7 @@ class DashboardPage extends React.Component {
       <div className="columns no-column-margin">
         <Sidebar />
         <div className="column is-four-fifths main-section ">
-            One Full Width Column
+            SETTINGS
         </div>
       </div>
       
@@ -20,4 +20,4 @@ class DashboardPage extends React.Component {
   }
 }
 
-export default DashboardPage
+export default SettingsPage

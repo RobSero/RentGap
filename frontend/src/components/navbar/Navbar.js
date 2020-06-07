@@ -170,7 +170,7 @@ function Navbar() {
 
   return (
     <div  className='no-padding'>
-      <AppBar position="static" style={{ backgroundColor: 'green' }} >
+      <AppBar position="static" style={{ backgroundColor: 'rgb(30, 21, 73)' }} >
         <Toolbar>
           <Link to ='/'>
             <Typography className={classes.title} variant="h6" noWrap onClick={login}>
