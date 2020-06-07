@@ -3,10 +3,18 @@ body {
   margin: 0;
 }
 
+.no-padding {
+  padding: 0
+}
+
 .centered {
   text-align: center;
 }
 
 .top2margin {
   margin-top: 20px;
+}
+
+.no-column-margin {
+  margin: 0
 }

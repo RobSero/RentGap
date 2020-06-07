@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Home from './components/home/Home'
 import Navbar from './components/navbar/Navbar'
 import Register from './components/user/Register'
-
+import DashboardPage from './components/dashboard/DashboardPage'
 
 const App = () => {
   return (
@@ -12,6 +12,7 @@ const App = () => {
       <Switch>
         <Route exact path='/' component={Home} />
         <Route exact path='/register' component={Register} />
+        <Route exact path='/dashboard' component={DashboardPage} />
       </Switch>
     </BrowserRouter>
   )

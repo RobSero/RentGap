@@ -9,8 +9,8 @@ class Sidebar extends React.Component {
 
   render(){
     return (
-      <div>
-        <h1>SIDEBAR</h1>
+      <div className="column side-bar is-one-fifth">
+      SIDEBAR
       </div>
     )
   }

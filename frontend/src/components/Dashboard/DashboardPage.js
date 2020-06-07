@@ -1,4 +1,5 @@
 import React from 'react'
+import Sidebar from '../common/Sidebar'
 
 class DashboardPage extends React.Component {
   state={
@@ -7,17 +8,14 @@ class DashboardPage extends React.Component {
 
   render(){
     return (
-      <>
-        <h1>Triple Column</h1>
-        <div className="columns height200px">
-          <div className="column height100px is-one-quarter">
-            One Full Width Column
-          </div>
-          <div className="column height100px">
+      <div>
+        <div className="columns container no-column-margin">
+          <Sidebar />
+          <div className="column ">
             One Full Width Column
           </div>
         </div>
-      </>
+      </div>
     )
   }
 }

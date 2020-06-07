@@ -169,9 +169,7 @@ function Navbar() {
   )
 
   return (
-    <div className={classes.grow}>
-      <br />
-      <br />
+    <div  className='no-padding'>
       <AppBar position="static" style={{ backgroundColor: 'green' }} >
         <Toolbar>
           <Link to ='/'>
