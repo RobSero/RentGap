@@ -21,3 +21,5 @@ class DashboardPage extends React.Component {
     )
   }
 }
+
+export default DashboardPage
