@@ -1,0 +1,15 @@
+.teamTitle {
+  text-align: center;
+  font-size: large;
+  background-color: rgb(138, 139, 64);
+}
+
+.team-member {
+  background-color: rgb(206, 206, 206);
+  text-align: center;
+  .team-image {
+    height: 180px;
+    border-radius: 50%;
+  }
+}
+

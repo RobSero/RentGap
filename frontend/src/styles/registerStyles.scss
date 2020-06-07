@@ -1,0 +1,31 @@
+
+.red {
+  background-color: rgb(201, 201, 201);
+  height: 500px;
+}
+
+.pink {
+  background-color: rgb(167, 97, 97);
+}
+
+.flex-center {
+ justify-content: center;
+}
+
+.full-height-form {
+  height: 340px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.avatar-upload {
+  border-radius: 50%;
+  height: 150px;
+  margin-top: 15px;
+}
+
+.avatar-upload-button {
+  margin-top: 20px
+}
