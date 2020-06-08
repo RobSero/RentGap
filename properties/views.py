@@ -97,7 +97,7 @@ class OneProperty(APIView):
       
         
     
-    #   -------- ADD PROPERTY TO WATCHLIST -----------
+    #   -------- TOGGLE PROPERTY TO WATCHLIST -----------
       # PUT request to baseURL/property/<int:pk> (property ID) 
       # no body required - valid token required
       

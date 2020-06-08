@@ -214,7 +214,7 @@ function Navbar() {
             {/* INSERT MESSAGES AND NOTIFICATIONS BUTTONS HERE */}
             <div>
               {/* add money and money icon */}
-              <AccountCircle /><p style={{ 'display': 'inline' }}>{user.money ? user.money : ''}</p>
+              <AccountCircle /><p style={{ 'display': 'inline' }}>{user.money ? `£${user.money}` : ''}</p>
             </div>
             <IconButton
               edge="end"

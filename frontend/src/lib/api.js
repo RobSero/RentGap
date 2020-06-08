@@ -23,5 +23,9 @@ export const getOrders = async() => {
 }
 
 export const getWatchlist = async() => {
-  return await axios.get(`${baseUrl}/portfolio/watchlist`, withHeaders())
+  return await axios.get(`${baseUrl}/portfolio/watchlist/`, withHeaders())
+}
+
+export const watchToggle = async(id) => {
+  return await axios.put(`${baseUrl}/property/${id}/`, withHeaders())
 }

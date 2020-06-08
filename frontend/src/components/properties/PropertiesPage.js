@@ -1,7 +1,9 @@
 import React from 'react'
 import { List, Avatar, Space } from 'antd'
 import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons'
-import { getProperties } from '../../lib/api'
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
+import FavoriteIcon from '@material-ui/icons/Favorite'
+import { getProperties, getWatchlist, watchToggle } from '../../lib/api'
 import SearchSection from '../common/SearchSection'
 import { Link } from 'react-router-dom'
 
@@ -22,17 +24,23 @@ class PropertiesPage extends React.Component {
       finish: null,
       type: null
     },
-    filteredProperties: null
+    filteredProperties: null,
+    watching: null
   }
 
   async componentDidMount(){
     try {
       const res = await getProperties()
+      const watchRes = await getWatchlist()
       console.log(res.data)
+      const watchingArray = watchRes.data.map(watchedProperty => {
+        return watchedProperty.id
+      })
       
       this.setState({
         propertyData: res.data,
-        filteredProperties: res.data
+        filteredProperties: res.data,
+        watching: watchingArray
       })
     } catch (err){
       console.log(err)
@@ -74,6 +82,14 @@ filteredProperties = () => {
     property.current_valuation < max && property.current_valuation > min 
   })
   this.setState({ filteredProperties: filteredPropertyList })
+}
+
+handleWatch = async(propertyId) => {
+  const res = await watchToggle(propertyId)
+  this.setState({
+    ...this.state
+  })
+  console.log(res.data)
 }
 
 
@@ -121,7 +137,9 @@ render(){
             }
           >
             <List.Item.Meta
-              // avatar={<Avatar src={property.avatar} />}
+              avatar={this.state.watching.includes(property.id) ? <FavoriteIcon onClick = {() =>{
+                this.handleWatch(property.id)
+              }} /> : <FavoriteBorderIcon />}
               // PROPERTY TITLE
               title={<Link to={`property/${property.id}`}><p>{property.title}</p></Link>}
               // PROPERTY DESCRIPTION
