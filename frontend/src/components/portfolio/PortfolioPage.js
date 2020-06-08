@@ -1,5 +1,4 @@
 import React from 'react'
-import Sidebar from '../common/Sidebar'
 
 class PortfolioPage extends React.Component {
   state={
@@ -9,11 +8,8 @@ class PortfolioPage extends React.Component {
   render(){
     return (
       
-      <div className="columns no-column-margin">
-        <Sidebar />
-        <div className="column is-four-fifths main-section ">
+      <div>
             PORTFOLIO
-        </div>
       </div>
       
     )

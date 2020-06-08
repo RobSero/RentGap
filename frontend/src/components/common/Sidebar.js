@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
@@ -123,11 +123,11 @@ function Sidebar() {
         </List>
         <Divider />
         <List component="nav" aria-label="secondary mailbox folder">
-          <Link to='/settings'>
+          <Link to='/settings' onClick={(event) => handleListItemClick(event, 7)}>
             <ListItem
               button
               selected={selectedIndex === 7}
-              onClick={(event) => handleListItemClick(event, 7)}
+              
             >
               <ListItemIcon>
                 <InboxIcon />
@@ -141,4 +141,4 @@ function Sidebar() {
   )
 }
 
-export default Sidebar
+export default withRouter(Sidebar)

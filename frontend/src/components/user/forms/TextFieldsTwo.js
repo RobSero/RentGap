@@ -1,6 +1,4 @@
 import React from 'react'
-import TextField from '@material-ui/core/TextField'
-import { makeStyles } from '@material-ui/core/styles'
 import SimpleSelect from './SimpleSelect'
 import SwitchLabels from './SwitchLabels'
 
@@ -15,7 +13,7 @@ function TextFieldsTwo(props) {
   return (
     <form  noValidate autoComplete="off">
       <div className='centered'>
-        <SimpleSelect handleChange={props.handleChange} />
+        <SimpleSelect handleChange={props.handleChange} {...props} />
         <SwitchLabels  handleChange={props.handleChange} />
       </div>
     </form>

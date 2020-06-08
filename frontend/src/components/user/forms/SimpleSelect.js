@@ -29,11 +29,12 @@ function SimpleSelect(props) {
             labelId="demo-simple-select-helper-label"
             id="demo-simple-select-helper"
             onChange={props.handleChange}
+            name ='experience'
           >
-            <MenuItem value={0}><em>First Time!</em></MenuItem>
-            <MenuItem value={1}>Ive Played From Time to Time</MenuItem>
-            <MenuItem value={2}>I am an Experienced Investor</MenuItem>
-            <MenuItem value={3}>Prefer not to say</MenuItem>
+            <MenuItem value={'none'}><em>First Time!</em></MenuItem>
+            <MenuItem value={'mid'}>Ive Played From Time to Time</MenuItem>
+            <MenuItem value={'high'}>I am an Experienced Investor</MenuItem>
+            <MenuItem value={'NA'}>Prefer not to say</MenuItem>
           </Select>
           <FormHelperText>Have you some experience in investing?</FormHelperText>
         </FormControl>
@@ -44,7 +45,6 @@ function SimpleSelect(props) {
           <Select
             labelId="demo-simple-select-helper-label"
             id="demo-simple-select-helper"
-            onChange={props.handleChange}
           >
             <MenuItem value={'google'}><em>Google</em></MenuItem>
             <MenuItem value={'mouth'}>Word of Mouth</MenuItem>
@@ -61,7 +61,6 @@ function SimpleSelect(props) {
           <Select
             labelId="demo-simple-select-helper-label"
             id="demo-simple-select-helper"
-            onChange={props.handleChange}
           >
             <MenuItem value={'google'}><em>Long Term Capital</em></MenuItem>
             <MenuItem value={'mouth'}>Short Term Capital</MenuItem>

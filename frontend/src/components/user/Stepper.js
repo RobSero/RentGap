@@ -43,7 +43,7 @@ function RegisterStepper(props) {
         return (
           <>
             <div className='centered full-height-form'>
-              <TextFieldsOne handleChange={props.onChange} />
+              <TextFieldsOne handleChange={props.onChange} {...props} />
             </div>
             
           </>
@@ -52,7 +52,7 @@ function RegisterStepper(props) {
         return (
           <>
             <div className='centered full-height-form'>
-              <TextFieldsTwo handleChange={props.onChange} />
+              <TextFieldsTwo handleChange={props.onChange} {...props}  />
             </div>
             
           </>
@@ -61,7 +61,7 @@ function RegisterStepper(props) {
         return (
           <>
             <div className='centered full-height-form'>
-              <TextFieldsThree handleChange={props.onChange} />
+              <TextFieldsThree handleChange={props.onChange} {...props}  />
             </div>
             
           </>

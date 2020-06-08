@@ -20,11 +20,11 @@ function TextFieldsOne(props) {
   return (
     <form className={classes.root} Validate autoComplete="off">
       <div>
-        <TextField fullWidth id="standard-error" label="First Name" name='fName' onChange={props.handleChange} />
+        <TextField fullWidth id="standard-error" label="First Name" name='first_name' onChange={props.handleChange} value={props.first_name} />
         <br />
-        <TextField fullWidth id="standard-error" label="Last Name" name='lName' onChange={props.handleChange} />
-        <TextField fullWidth id="standard-error" label="Email" name='email' onChange={props.handleChange} />
-        <TextField fullWidth id="standard-error" label="Username" name='username' onChange={props.handleChange} />
+        <TextField fullWidth id="standard-error" label="Last Name" name='last_name' onChange={props.handleChange} value={props.last_name} />
+        <TextField fullWidth id="standard-error" label="Email" name='email' onChange={props.handleChange} value={props.email} />
+        <TextField fullWidth id="standard-error" label="Username" name='username' onChange={props.handleChange} value={props.username} />
       </div>
     </form>
   )

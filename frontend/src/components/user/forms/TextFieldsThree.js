@@ -28,8 +28,8 @@ function TextFieldsThree(props) {
     <form className={classes.root} noValidate autoComplete="off">
       <div>
         <ImageUpload handleChange={props.handleChange} />
-        <TextField fullWidth id="standard-error" label="Password" name='password' type='password' onChange={props.handleChange} />
-        <TextField fullWidth id="standard-error" label="Confirm Password" name='password2' type='password' onChange={props.handleChange} />
+        <TextField fullWidth id="standard-error" label="Password" name='password' type='password' onChange={props.handleChange} value={props.password} />
+        <TextField fullWidth id="standard-error" label="Confirm Password" name='password_confirmation' type='password' onChange={props.handleChange} value={props.password_confirmation} />
       </div>
     </form>
   )
