@@ -11,7 +11,9 @@ export const withHeaders = () => {
 }
 
 export const getProfile = async() => {
-  console.log(withHeaders())
-  
   return await axios.get(`${baseUrl}/auth/user/`, withHeaders())
+}
+
+export const getProperties = async() => {
+  return await axios.get(`${baseUrl}/property/`, withHeaders())
 }

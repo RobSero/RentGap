@@ -107,7 +107,7 @@ function Navbar() {
       getUser()
       
     }
-  }) 
+  },[]) 
 
   const handleLogout = () => {
     logout()
@@ -199,7 +199,7 @@ function Navbar() {
   )
 
   return (
-    <div  className='no-padding'>
+    <div  className='no-padding' style={{ position: 'relative', width: '100%' }}>
       <AppBar position="static" style={{ backgroundColor: 'rgb(30, 21, 73)' }} >
         <Toolbar>
           <Link to ='/'>

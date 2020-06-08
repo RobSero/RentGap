@@ -30,5 +30,6 @@ class SimplePropertySerializer(serializers.ModelSerializer):
           'outdoor_space',
           'current_valuation',
           'rental_value',
-          'image_main'
+          'image_main',
+          'finish'
         )
