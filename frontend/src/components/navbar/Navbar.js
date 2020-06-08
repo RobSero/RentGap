@@ -122,8 +122,8 @@ function Navbar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}><Link to='/dashboard'> Profile</Link></MenuItem>
+      <MenuItem onClick={handleMenuClose}><Link to='/settings'>My account</Link></MenuItem>
     </Menu>
   )
 
