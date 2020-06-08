@@ -1,5 +1,6 @@
 import React from 'react'
 import Stepper from './Stepper'
+import axios from 'axios'
 
 
 class Register extends React.Component {
@@ -29,12 +30,23 @@ handleChange = ({ target }) => {
   })
 }
 
+handleSubmit = async () => {
+  try {
+    const res = await axios.post('/api/auth/register/', { ...this.state.formData })
+    this.props.history.push('/login')
+    console.log(res)
+  } catch (err){
+    console.log(err)
+    
+  }
+}
+
 render(){
   return (
     <>
       <div className='columns pink'>
         <div className='column is-half is-offset-one-quarter red'>
-          <Stepper onChange={this.handleChange} {...this.state.formData} />
+          <Stepper onChange={this.handleChange} {...this.state.formData} handleSubmit={this.handleSubmit} />
         </div>
       </div>
       

@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from rest_framework import status
 from django.contrib.auth import get_user_model
 from django.conf import settings
@@ -59,6 +59,8 @@ class UpdateProfile(APIView):
             return User.objects.get(pk=pk)
         except User.DoesNotExist:
             raise PermissionDenied()
+          
+          
      #  --------------------  Edit Profile  -------------------------
   # PUT request to 'auth/profile'
   # body required = { as per model keys }
@@ -74,3 +76,28 @@ class UpdateProfile(APIView):
         return Response(serialized_user.data, status=status.HTTP_202_ACCEPTED)
       
     return Response(serialized_user.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+  
+  
+
+class ProfileData(APIView):
+  
+  permission_classes = (IsAuthenticated,)
+  
+  def get_user_details(self,pk):
+        try:
+            return User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            raise PermissionDenied()
+          
+          
+       #  --------------------  Get Profile Information -------------------------
+  # GET request to 'auth/user'
+  # No body required
+  # Valid Token Required
+  def get(self,req):
+    print('HELLO')
+    user = self.get_user_details(req.user.id)
+    serialized_user = UserSerializer(user)
+    print(serialized_user.data)
+    return Response(serialized_user.data, status=status.HTTP_200_OK)
+  

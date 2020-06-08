@@ -14,7 +14,11 @@ import AccountCircle from '@material-ui/icons/AccountCircle'
 import MailIcon from '@material-ui/icons/Mail'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import MoreIcon from '@material-ui/icons/MoreVert'
-import { Link } from 'react-router-dom'
+import { Link, withRouter, useHistory } from 'react-router-dom'
+import axios from 'axios'
+import { isAuthenticated, logout } from '../../lib/auth'
+import { getProfile } from '../../lib/api'
+
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -83,12 +87,34 @@ const useStyles = makeStyles((theme) => ({
 
 function Navbar() {
   const classes = useStyles()
+  const history = useHistory()
   const [auth, setAuth] = React.useState(true)
   const [anchorEl, setAnchorEl] = React.useState(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
-
   const isMenuOpen = Boolean(anchorEl)
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
+  const [user, setUser] = React.useState({ money: 0 })
+
+  React.useEffect(()=> {
+    console.log('CLICKED')
+    if (isAuthenticated()){
+      console.log('is auth!!!')
+      const getUser = async()=>{
+        const res = await getProfile()
+        console.log(res.data)
+        setUser(res.data)
+      }
+      getUser()
+      
+    }
+  }) 
+
+  const handleLogout = () => {
+    logout()
+    history.push('/')
+  }
+
+
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget)
@@ -124,6 +150,10 @@ function Navbar() {
     >
       <MenuItem onClick={handleMenuClose}><Link to='/dashboard'> Profile</Link></MenuItem>
       <MenuItem onClick={handleMenuClose}><Link to='/settings'>My account</Link></MenuItem>
+      <MenuItem onClick={() =>{
+        handleLogout()
+        handleMenuClose()
+      }}>Log out</MenuItem>
     </Menu>
   )
 
@@ -178,9 +208,14 @@ function Navbar() {
             </Typography>
           </Link>
           {/* SEARCHBAR HERE */}
+          
           <div className={classes.grow} />
-          {auth ? (<div className={classes.sectionDesktop}>
+          {isAuthenticated() ? (<div className={classes.sectionDesktop}>
             {/* INSERT MESSAGES AND NOTIFICATIONS BUTTONS HERE */}
+            <div>
+              {/* add money and money icon */}
+              <AccountCircle /><p style={{ 'display': 'inline' }}>{user.money ? user.money : ''}</p>
+            </div>
             <IconButton
               edge="end"
               aria-label="account of current user"
@@ -191,7 +226,7 @@ function Navbar() {
             >
               <AccountCircle />
             </IconButton>
-          </div>) : <p>Login</p> }
+          </div>) : <Link to='/login'><p>Login</p></Link> }
           
           {/* mobile styling section */}
           <div className={classes.sectionMobile}>
@@ -213,7 +248,7 @@ function Navbar() {
   )
 }
 
-export default Navbar
+export default withRouter(Navbar)
 
 
 

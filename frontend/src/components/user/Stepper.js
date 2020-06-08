@@ -61,7 +61,7 @@ function RegisterStepper(props) {
         return (
           <>
             <div className='centered full-height-form'>
-              <TextFieldsThree handleChange={props.onChange} {...props}  />
+              <TextFieldsThree handleChange={props.onChange} {...props}   />
             </div>
             
           </>
@@ -160,15 +160,22 @@ function RegisterStepper(props) {
                   Skip
                 </Button>
               )}
-
-              <Button
+              {activeStep === steps.length - 1 ? <Button
+                variant="contained"
+                color="primary"
+                onClick={props.handleSubmit}
+                className={classes.button}
+              >
+                Finish
+              </Button> : <Button
                 variant="contained"
                 color="primary"
                 onClick={handleNext}
                 className={classes.button}
               >
-                {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-              </Button>
+                Next
+              </Button>}
+              
             </div>
           </div>
         )}

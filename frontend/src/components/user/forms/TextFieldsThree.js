@@ -15,10 +15,6 @@ const useStyles = makeStyles((theme) => ({
 // If there is an error:
 // <TextField error id="standard-error" label="First Name" helperText="Incorrect entry." />
 
-const handleChange = (e) => {
-  console.log(e.target.name)
-  
-}
 
 
 function TextFieldsThree(props) {
@@ -28,6 +24,7 @@ function TextFieldsThree(props) {
     <form className={classes.root} noValidate autoComplete="off">
       <div>
         <ImageUpload handleChange={props.handleChange} />
+        <br />
         <TextField fullWidth id="standard-error" label="Password" name='password' type='password' onChange={props.handleChange} value={props.password} />
         <TextField fullWidth id="standard-error" label="Confirm Password" name='password_confirmation' type='password' onChange={props.handleChange} value={props.password_confirmation} />
       </div>
