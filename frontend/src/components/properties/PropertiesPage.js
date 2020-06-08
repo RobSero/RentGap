@@ -5,19 +5,6 @@ import { getProperties } from '../../lib/api'
 import SearchSection from '../common/SearchSection'
 import { Link } from 'react-router-dom'
 
-const listData = []
-for (let i = 0; i < 8; i++) {
-  listData.push({
-    href: '#',
-    title: `ant design part ${i}`,
-    avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-    description:
-      'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-    content:
-      'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.'
-  })
-}
-
 const IconText = ({ icon, text }) => (
   <Space>
     {React.createElement(icon)}
@@ -91,12 +78,14 @@ filteredProperties = () => {
 
 
 render(){
+
   if (!this.state.filteredProperties) {
     return <h1>LOADING</h1>
   }
     
   return (
     <div style={{ overflowY: 'scroll', height: '90vh', position: 'relative', width: '100%' }}>
+      <h1 className='page-title'>Property List</h1>
       <SearchSection handleChange={this.handleChange} {...this.state.filterData} />
       <List
         itemLayout="vertical"
@@ -122,11 +111,13 @@ render(){
             ]}
             // MAIN PHOTO HERE
             extra={
-              <img
-                width={272}
-                alt="logo"
-                src={property.image_main}
-              />
+              <Link to={`property/${property.id}`}>
+                <img
+                  width={272}
+                  alt="logo"
+                  src={property.image_main}
+                />
+              </Link>
             }
           >
             <List.Item.Meta

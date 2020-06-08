@@ -17,3 +17,11 @@ export const getProfile = async() => {
 export const getProperties = async() => {
   return await axios.get(`${baseUrl}/property/`, withHeaders())
 }
+
+export const getOrders = async() => {
+  return await axios.get(`${baseUrl}/portfolio/`, withHeaders())
+}
+
+export const getWatchlist = async() => {
+  return await axios.get(`${baseUrl}/portfolio/watchlist`, withHeaders())
+}
