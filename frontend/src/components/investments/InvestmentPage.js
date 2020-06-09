@@ -2,8 +2,10 @@ import React from 'react'
 import { getOrders, getProfile } from '../../lib/api'
 import InvestmentHeader from './InvestmentHeader'
 import PieChart from './PieChart'
-import BarChart from './BarChart'
 import DoughnutChart from './DoughnutChart'
+import BarChart from './BarChart'
+import BarChartRental from './BarChartRental'
+
 import LineChart from './LineChart'
 
 

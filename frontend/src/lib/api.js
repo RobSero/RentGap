@@ -31,7 +31,7 @@ export const watchToggle = async(id) => {
 }
 
 export const getOneProperty = async(propId) => {
-  return await axios.get(`${baseUrl}/property/${propId}`, withHeaders())
+  return await axios.get(`${baseUrl}/property/${propId}/`, withHeaders())
 }
 
 

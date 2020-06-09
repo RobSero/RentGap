@@ -3,7 +3,7 @@ import { Bar } from 'react-chartjs-2'
 
 
 
-function BarChart(props){
+function BarChartRental(props){
   const propertyTypes = {
     'Detached house': 0,
     Flat: 0,
@@ -12,7 +12,7 @@ function BarChart(props){
   }
   if (props.orders){
     props.orders.forEach(order => {
-      propertyTypes[order.property_detail.prop_type] += order.investment
+      propertyTypes[order.property_detail.prop_type] += order.property_detail.rental_value * order.ownership
     })
   }
   console.log(propertyTypes)
@@ -50,4 +50,4 @@ function BarChart(props){
   )
 }
 
-export default BarChart
+export default BarChartRental
