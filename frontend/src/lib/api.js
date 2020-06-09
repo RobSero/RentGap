@@ -38,3 +38,11 @@ export const getOneProperty = async(propId) => {
 export const submitNewOrder = async(propId, orderDetails) => {
   return await axios.post(`${baseUrl}/orders/new/${propId}/`, orderDetails ,withHeaders())
 }
+
+export const reviseOrder = async(orderId, orderDetails) => {
+  return await axios.put(`${baseUrl}/orders/edit/${orderId}/`, orderDetails ,withHeaders())
+}
+
+export const clearOrder = async(orderId) => {
+  return await axios.delete(`${baseUrl}/orders/clear/${orderId}/`,withHeaders())
+}

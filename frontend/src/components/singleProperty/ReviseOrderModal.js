@@ -30,19 +30,42 @@ class ReviseOrderModal extends React.Component {
         visibleRevise: false,
         confirmLoading: false
       })
-      this.props.handleNewOrderSubmit()
+      this.props.handleRevisedOrderSubmit()
+    }, 2000)
+  };
+
+  showModalWithdraw = () => {
+    this.setState({
+      ModalTextWithdraw: `CLEAR ORDER Are you sure you wish to make an investment of £${this.props.investment}? There will be a fee of £${this.props.investment * 0.01} for making this transaction.`,
+      visibleWithdraw: true
+    })
+  };
+
+  handleOkWithdraw = () => {
+    
+    this.setState({
+      ModalTextWithdraw: 'The modal will be closed after two seconds',
+      confirmLoading: true
+    })
+    setTimeout(() => {
+      this.setState({
+        visibleWithdraw: false,
+        confirmLoading: false
+      })
+      this.props.handleWithdrawAll()
     }, 2000)
   };
 
   handleCancel = () => {
     console.log('Clicked cancel button')
     this.setState({
-      visibleRevise: false
+      visibleRevise: false,
+      visibleWithdraw: false
     })
   };
 
   render() {
-    const { visibleRevise, confirmLoading, ModalTextRevise } = this.state
+    const { visibleRevise, confirmLoading, ModalTextRevise, visibleWithdraw, ModalTextWithdraw } = this.state
     return (
       <div>
         <Button
@@ -56,14 +79,14 @@ class ReviseOrderModal extends React.Component {
         <Button
           variant="contained"
           style={{ marginLeft: '10px' }}
-          onClick = {this.props.clearData}
+          onClick = {this.showModalWithdraw}
         >
         Withdraw All
         </Button>
         
         
         <Modal
-          title="Your Investment"
+          title="Revise Your Investment"
           visible={visibleRevise}
           onOk={this.handleOkRevise}
           confirmLoading={confirmLoading}
@@ -71,6 +94,16 @@ class ReviseOrderModal extends React.Component {
         >
           <p>{ModalTextRevise}</p>
         </Modal>
+        <Modal
+          title="Withdraw All Your Investment"
+          visible={visibleWithdraw}
+          onOk={this.handleOkWithdraw}
+          confirmLoading={confirmLoading}
+          onCancel={this.handleCancel}
+        >
+          <p>{ModalTextWithdraw}</p>
+        </Modal>
+        
       </div>
     )
   }

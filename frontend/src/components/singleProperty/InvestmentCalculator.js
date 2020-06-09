@@ -109,7 +109,13 @@ function InvestmentCalculator(props){
             </Row></> : '' }
             
             <p>Please note there will be a 1% fee to your investment upon opening this order and withdrawal of investment </p>
-            <ReviseOrderModal handleNewOrderSubmit = {props.handleNewOrderSubmit} clearData={props.clearData} investment={investment}/>
+            <ReviseOrderModal 
+              handleNewOrderSubmit = {props.handleNewOrderSubmit} 
+              clearData={props.clearData} 
+              investment={investment}
+              handleRevisedOrderSubmit={props.handleRevisedOrderSubmit}  
+              handleWithdrawAll={props.handleWithdrawAll}
+            />
           </div>
         </div> 
       }

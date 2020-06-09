@@ -6,7 +6,7 @@ import PropertyHeader from './PropertyHeader'
 import LineChart from './LineChart'
 import CommentSection from './CommentSection'
 import InvestmentCalculator from './InvestmentCalculator'
-import { getOneProperty, submitNewOrder } from '../../lib/api'
+import { getOneProperty, submitNewOrder, reviseOrder, clearOrder } from '../../lib/api'
 import { Alert } from 'antd'
 
 
@@ -21,14 +21,14 @@ class propertyShowPage extends React.Component {
       investment: null
     },
     revisedOrder: {
-      investment: null,
+      invest: null,
       withdraw: null
     }
   }
 
 
   async componentDidMount(){
-    const propertyId = 5
+    const propertyId = this.props.match.params.id
     try {
       const res = await getOneProperty(propertyId)
       console.log(res.data)
@@ -43,6 +43,8 @@ class propertyShowPage extends React.Component {
   }
 
 
+
+
 handleChange = ({ target }) => {
   const value = target.value
   // console.log(`${target.name}: ${value}`)
@@ -54,17 +56,17 @@ handleChange = ({ target }) => {
 }
 
 handleNewOrderSubmit = async() => {
-  const propertyId = 5
-  if (this.state.newOrder && this.state.order === null){
+  const propertyId = this.state.propertyData.id
+  if (this.state.newOrder.investment && this.state.orderData === null){
     try {
       const res = await submitNewOrder(propertyId, this.state.newOrder)
       console.log(res.data)
-      this.handleClearData()
+      window.location.reload(true)
     } catch (err){
       console.log(err)
     }
   } else {
-    console.log('YOU ALREADY HAVE AN INVESTMENT OR YOU HAVE NOT SET THE INVESMENT AMOUNT')
+    console.log('YOU ALREADY HAVE AN INVESTMENT OR YOU HAVE NOT SET THE INVESTMENT AMOUNT')
   }
 }
 
@@ -83,13 +85,13 @@ handleChangeRevisedOrder = ({ target }) => {
     this.setState({
       revisedOrder: {
         withdraw: '',
-        investment: Math.abs(value)
+        invest: Math.abs(value)
       }
     })
   } else {
     this.setState({
       revisedOrder: {
-        investment: '',
+        invest: '',
         withdraw: Math.abs(value)
       }
     })
@@ -97,11 +99,30 @@ handleChangeRevisedOrder = ({ target }) => {
 }
 
 handleRevisedOrderSubmit = async() => {
-  
+  const orderId = this.state.orderData.id
+  try {
+    const res = await reviseOrder(orderId, this.state.revisedOrder)
+    console.log(res.data)
+    window.location.reload(true)
+  } catch (err){
+    console.log(err)
+  }
+}
+
+handleWithdrawAll = async() => {
+  const orderId = this.state.orderData.id
+  try {
+    const res = await clearOrder(orderId)
+    console.log(res.data)
+    console.log('WITHDRAWING ALL!')
+    window.location.reload(true)
+  } catch (err){
+    console.log(err)
+  }
 }
 
 render(){
-  const { propertyData, orderData, newOrder, revisedOrder } = this.state
+  const { propertyData, orderData, newOrder } = this.state
   if (!propertyData){
     return <p>loading</p>
   }
@@ -112,7 +133,7 @@ render(){
       {orderData ? <Alert message={`You have an investment of £${orderData.investment} in this property`} type="info" closeText="Close Now" style={{ margin: '5px 30px' }} /> : '' }
       
       <div style = {{ backgroundColor: 'white', margin: '15px 30px' }}>
-        <PropertyHeader {...propertyData}/>
+        <PropertyHeader {...propertyData} orderData={orderData}/>
           
       </div>
       
@@ -133,7 +154,8 @@ render(){
               clearData={this.handleClearData} 
               existingOrderData={orderData}
               handleChangeRevisedOrder={this.handleChangeRevisedOrder}
-              
+              handleRevisedOrderSubmit={this.handleRevisedOrderSubmit}
+              handleWithdrawAll={this.handleWithdrawAll}
             />
           </div>
             

@@ -14,7 +14,7 @@ function LineChart(props){
     labels: [2015,2016,2017,2018,2019,2020],
     datasets: [
       {
-        label: 'Five Year Growth',
+        label: 'Five Year Area Average Growth',
         fill: true,
         lineTension: 0.1,
         backgroundColor: 'rgba(75,192,192,0.4)',
@@ -39,7 +39,7 @@ function LineChart(props){
 
   return (
     <div style={{ margin: '10px', textAlign: 'center', marginTop: '25px' }}>
-      <h3>Growth Chart for {props.postcode}</h3>
+      <h3>Average Growth Chart for {props.postcode}</h3>
       <p>This chart represents the overall growth of the area accouting for all property types and finishes. This does not necessarily reflect the growth of this property</p>
       <Line data={data} />
       
