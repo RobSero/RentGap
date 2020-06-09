@@ -8,7 +8,6 @@ function PropertyHeader(props){
       <PageHeader
         onBack={() => window.history.back()}
         title={props.title}
-        subTitle={props.address}
         extra={
           <Row>
             <Statistic title="Current Value" prefix="£" value={props.current_valuation} style={{

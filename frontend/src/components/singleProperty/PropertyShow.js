@@ -6,19 +6,29 @@ import PropertyHeader from './PropertyHeader'
 import LineChart from './LineChart'
 import CommentSection from './CommentSection'
 import InvestmentCalculator from './InvestmentCalculator'
-import { getOneProperty } from '../../lib/api'
+import { getOneProperty, submitNewOrder } from '../../lib/api'
+import { Alert } from 'antd'
+
+
 
 
 
 class propertyShowPage extends React.Component {
   state={
     propertyData: null,
-    order: null
+    orderData: null,
+    newOrder: {
+      investment: null
+    },
+    revisedOrder: {
+      investment: null,
+      withdraw: null
+    }
   }
 
 
   async componentDidMount(){
-    const propertyId = 2
+    const propertyId = 5
     try {
       const res = await getOneProperty(propertyId)
       console.log(res.data)
@@ -33,62 +43,121 @@ class propertyShowPage extends React.Component {
   }
 
 
-
-
-
-
-
-
-  render(){
-    const { propertyData, orderData } = this.state
-    if (!propertyData){
-      return <p>loading</p>
+handleChange = ({ target }) => {
+  const value = target.value
+  // console.log(`${target.name}: ${value}`)
+  this.setState({
+    newOrder: {
+      [target.name]: value
     }
-    return (
+  })
+}
+
+handleNewOrderSubmit = async() => {
+  const propertyId = 5
+  if (this.state.newOrder && this.state.order === null){
+    try {
+      const res = await submitNewOrder(propertyId, this.state.newOrder)
+      console.log(res.data)
+      this.handleClearData()
+    } catch (err){
+      console.log(err)
+    }
+  } else {
+    console.log('YOU ALREADY HAVE AN INVESTMENT OR YOU HAVE NOT SET THE INVESMENT AMOUNT')
+  }
+}
+
+handleClearData = () => {
+  this.setState({
+    newOrder: {
+      investment: null
+    }
+  })
+}
+
+handleChangeRevisedOrder = ({ target }) => {
+  const value = target.value
+  console.log(`${target.name}: ${value}`)
+  if (value < 0){
+    this.setState({
+      revisedOrder: {
+        withdraw: '',
+        investment: Math.abs(value)
+      }
+    })
+  } else {
+    this.setState({
+      revisedOrder: {
+        investment: '',
+        withdraw: Math.abs(value)
+      }
+    })
+  }
+}
+
+handleRevisedOrderSubmit = async() => {
+  
+}
+
+render(){
+  const { propertyData, orderData, newOrder, revisedOrder } = this.state
+  if (!propertyData){
+    return <p>loading</p>
+  }
+  return (
 
       
+    <div style={{ overflowY: 'scroll',overflowX: 'hidden', height: '90vh', position: 'relative', width: '100%' }}>
+      {orderData ? <Alert message={`You have an investment of £${orderData.investment} in this property`} type="info" closeText="Close Now" style={{ margin: '5px 30px' }} /> : '' }
       
-      <div style={{ overflowY: 'scroll',overflowX: 'hidden', height: '90vh', position: 'relative', width: '100%' }}>
-        <div style = {{ backgroundColor: 'white', margin: '15px 30px' }}>
-          <PropertyHeader {...propertyData}/>
+      <div style = {{ backgroundColor: 'white', margin: '15px 30px' }}>
+        <PropertyHeader {...propertyData}/>
           
-        </div>
-
-        {/* LEFT SIDE OF PROPERTY SHOW PAGE */}
-        
-        <div className='columns'>
-          <div className='column is-half'>
-            <div className='information-container'>
-              <ImageSlider {...propertyData} />
-            </div>
-            <div className='information-container'>
-              <TabDisplay floorplan={propertyData.image_floorplan} lat={propertyData.latitude} lon={propertyData.longitude}/>
-            </div>
-            <div className='information-container'>
-              <InvestmentCalculator {...propertyData} />
-            </div>
-            
-            {/* RIGHT SIDE OF PROPERTY SHOW PAGE */}
-
-          </div>
-          <div className='column is-half'>
-            <div className='details-container'>
-              <h5>Property Overview:</h5>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              </p>
-              <Description {...propertyData}/>
-              <LineChart {...propertyData} />
-            </div>
-            <div className='details-container'>
-              <CommentSection />
-            </div>
-            
-          </div>
-        </div>
       </div>
       
-    )
-  }
+      {/* LEFT SIDE OF PROPERTY SHOW PAGE */}
+        
+      <div className='columns'>
+        <div className='column is-half'>
+          <div className='information-container'>
+            <ImageSlider {...propertyData} />
+          </div>
+          <div className='information-container'>
+            <TabDisplay floorplan={propertyData.image_floorplan} lat={propertyData.latitude} lon={propertyData.longitude}/>
+          </div>
+          <div className='information-container'>
+            <InvestmentCalculator {...propertyData} {...newOrder} 
+              handleChange={this.handleChange} 
+              handleNewOrderSubmit={this.handleNewOrderSubmit} 
+              clearData={this.handleClearData} 
+              existingOrderData={orderData}
+              handleChangeRevisedOrder={this.handleChangeRevisedOrder}
+              
+            />
+          </div>
+            
+          {/* RIGHT SIDE OF PROPERTY SHOW PAGE */}
+
+        </div>
+        <div className='column is-half'>
+          <div className='details-container'>
+            <h5>Property Overview:</h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+            <Description {...propertyData}/>
+            <LineChart {...propertyData} />
+          </div>
+          <div className='details-container'>
+            <CommentSection />
+          </div>
+            
+        </div>
+      </div>
+    </div>
+      
+  )
+}
 }
 
 export default propertyShowPage

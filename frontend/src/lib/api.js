@@ -33,3 +33,8 @@ export const watchToggle = async(id) => {
 export const getOneProperty = async(propId) => {
   return await axios.get(`${baseUrl}/property/${propId}`, withHeaders())
 }
+
+
+export const submitNewOrder = async(propId, orderDetails) => {
+  return await axios.post(`${baseUrl}/orders/new/${propId}/`, orderDetails ,withHeaders())
+}

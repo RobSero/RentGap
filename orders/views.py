@@ -39,6 +39,10 @@ def is_order_owner(order, user):
       raise PermissionDenied()
     print('SAME OWNER')
 
+def order_exists(userId,propertyId):
+    return Order.objects.filter(user=userId).filter(active=True).filter(property_detail=propertyId).exists()
+    
+
 
   # ------------------------------  CREATE NEW ORDER -------------------------------
   # POST request to baseURL/new/<int:pk> <-- pk = property_Id
@@ -58,6 +62,8 @@ class NewOrder(APIView):
     req.data['user'] = req.user.id
     # get property
     property_to_invest = get_property(pk)
+    if order_exists(userId,pk):
+      return Response({'message': 'Already got an open order'}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
     req.data['property_detail'] = property_to_invest.id
     # Compare property value with investment amount
     req.data['value_at_time'] = property_to_invest.current_valuation
