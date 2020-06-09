@@ -12,13 +12,13 @@ function Description(props) {
         bordered
         column={{ xxl: 1, xl: 1, lg: 1, md: 1, sm: 1, xs: 1 }}
       >
-        <Descriptions.Item label="Region">Cloud Database</Descriptions.Item>
-        <Descriptions.Item label="Property Type">Prepaid</Descriptions.Item>
-        <Descriptions.Item label="Construction Date">18:00:00</Descriptions.Item>
-        <Descriptions.Item label="Floor Area">$80.00</Descriptions.Item>
-        <Descriptions.Item label="Bedrooms">$20.00</Descriptions.Item>
-        <Descriptions.Item label="Bathrooms">$60.00</Descriptions.Item>
-        <Descriptions.Item label="Offstreet Parking">$60.00</Descriptions.Item>
+        <Descriptions.Item label="Region">{props.region[0].toUpperCase() + props.region.substring(1)}</Descriptions.Item>
+        <Descriptions.Item label="Property Type">{props.prop_type}</Descriptions.Item>
+        <Descriptions.Item label="Construction Date">{props.construction_date}</Descriptions.Item>
+        <Descriptions.Item label="Floor Area">{props.area}</Descriptions.Item>
+        <Descriptions.Item label="Bedrooms">{props.bedrooms}</Descriptions.Item>
+        <Descriptions.Item label="Bathrooms">{props.bathrooms}</Descriptions.Item>
+        <Descriptions.Item label="Offstreet Parking">{props.parking}</Descriptions.Item>
       </Descriptions>
     </div>
   )

@@ -5,8 +5,9 @@ import Button from '@material-ui/core/Button'
 
 function InvestmentCalculator(props){
   const [prop, setProp] = React.useState({ value: 0 })
-  const propValue = 250000
-  const propRent = 450
+  const propValue = props.current_valuation
+  const propRent = props.rental_value
+
   const onChange = value => {
     console.log(prop)
     
@@ -25,7 +26,7 @@ function InvestmentCalculator(props){
           <Col span={19}>
             <Slider
               min={10000}
-              max={250000}
+              max={propValue}
               onChange={onChange}
               value={typeof prop.value === 'number' ? prop.value : 0}
             />

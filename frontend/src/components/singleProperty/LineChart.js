@@ -4,6 +4,12 @@ import { Line } from 'react-chartjs-2'
 
 
 function LineChart(props){
+  const { growth_2015: growth2015,
+    growth_2016: growth2016, 
+    growth_2017: growth2017,
+    growth_2018: growth2018, 
+    growth_2019: growth2019,
+    growth_2020: growth2020 } = props
   const data = {
     labels: [2015,2016,2017,2018,2019,2020],
     datasets: [
@@ -26,14 +32,14 @@ function LineChart(props){
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: [292733, 330306, 349382, 357989, 364399, 370741]
+        data: [growth2015, growth2016, growth2017, growth2018, growth2019, growth2020]
       }
     ]
   }
 
   return (
     <div style={{ margin: '10px', textAlign: 'center', marginTop: '25px' }}>
-      <h3>Growth Chart for !!POSTCODE!!</h3>
+      <h3>Growth Chart for {props.postcode}</h3>
       <p>This chart represents the overall growth of the area accouting for all property types and finishes. This does not necessarily reflect the growth of this property</p>
       <Line data={data} />
       

@@ -7,14 +7,14 @@ function PropertyHeader(props){
     <div>
       <PageHeader
         onBack={() => window.history.back()}
-        title='Property Title'
-        subTitle="Address"
+        title={props.title}
+        subTitle={props.address}
         extra={
           <Row>
-            <Statistic title="Value" prefix="£" value={3345.08} style={{
+            <Statistic title="Current Value" prefix="£" value={props.current_valuation} style={{
               margin: '0 20px'
             }} />
-            <Statistic title="Rental" prefix="£" value={3345.08} style={{
+            <Statistic title="Rental Value" prefix="£" value={`${props.rental_value}pcm`} style={{
               margin: '0 20px'
             }} />
           </Row>

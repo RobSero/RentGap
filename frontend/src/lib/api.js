@@ -29,3 +29,7 @@ export const getWatchlist = async() => {
 export const watchToggle = async(id) => {
   return await axios.put(`${baseUrl}/property/${id}/`, withHeaders())
 }
+
+export const getOneProperty = async(propId) => {
+  return await axios.get(`${baseUrl}/property/${propId}`, withHeaders())
+}

@@ -7,6 +7,8 @@ import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
+import Map from './Map'
+import ReactImagePinch from './ReactImagePinch'
 
 
 
@@ -86,11 +88,12 @@ function TabDisplay(props) {
             index={value}
             onChangeIndex={handleChangeIndex}
           >
+            {/* MAPS AND FLOOR PLAN COMPONENTS */}
             <TabPanel value={value} index={0} dir={theme.direction}>
-              <p style={{ height: '300px' }}> -- mapbox -- //</p>
+              <Map {...props}/>
             </TabPanel>
             <TabPanel value={value} index={1} dir={theme.direction}>
-              <p style={{ height: '300px' }}> -- props.floorplan -- //</p>
+              <ReactImagePinch floorplan={props.floorplan} />
             </TabPanel>
           </SwipeableViews>
         </div>
