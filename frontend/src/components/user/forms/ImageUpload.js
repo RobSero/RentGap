@@ -10,7 +10,7 @@ class ImageUpload extends React.Component {
   state = {
     image: null
   }
-
+ 
   uploadURL = 'https://api.cloudinary.com/v1_1/dy7eycl8m/image/upload' // get this info from cloudinary
   uploadPreset = 'uke1baj3' // get this info from cloudinary. Presets of what to do with image like cropping
 
@@ -32,7 +32,7 @@ class ImageUpload extends React.Component {
   render(){
     return (
       <>
-        {this.state.image ? <img src={this.state.image} alt='picture-upload' className='avatar-upload' />  :
+        {this.state.image || this.props.image ? <Button><label htmlFor="file-input-id"><img src={this.props.image} alt='picture-upload' className='avatar-upload' /></label><input type="file" id="file-input-id" onChange={this.handleUpload} /></Button>  :
           <>
             <Button><label htmlFor="file-input-id">Upload</label></Button>
             <input type="file" id="file-input-id" onChange={this.handleUpload} />

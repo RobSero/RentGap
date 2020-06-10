@@ -1,6 +1,7 @@
 import React from 'react'
 import Stepper from './Stepper'
 import axios from 'axios'
+import { registerUser } from '../../lib/api'
 
 
 class Register extends React.Component {
@@ -32,7 +33,7 @@ handleChange = ({ target }) => {
 
 handleSubmit = async () => {
   try {
-    const res = await axios.post('/api/auth/register/', { ...this.state.formData })
+    const res = await registerUser(this.state.formData)
     this.props.history.push('/login')
     console.log(res)
   } catch (err){

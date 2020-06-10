@@ -50,3 +50,11 @@ export const clearOrder = async(orderId) => {
 export const postComment = async(propId, commentDetails) => {
   return await axios.post(`${baseUrl}/comment/properties/${propId}/`, commentDetails ,withHeaders())
 }
+
+export const registerUser = async(userDetails) => {
+  return await axios.post(`${baseUrl}/auth/register/`, userDetails)
+}
+
+export const updateUserDetails = async(userDetails) => {
+  return await axios.put(`${baseUrl}/auth/profile/`, userDetails ,withHeaders())
+}
