@@ -14,7 +14,10 @@ class ReviseOrderModal extends React.Component {
 
   showModalRevise = () => {
     this.setState({
-      ModalTextRevise: `EDIT ORDER Are you sure you wish to make an investment of £${this.props.investment}? There will be a fee of £${this.props.investment * 0.01} for making this transaction.`,
+      ModalTextRevise: `Are you sure you wish to alter your current investment of £${this.props.existingInvestment}?
+      ${this.props.investment > this.props.existingInvestment ? 'You are increasing your investment by £' : 'You are decreasing your investment by £'}
+      ${Math.abs(this.props.investment - this.props.existingInvestment)}. This results in a TOTAL INVESTMENT OF: £${this.props.investment} 
+      There will be a fee of £${Math.abs((this.props.investment - this.props.existingInvestment) * 0.01)} for making this transaction.`,
       visibleRevise: true
     })
   };
@@ -22,7 +25,7 @@ class ReviseOrderModal extends React.Component {
   handleOkRevise = () => {
     
     this.setState({
-      ModalTextRevise: 'The modal will be closed after two seconds',
+      ModalTextRevise: 'Updating your investment..Please wait',
       confirmLoading: true
     })
     setTimeout(() => {
@@ -36,7 +39,7 @@ class ReviseOrderModal extends React.Component {
 
   showModalWithdraw = () => {
     this.setState({
-      ModalTextWithdraw: `CLEAR ORDER Are you sure you wish to make an investment of £${this.props.investment}? There will be a fee of £${this.props.investment * 0.01} for making this transaction.`,
+      ModalTextWithdraw: `Are you sure you wish to withdraw ALL of your investment of £${this.props.existingInvestment}? There will be a fee of £${Math.abs(this.props.existingInvestment * 0.01)} for making this transaction.`,
       visibleWithdraw: true
     })
   };
@@ -44,7 +47,7 @@ class ReviseOrderModal extends React.Component {
   handleOkWithdraw = () => {
     
     this.setState({
-      ModalTextWithdraw: 'The modal will be closed after two seconds',
+      ModalTextWithdraw: 'Withdrawing all of your investment...Crediting your account',
       confirmLoading: true
     })
     setTimeout(() => {
@@ -68,14 +71,15 @@ class ReviseOrderModal extends React.Component {
     const { visibleRevise, confirmLoading, ModalTextRevise, visibleWithdraw, ModalTextWithdraw } = this.state
     return (
       <div>
-        <Button
+        {this.props.investment !== this.props.existingInvestment ?  <Button
           variant="contained"
-          color="primary"
+          color={this.props.investment !== this.props.existingInvestment ? 'primary' : ''}
           style={{ marginRight: '10px' }}
-          onClick={this.showModalRevise}
+          onClick={this.props.investment !== this.props.existingInvestment ? this.showModalRevise : ''}
         >
-        Invest
-        </Button>
+        Change Investment
+        </Button> : ''}
+       
         <Button
           variant="contained"
           style={{ marginLeft: '10px' }}
@@ -91,6 +95,7 @@ class ReviseOrderModal extends React.Component {
           onOk={this.handleOkRevise}
           confirmLoading={confirmLoading}
           onCancel={this.handleCancel}
+          okText='I confirm this revision'
         >
           <p>{ModalTextRevise}</p>
         </Modal>
@@ -100,6 +105,7 @@ class ReviseOrderModal extends React.Component {
           onOk={this.handleOkWithdraw}
           confirmLoading={confirmLoading}
           onCancel={this.handleCancel}
+          okText='I confirm I want to withdraw all'
         >
           <p>{ModalTextWithdraw}</p>
         </Modal>

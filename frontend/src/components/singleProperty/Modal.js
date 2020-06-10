@@ -3,7 +3,7 @@ import { Modal } from 'antd'
 import Button from '@material-ui/core/Button'
 class ConfirmationModal extends React.Component {
   state = {
-    ModalText: 'Are you sure you wish to make this investment?',
+    ModalText: '',
     visible: false,
     confirmLoading: false
   };
@@ -18,7 +18,7 @@ class ConfirmationModal extends React.Component {
   handleOk = () => {
     
     this.setState({
-      ModalText: 'The modal will be closed after two seconds',
+      ModalText: 'Creating your investment...Exiciting Stuff!',
       confirmLoading: true
     })
     setTimeout(() => {
@@ -43,9 +43,9 @@ class ConfirmationModal extends React.Component {
       <div>
         <Button
           variant="contained"
-          color="primary"
+          color={this.props.investment ? 'primary' : ''}
           style={{ marginRight: '10px' }}
-          onClick={this.showModal}
+          onClick={this.props.investment ? this.showModal : ''}
         >
         Invest
         </Button>
@@ -64,6 +64,7 @@ class ConfirmationModal extends React.Component {
           onOk={this.handleOk}
           confirmLoading={confirmLoading}
           onCancel={this.handleCancel}
+          okText='I confirm'
         >
           <p>{ModalText}</p>
         </Modal>

@@ -14,7 +14,7 @@ function ReactImagePinch(props) {
     >
       {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
         <React.Fragment>
-          <div className="tools">
+          <div className="tools" style={{ marginBottom: '8px' }}>
             <Button
               variant="contained"
               color="primary"
@@ -22,17 +22,9 @@ function ReactImagePinch(props) {
             >+</Button>
             <Button
               variant="contained"
-              color="secondary"
               onClick={zoomOut}
             >-</Button>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={resetTransform}
-            >x</Button>
-              
-            
-             
+
           </div>
           <TransformComponent>
             <img style={{ width: '100%' }} src={props.floorplan} alt="test" />

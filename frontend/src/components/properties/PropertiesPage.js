@@ -1,6 +1,6 @@
 import React from 'react'
 import { List, Avatar, Space } from 'antd'
-import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons'
+import { CarOutlined, ReloadOutlined, PoundCircleOutlined , FileOutlined } from '@ant-design/icons'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import { getProperties, getWatchlist, watchToggle } from '../../lib/api'
@@ -105,8 +105,12 @@ render(){
     
   return (
     <div style={{ overflowY: 'scroll', height: '90vh', position: 'relative', width: '100%' }}>
-      <h1 className='page-title'>Property List</h1>
-      <SearchSection handleChange={this.handleChange} {...this.state.filterData} />
+      <div className='centered'>
+        <h1 className='page-title'>Our Property List</h1>
+      </div>
+      <div className='centered' style = {{ backgroundColor: 'white', margin: '15px 30px', padding: '10px' }}>
+        <SearchSection handleChange={this.handleChange} {...this.state.filterData} />
+      </div>
       <List
         itemLayout="vertical"
         size="large"
@@ -125,9 +129,10 @@ render(){
             key={property.id}
             // PRICE, WATCH, RENT
             actions={[
-              <IconText icon={StarOutlined} text={`£${property.current_valuation}`} key="list-vertical-star-o" />,
-              <IconText icon={LikeOutlined} text={`£${property.rental_value}pcm`} key="list-vertical-like-o" />,
-              <IconText icon={MessageOutlined} text={property.bedrooms} key="list-vertical-message" />
+              <IconText icon={PoundCircleOutlined} text={`£${property.current_valuation}`} key="list-vertical-star-o" />,
+              <IconText icon={ReloadOutlined} text={`£${property.rental_value}pcm`} key="list-vertical-like-o" />,
+              <IconText icon={FileOutlined} text={property.bedrooms} key="list-vertical-message" />,
+              <IconText icon={CarOutlined} text={property.parking} key="list-vertical-message" />
             ]}
             // MAIN PHOTO HERE
             extra={

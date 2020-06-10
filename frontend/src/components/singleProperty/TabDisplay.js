@@ -66,39 +66,39 @@ function TabDisplay(props) {
   }
 
   return (
-    <div className='columns'>
-      <div className='column' style={{ backgroudColor: 'red', textAlign: 'center' }}>
-        <div className={classes.root}>
-          <AppBar position="static" color="default">
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              indicatorColor="primary"
-              textColor="primary"
-              variant="fullWidth"
-              aria-label="full width tabs example" 
-              centered
-            >
-              <Tab label="Maps" {...a11yProps(0)} />
-              <Tab label="FloorPlan" {...a11yProps(1)} />
-            </Tabs>
-          </AppBar>
-          <SwipeableViews
-            axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-            index={value}
-            onChangeIndex={handleChangeIndex}
+    <div className='container centered'>
+      
+      <div className={classes.root}>
+        <AppBar position="static" color="default">
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            indicatorColor="primary"
+            textColor="primary"
+            variant="fullWidth"
+            aria-label="full width tabs example" 
+            centered
           >
-            {/* MAPS AND FLOOR PLAN COMPONENTS */}
-            <TabPanel value={value} index={0} dir={theme.direction}>
-              <Map {...props}/>
-            </TabPanel>
-            <TabPanel value={value} index={1} dir={theme.direction}>
-              <ReactImagePinch floorplan={props.floorplan} />
-            </TabPanel>
-          </SwipeableViews>
-        </div>
+            <Tab label="Maps" {...a11yProps(0)} />
+            <Tab label="FloorPlan" {...a11yProps(1)} />
+          </Tabs>
+        </AppBar>
+        <SwipeableViews
+          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+          index={value}
+          onChangeIndex={handleChangeIndex}
+        >
+          {/* MAPS AND FLOOR PLAN COMPONENTS */}
+          <TabPanel value={value} index={0} dir={theme.direction}>
+            <Map {...props}/>
+          </TabPanel>
+          <TabPanel value={value} index={1} dir={theme.direction}>
+            <ReactImagePinch floorplan={props.floorplan} />
+          </TabPanel>
+        </SwipeableViews>
       </div>
     </div>
+   
  
 
    

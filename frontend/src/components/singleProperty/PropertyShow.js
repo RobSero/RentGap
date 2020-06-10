@@ -1,5 +1,5 @@
 import React from 'react'
-import ImageSlider from './ImageSlider'
+import ImageSlider2 from './ImageSlider2'
 import TabDisplay from './TabDisplay'
 import Description from './Description'
 import PropertyHeader from './PropertyHeader'
@@ -32,10 +32,23 @@ class propertyShowPage extends React.Component {
     try {
       const res = await getOneProperty(propertyId)
       console.log(res.data)
-      this.setState({
-        propertyData: res.data.property,
-        orderData: res.data.order
-      })
+      if (res.data.order){
+        console.log('WE HAVE ORDER DATA')
+        
+        this.setState({
+          propertyData: res.data.property,
+          orderData: res.data.order,
+          newOrder: {
+            investment: res.data.order.investment
+          } 
+        })
+      } else {
+        this.setState({
+          propertyData: res.data.property,
+          orderData: res.data.order
+        })
+      }
+     
     } catch (err){
       console.log(err)
       
@@ -142,7 +155,7 @@ render(){
       <div className='columns'>
         <div className='column is-half'>
           <div className='information-container'>
-            <ImageSlider {...propertyData} />
+            <ImageSlider2 {...propertyData} />
           </div>
           <div className='information-container'>
             <TabDisplay floorplan={propertyData.image_floorplan} lat={propertyData.latitude} lon={propertyData.longitude}/>

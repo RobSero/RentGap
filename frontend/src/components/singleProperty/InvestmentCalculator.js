@@ -16,10 +16,11 @@ function InvestmentCalculator(props){
   if (!props){
     return null
   }
+ 
 
   return (
     <div style={{ backgroundColor: 'white', textAlign: 'center' }}>
-      <p style={{ backgroundColor: 'blue', width: '100%', height: '25px', color: 'white' }}>InvestmenT CALCULATOR</p>
+      <p style={{ backgroundColor: 'rgb(30, 21, 73)', width: '100%', height: '35px', color: 'white', fontSize: '20px' }}>Investment Calculator</p>
       {existingOrder ? <Alert message={`You have an investment of £${existingOrder.investment} in this property, but you can still edit your existing investment`} type="info" style={{ margin: '5px 15px' }} /> : '' }
 
       <p>Use the calculator to find which investment strategy is right for you</p>
@@ -31,6 +32,7 @@ function InvestmentCalculator(props){
               <Slider
                 min={10000}
                 max={propValue}
+                style = {{ color: 'red' }}
                 onChange={(e)=>{
                
                   props.handleChange({ target: { name: 'investment', value: e } })
@@ -41,7 +43,7 @@ function InvestmentCalculator(props){
             <Col span={{ xxl: 1, xl: 1, lg: 1, md: 1, sm: 1, xs: 1 }}>
               <InputNumber
                 min={10000}
-                max={250000}
+                max={propValue}
             
                 value={typeof investment === 'number' ? investment : 0}
               />
@@ -79,7 +81,7 @@ function InvestmentCalculator(props){
             <Col span={{ xxl: 1, xl: 1, lg: 1, md: 1, sm: 1, xs: 1 }}>
               <InputNumber
                 min={10000}
-                max={250000}
+                max={propValue}
                 value={typeof investment === 'number' ? investment : 0}
                 onChange={(e)=>{
                   props.handleChangeRevisedOrder({ target: { name: 'changedOrder', value: existingOrder.investment - e } })
@@ -115,6 +117,7 @@ function InvestmentCalculator(props){
               investment={investment}
               handleRevisedOrderSubmit={props.handleRevisedOrderSubmit}  
               handleWithdrawAll={props.handleWithdrawAll}
+              existingInvestment={existingOrder.investment}
             />
           </div>
         </div> 
