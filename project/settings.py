@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'market_data',
     'orders',
     'portfolio',
-    'comments'
+    'comments',
+    'advice'
 ]
 
 REST_FRAMEWORK = {

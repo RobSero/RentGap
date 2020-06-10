@@ -69,9 +69,6 @@ class UpdateProfile(APIView):
   
   def put(self,req):
     user = self.get_updated_user(req.user.id)
-    if not req.data.get('password', False):
-       req.data['password'] = user.password
-       req.data['password_confirmation'] = user.password
     # get the user, serialize it
     serialized_user = UserSerializer(user, data=req.data)
     if serialized_user.is_valid():
