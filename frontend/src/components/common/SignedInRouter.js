@@ -6,6 +6,7 @@ import PortfolioPage from '../portfolio/PortfolioPage'
 import InvestmentPage from '../investments/InvestmentPage'
 import NewsPage from '../news/NewsPage'
 import AdvicePage from '../advice/AdvicePage'
+import AdviceShowPage from '../advice/AdviceShowPage'
 import SettingsPage from '../settings/SettingsPage'
 import WatchlistPage from '../watchlist/WatchlistPage'
 import PropertiesPage from '../properties/PropertiesPage'
@@ -24,6 +25,7 @@ const SignedInRouter = () => {
             <Route exact path='/watchlist' component={WatchlistPage} />
             <Route exact path='/news' component={NewsPage} />
             <Route exact path='/advice' component={AdvicePage} />
+            <Route exact path='/advice/:id' component={AdviceShowPage} />
             <Route exact path='/settings' component={SettingsPage} />
             <Route exact path='/properties' component={PropertiesPage} />
             <Route exact path='/property/:id' component={PropertyShowPage} />

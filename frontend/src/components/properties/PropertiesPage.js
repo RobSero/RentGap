@@ -86,8 +86,12 @@ filteredProperties = () => {
 
 handleWatch = async(propertyId) => {
   const res = await watchToggle(propertyId)
+  const watchRes = await getWatchlist()
+  const watchingArray = watchRes.data.map(watchedProperty => {
+    return watchedProperty.id
+  })
   this.setState({
-    ...this.state
+    watching: watchingArray
   })
   console.log(res.data)
 }
@@ -139,7 +143,9 @@ render(){
             <List.Item.Meta
               avatar={this.state.watching.includes(property.id) ? <FavoriteIcon onClick = {() =>{
                 this.handleWatch(property.id)
-              }} /> : <FavoriteBorderIcon />}
+              }} /> : <FavoriteBorderIcon onClick = {() =>{
+                this.handleWatch(property.id)
+              }} />}
               // PROPERTY TITLE
               title={<Link to={`property/${property.id}`}><p>{property.title}</p></Link>}
               // PROPERTY DESCRIPTION

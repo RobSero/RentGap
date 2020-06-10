@@ -27,7 +27,7 @@ export const getWatchlist = async() => {
 }
 
 export const watchToggle = async(id) => {
-  return await axios.put(`${baseUrl}/property/${id}/`, withHeaders())
+  return await axios.put(`${baseUrl}/property/${id}/`,{} , withHeaders())
 }
 
 export const getOneProperty = async(propId) => {
@@ -57,4 +57,12 @@ export const registerUser = async(userDetails) => {
 
 export const updateUserDetails = async(userDetails) => {
   return await axios.put(`${baseUrl}/auth/profile/`, userDetails ,withHeaders())
+}
+
+export const getArticles = async() => {
+  return await axios.get(`${baseUrl}/articles`)
+}
+
+export const getArticle = async(articleId) => {
+  return await axios.get(`${baseUrl}/articles/${articleId}`)
 }
