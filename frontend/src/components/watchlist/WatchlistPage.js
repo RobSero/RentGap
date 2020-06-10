@@ -1,7 +1,9 @@
 import React from 'react'
-import { List, Avatar, Space } from 'antd'
+import { List, Space } from 'antd'
 import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons'
-import { getWatchlist } from '../../lib/api'
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
+import FavoriteIcon from '@material-ui/icons/Favorite'
+import { getWatchlist, watchToggle } from '../../lib/api'
 import SearchSection from '../common/SearchSection'
 import { Link } from 'react-router-dom'
 
@@ -22,17 +24,22 @@ class WatchlistPage extends React.Component {
       finish: null,
       type: null
     },
-    filteredProperties: null
+    filteredProperties: null,
+    watching: null
   }
 
   async componentDidMount(){
     try {
       const res = await getWatchlist()
       console.log(res.data)
+      const watchingArray = res.data.map(watchedProperty => {
+        return watchedProperty.id
+      })
       
       this.setState({
         propertyData: res.data,
-        filteredProperties: res.data
+        filteredProperties: res.data,
+        watching: watchingArray
       })
     } catch (err){
       console.log(err)
@@ -74,6 +81,23 @@ filteredProperties = () => {
     property.current_valuation < max && property.current_valuation > min 
   })
   this.setState({ filteredProperties: filteredPropertyList })
+}
+
+handleWatch = async(propertyId) => {
+  await watchToggle(propertyId)
+  const res = await getWatchlist()
+  const watchingArray = res.data.map(watchedProperty => {
+    return watchedProperty.id
+  })
+
+  this.setState({
+    propertyData: res.data,
+    watching: watchingArray
+  })
+  setTimeout(()=>{
+    this.filteredProperties()
+  },300)
+
 }
 
 
@@ -121,7 +145,12 @@ render(){
             }
           >
             <List.Item.Meta
-              // avatar={<Avatar src={property.avatar} />}
+            // HEART BUTTON - WATCHLIST TOGGLE
+              avatar={this.state.watching.includes(property.id) ? <FavoriteIcon onClick = {() =>{
+                this.handleWatch(property.id)
+              }} /> : <FavoriteBorderIcon onClick = {() =>{
+                this.handleWatch(property.id)
+              }} />}
               // PROPERTY TITLE
               title={<Link to={`property/${property.id}`}><p>{property.title}</p></Link>}
               // PROPERTY DESCRIPTION

@@ -26,7 +26,7 @@ class PropertiesPage extends React.Component {
     },
     filteredProperties: null,
     watching: null
-  }
+  } 
 
   async componentDidMount(){
     try {
@@ -141,6 +141,7 @@ render(){
             }
           >
             <List.Item.Meta
+              // HEART BUTTON - WATCHLIST TOGGLE
               avatar={this.state.watching.includes(property.id) ? <FavoriteIcon onClick = {() =>{
                 this.handleWatch(property.id)
               }} /> : <FavoriteBorderIcon onClick = {() =>{

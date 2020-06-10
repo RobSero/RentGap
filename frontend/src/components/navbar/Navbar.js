@@ -14,10 +14,12 @@ import AccountCircle from '@material-ui/icons/AccountCircle'
 import MailIcon from '@material-ui/icons/Mail'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import MoreIcon from '@material-ui/icons/MoreVert'
-import { Link, withRouter, useHistory } from 'react-router-dom'
-import axios from 'axios'
+import { Link, withRouter, useHistory, useLocation } from 'react-router-dom'
 import { isAuthenticated, logout } from '../../lib/auth'
 import { getProfile } from '../../lib/api'
+import { Avatar } from 'antd'
+import MonetizationOnIcon from '@material-ui/icons/MonetizationOn'
+import { PoundOutlined } from '@ant-design/icons'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -88,26 +90,22 @@ const useStyles = makeStyles((theme) => ({
 function Navbar() {
   const classes = useStyles()
   const history = useHistory()
-  const [auth, setAuth] = React.useState(true)
+  const location = useLocation()
   const [anchorEl, setAnchorEl] = React.useState(null)
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
   const isMenuOpen = Boolean(anchorEl)
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
-  const [user, setUser] = React.useState({ money: 0 })
+  const [user, setUser] = React.useState(null)
 
   React.useEffect(()=> {
     console.log('CLICKED')
     if (isAuthenticated()){
-      console.log('is auth!!!')
       const getUser = async()=>{
         const res = await getProfile()
         console.log(res.data)
         setUser(res.data)
       }
       getUser()
-      
     }
-  },[]) 
+  },[location]) 
 
   const handleLogout = () => {
     logout()
@@ -120,22 +118,14 @@ function Navbar() {
     setAnchorEl(event.currentTarget)
   }
 
-  const login = () => {
-    setAuth(!auth)
-  }
 
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null)
-  }
 
   const handleMenuClose = () => {
     setAnchorEl(null)
-    handleMobileMenuClose()
+
   }
 
-  const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget)
-  }
+ 
 
   const menuId = 'primary-search-account-menu'
   const renderMenu = (
@@ -158,64 +148,26 @@ function Navbar() {
   )
 
   const mobileMenuId = 'primary-search-account-menu-mobile'
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
-    </Menu>
-  )
+
 
   return (
     <div  className='no-padding' style={{ position: 'relative', width: '100%' }}>
       <AppBar position="static" style={{ backgroundColor: 'rgb(30, 21, 73)' }} >
         <Toolbar>
           <Link to ='/'>
-            <Typography className={classes.title} variant="h6" noWrap onClick={login}>
-            Tradr!
+            <Typography className={classes.title} variant="h6" noWrap>
+              <img src='https://res.cloudinary.com/dy7eycl8m/image/upload/v1591804026/my_images/logo_utimcd.png' alt='logo' />
             </Typography>
           </Link>
           {/* SEARCHBAR HERE */}
           
           <div className={classes.grow} />
-          {isAuthenticated() ? (<div className={classes.sectionDesktop}>
+          {isAuthenticated() && user ? (<div className={classes.sectionDesktop}>
             {/* INSERT MESSAGES AND NOTIFICATIONS BUTTONS HERE */}
-            <div>
-              {/* add money and money icon */}
-              <AccountCircle /><p style={{ 'display': 'inline' }}>{user.money ? `£${user.money}` : ''}</p>
-            </div>
+           
+            <IconButton><p style={{ color: 'white', margin: '0 10px', fontSize: '15px' }}>{user.money ? `£${user.money}` : ''}</p><PoundOutlined style={{ color: 'white' }} /></IconButton>
+              
+            
             <IconButton
               edge="end"
               aria-label="account of current user"
@@ -224,7 +176,7 @@ function Navbar() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle />
+              <Avatar src={user.profile_image} />
             </IconButton>
           </div>) : <Link to='/login'><p>Login</p></Link> }
           
@@ -234,7 +186,6 @@ function Navbar() {
               aria-label="show more"
               aria-controls={mobileMenuId}
               aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
               color="inherit"
             >
               <MoreIcon />
@@ -242,7 +193,6 @@ function Navbar() {
           </div>
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
       {renderMenu}
     </div>
   )
@@ -292,3 +242,51 @@ export default withRouter(Navbar)
 //   inputProps={{ 'aria-label': 'search' }}
 // />
 // </div> 
+
+// const renderMobileMenu = (
+//   <Menu
+//     anchorEl={mobileMoreAnchorEl}
+//     anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+//     id={mobileMenuId}
+//     keepMounted
+//     transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+//     open={isMobileMenuOpen}
+//     onClose={handleMobileMenuClose}
+//   >
+//     <MenuItem>
+//       <IconButton aria-label="show 4 new mails" color="inherit">
+//         <Badge badgeContent={4} color="secondary">
+//           <MailIcon />
+//         </Badge>
+//       </IconButton>
+//       <p>Messages</p>
+//     </MenuItem>
+//     <MenuItem>
+//       <IconButton aria-label="show 11 new notifications" color="inherit">
+//         <Badge badgeContent={11} color="secondary">
+//           <NotificationsIcon />
+//         </Badge>
+//       </IconButton>
+//       <p>Notifications</p>
+//     </MenuItem>
+//     <MenuItem onClick={handleProfileMenuOpen}>
+//       <IconButton
+//         aria-label="account of current user"
+//         aria-controls="primary-search-account-menu"
+//         aria-haspopup="true"
+//         color="inherit"
+//       >
+//         <AccountCircle />
+//       </IconButton>
+//       <p>Profile</p>
+//     </MenuItem>
+//   </Menu>
+// )
+
+// const handleMobileMenuOpen = (event) => {
+//   setMobileMoreAnchorEl(event.currentTarget)
+// }
+
+// const handleMobileMenuClose = () => {
+//   setMobileMoreAnchorEl(null)
+// }

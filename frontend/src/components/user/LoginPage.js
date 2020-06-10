@@ -31,7 +31,10 @@ handleSubmit = async () => {
   try {
     const res = await axios.post('/api/auth/login/', { ...this.state.formData })
     setToken(res.data.token)
-    this.props.history.push('/dashboard')
+    setTimeout(()=> {
+      this.props.history.push('/dashboard')
+    }, 500)
+    
     console.log(res)
   } catch (err){
     console.log(err)
