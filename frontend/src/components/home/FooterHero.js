@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
 function FooterHero(){
   const classes = useStyles()
   return (
-    <section className="hero is-medium is-primary is-bold centered m-1">
+    <section className="hero is-medium hero-background-two is-bold centered m-1">
       <div className="hero-body">
         <div className="container">
           <Link to='/register'>

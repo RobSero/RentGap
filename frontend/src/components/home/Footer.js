@@ -2,14 +2,15 @@ import React from 'react'
 
 
 function Footer(){
+  const date = new Date()
   return (
     <footer className="footer">
       <div className="content has-text-centered">
         <p>
-          <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
-          <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-        is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+          <strong>RentGap</strong> by <a href="https://whispering-citadel-18475.herokuapp.com/#">Robert Serowka</a>. Real life data on this site is consumed via the <a href="https://propertydata.co.uk/">PropertyData</a> Third Party Api 
         </p>
+        <br />
+        <p> Copyright {date.getFullYear()}</p>
       </div>
     </footer>
   )

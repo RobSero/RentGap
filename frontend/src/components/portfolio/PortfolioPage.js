@@ -153,7 +153,7 @@ render(){
                 this.handleWatch(order.property_detail.id)
               }} />}
               // PROPERTY TITLE
-              title={<><Link to={`property/${order.property_detail.id}`}><span>{order.property_detail.title}</span></Link><span style={{ color: order.value_change !== 0 ? `${order.value_change > 0 ? ' green' : ' red' }`  : 'blue' }}>:  {order.value_change}%</span></>}
+              title={<><Link to={`property/${order.property_detail.id}`}><span>{order.property_detail.title}</span></Link><span style={{ color: order.value_change !== 0 ? `${order.value_change > 0 ? ' green' : ' red' }`  : 'blue' }}>:  {order.value_change}% </span></>}
               // PROPERTY DESCRIPTION
               description={order.property_detail.address}
             />

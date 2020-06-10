@@ -6,7 +6,7 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload'
 const uploadUrl = 'https://api.cloudinary.com/v1_1/dy7eycl8m/image/upload' // get this info from cloudinary
 const uploadPreset = 'Property-Investor-Avatars' // get this info from cloudinary. Presets of what to do with image like cropping
 
-class ImageUpload extends React.Component {
+class EditProfileImageUpload extends React.Component {
   state = {
     image: 'https://res.cloudinary.com/dy7eycl8m/image/upload/v1591819721/empty-avatar-png-transparent_mighcw.png'
   }
@@ -32,8 +32,7 @@ class ImageUpload extends React.Component {
   render(){
     return (
       <>
-        <Button><label htmlFor="file-input-id"><img src={this.state.image} alt='picture-upload' className='avatar-upload' /></label><input type="file" id="file-input-id" onChange={this.handleUpload} /></Button> 
-        
+        <Button><label htmlFor="file-input-id"><img src={this.props.image} alt='picture-upload' className='avatar-upload' /></label><input type="file" id="file-input-id" onChange={this.handleUpload} /></Button> 
 
         
       </>
@@ -41,4 +40,4 @@ class ImageUpload extends React.Component {
   }
 }
 
-export default ImageUpload
+export default EditProfileImageUpload

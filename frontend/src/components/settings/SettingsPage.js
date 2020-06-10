@@ -1,7 +1,7 @@
 import React from 'react'
 import SettingsHeader from './SettingsHeader'
 import { Collapse } from 'antd'
-import ImageUpload from '../user/forms/ImageUpload'
+import EditProfileImageUpload from '../user/forms/EditProfileImageUpload'
 import { getProfile, updateUserDetails } from '../../lib/api'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
@@ -76,7 +76,7 @@ class SettingsPage extends React.Component {
               <Collapse accordion>
                 <Panel header="Avatar Settings" key="1">
                   <div className='centered'>
-                    <ImageUpload handleChange={this.handleChange} image={user.profile_image}/>
+                    <EditProfileImageUpload handleChange={this.handleChange} image={user.profile_image}/>
                   </div>
                 </Panel>
                 <Panel header="Personal Details" key="2">

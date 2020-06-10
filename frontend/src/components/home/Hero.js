@@ -13,13 +13,13 @@ const useStyles = makeStyles((theme) => ({
 function Hero(){
   const classes = useStyles()
   return (
-    <section className="hero is-large is-primary is-bold centered">
+    <section className="hero is-large hero-background-one is-bold centered">
       <div className="hero-body">
         <div className="container">
-          <h1 className="title">
+          <h1 className="title title-main">
         Start Your Investments Today
           </h1>
-          <h2 className="subtitle">
+          <h2 className="subtitle title-main">
         Easy, Stress-Free, Safe
           </h2>
           <Link to='/register'>

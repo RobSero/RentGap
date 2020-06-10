@@ -1,15 +1,37 @@
-.teamTitle {
+.team-Title {
   text-align: center;
   font-size: large;
-  background-color: rgb(138, 139, 64);
+  background-color: rgb(30, 21, 73);
+  color: white;
 }
 
 .team-member {
-  background-color: rgb(206, 206, 206);
   text-align: center;
   .team-image {
     height: 180px;
+    width: 180px;
     border-radius: 50%;
   }
 }
 
+.hero-background-one {
+  background: linear-gradient( rgba(0, 0, 0, 0.548), rgba(0, 0, 0, 0.575) ), url('https://res.cloudinary.com/dy7eycl8m/image/upload/v1591817607/glass-ceiling-1487154_pa7vxs.jpg');
+  background-position:center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.title-main {
+  color:white
+}
+
+.banner {
+  background-color: rgb(30, 21, 73) ;
+}
+
+.hero-background-two {
+  background: linear-gradient( rgba(0, 0, 0, 0.548), rgba(0, 0, 0, 0.575) ), url('https://res.cloudinary.com/dy7eycl8m/image/upload/v1591818246/daylight-environment-forest-idyllic-459225_spau7a.jpg');
+  background-position:center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

@@ -45,8 +45,8 @@ handleSubmit = async () => {
 render(){
   return (
     <>
-      <div className='columns pink'>
-        <div className='column is-half is-offset-one-quarter red'>
+      <div className='columns main-section'>
+        <div className='column is-half is-offset-one-quarter clear-background' style={{ height: '500px' }}>
           <Stepper onChange={this.handleChange} {...this.state.formData} handleSubmit={this.handleSubmit} />
         </div>
       </div>

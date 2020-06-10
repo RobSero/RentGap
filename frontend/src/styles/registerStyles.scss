@@ -1,8 +1,4 @@
 
-.red {
-  background-color: rgb(201, 201, 201);
-  height: 500px;
-}
 
 .pink {
   background-color: rgb(167, 97, 97);
@@ -29,4 +25,9 @@ input[type="file"] {
 
 .avatar-upload-button {
   margin-top: 20px
+}
+
+#root > div.columns.main-section > div > div > div.MuiPaper-root.MuiStepper-root.MuiStepper-horizontal.MuiPaper-elevation0 {
+  background-color: rgb(209, 207, 219);
+  color: navy
 }

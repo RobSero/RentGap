@@ -66,7 +66,7 @@ function FullWidthTabs() {
 
   return (
     <div className='columns'>
-      <div className='column' style={{ backgroudColor: 'red', textAlign: 'center' }}>
+      <div className='column' style={{ backgroudColor: 'red', textAlign: 'center', padding: 0 }}>
         <div className={classes.root}>
           <AppBar position="static" color="default">
             <Tabs
@@ -87,8 +87,9 @@ function FullWidthTabs() {
             axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
             index={value}
             onChangeIndex={handleChangeIndex}
+            className='sub-section'
           >
-            <TabPanel value={value} index={0} dir={theme.direction}>
+            <TabPanel value={value} index={0} dir={theme.direction} >
               <TabItemOne />
             </TabPanel>
             <TabPanel value={value} index={1} dir={theme.direction}>
