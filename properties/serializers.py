@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import Property
-# from comments.serializers import CommentSerializer
-# from comments.serializers import CommentSerializer
+from comments.serializers import PopulatedCommentSerializer
+
 
 class PropertySerializer(serializers.ModelSerializer):
     
@@ -9,9 +9,9 @@ class PropertySerializer(serializers.ModelSerializer):
         model = Property
         fields = '__all__'
 
-# class PopulatedPropertySerializer(PropertySerializer):
-#     comments = CommentSerializer(many=True)
-#     # growth =  GrowthSerializer(many=True)
+class PopulatedPropertySerializer(PropertySerializer):
+    comments = PopulatedCommentSerializer(many=True)
+    
     
 
 

@@ -171,7 +171,7 @@ render(){
             <LineChart {...propertyData} />
           </div>
           <div className='details-container'>
-            <CommentSection />
+            <CommentSection propertyId={propertyData.id} />
           </div>
             
         </div>

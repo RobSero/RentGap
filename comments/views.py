@@ -55,7 +55,7 @@ class CommentHandler(APIView):
     new_comment = CommentSerializer(data=req.data)   
     if new_comment.is_valid():
       new_comment.save()
-      return Response({'test': 'yo'}, status=status.HTTP_200_OK)
+      return Response(new_comment.data, status=status.HTTP_200_OK)
    
     return Response(new_comment.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
   

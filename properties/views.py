@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.exceptions import NotFound, PermissionDenied
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
-from .serializers import PropertySerializer, SimplePropertySerializer
+from .serializers import PropertySerializer, SimplePropertySerializer, PopulatedPropertySerializer
 from django.contrib.auth import get_user_model
 
 # import requests
@@ -77,7 +77,7 @@ class OneProperty(APIView):
     def get(self, req, pk):
       # Get Property Data
         property_info = self.get_property(pk)
-        property_json = PropertySerializer(property_info)
+        property_json = PopulatedPropertySerializer(property_info)
       # Get Order (if found)
         order = get_active_order(req.user.id, pk )
         

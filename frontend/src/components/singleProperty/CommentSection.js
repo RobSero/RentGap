@@ -1,15 +1,27 @@
 import React from 'react'
 import { Comment, Avatar, Form, Button, List, Input } from 'antd'
 import moment from 'moment'
+import { getOneProperty, postComment, getProfile } from '../../lib/api'
 
 const { TextArea } = Input
 
 const CommentList = ({ comments }) => (
   <List
-    dataSource={comments}
-    header={`${comments.length} ${comments.length > 1 ? 'replies' : 'reply'}`}
+    className="comment-list"
+    header={`${comments.length} Comments`}
     itemLayout="horizontal"
-    renderItem={props => <Comment {...props} />}
+    dataSource={comments}
+    renderItem={item => (
+      <li>
+        <Comment
+          actions={item.actions}
+          author={item.owner.username}
+          avatar={item.owner.profile_image}
+          content={item.content}
+          datetime={item.created_at}
+        />
+      </li>
+    )}
   />
 )
 
@@ -28,55 +40,66 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
 
 class NewComment extends React.Component {
   state = {
-    comments: [{
-      author: 'Han Solo',
-      avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-      content: 'iuiuevcnfuinviuorf',
-      datetime: moment().fromNow()
-    },{
-      author: 'Han Solo',
-      avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-      content: 'iuiuevcnfuinviuorf',
-      datetime: moment().fromNow()
-    }],
+    user: null,
+    comments: [],
     submitting: false,
-    value: ''
+    newComment: {
+      content: ''
+    }
   };
 
+  async componentDidMount(){
+    const propertyId = this.props.propertyId
+    try {
+      const res = await getOneProperty(propertyId)
+      const userRes = await getProfile()
+      this.setState({
+        user: userRes.data,
+        comments: res.data.property.comments
+      })
+    } catch (err){
+      console.log(err)
+    }
+  }
+
+
   handleSubmit = () => {
-    if (!this.state.value) {
+    if (!this.state.newComment.content) {
       return
     }
-
     this.setState({
       submitting: true
     })
-
-    setTimeout(() => {
-      this.setState({
-        submitting: false,
-        value: '',
-        comments: [
-          {
-            author: 'Han Solo',
-            avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-            content: <p>{this.state.value}</p>,
-            datetime: moment().fromNow()
-          },
-          ...this.state.comments
-        ]
-      })
+    setTimeout(async() => {
+      const propertyId = this.props.propertyId
+      try {
+        const res = await postComment(propertyId,this.state.newComment)
+        const CommentsRes = await getOneProperty(propertyId)
+        console.log(res.data)
+        this.setState({
+          comments: CommentsRes.data.property.comments,
+          submitting: false,
+          newComment: {
+            content: ''
+          }
+        })
+      } catch (err){
+        console.log(err)
+      }
     }, 1000)
   };
 
-  handleChange = e => {
+  handleChange = ({ target }) => {
+    
     this.setState({
-      value: e.target.value
+      newComment: {
+        content: target.value
+      }
     })
   };
 
   render() {
-    const { comments, submitting, value } = this.state
+    const { comments, submitting, newComment,user } = this.state
 
     return (
       <>
@@ -84,8 +107,8 @@ class NewComment extends React.Component {
         <Comment
           avatar={
             <Avatar
-              src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-              alt="Han Solo"
+              src={user ? user.profile_image : ''}
+              alt={user ? user.username : ''}
             />
           }
           content={
@@ -93,7 +116,7 @@ class NewComment extends React.Component {
               onChange={this.handleChange}
               onSubmit={this.handleSubmit}
               submitting={submitting}
-              value={value}
+              value={newComment.content}
             />
           }
         />

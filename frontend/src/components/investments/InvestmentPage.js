@@ -4,7 +4,6 @@ import InvestmentHeader from './InvestmentHeader'
 import PieChart from './PieChart'
 import DoughnutChart from './DoughnutChart'
 import BarChart from './BarChart'
-import BarChartRental from './BarChartRental'
 
 import LineChart from './LineChart'
 

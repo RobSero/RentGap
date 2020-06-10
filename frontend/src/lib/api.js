@@ -46,3 +46,7 @@ export const reviseOrder = async(orderId, orderDetails) => {
 export const clearOrder = async(orderId) => {
   return await axios.delete(`${baseUrl}/orders/clear/${orderId}/`,withHeaders())
 }
+
+export const postComment = async(propId, commentDetails) => {
+  return await axios.post(`${baseUrl}/comment/properties/${propId}/`, commentDetails ,withHeaders())
+}
