@@ -4,7 +4,7 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
-
+import Button from '@material-ui/core/Button'
 import MenuItem from '@material-ui/core/MenuItem'
 import Menu from '@material-ui/core/Menu'
 
@@ -175,7 +175,7 @@ function Navbar() {
             >
               <Avatar src={user.profile_image} />
             </IconButton>
-          </div>) : <Link to='/login'><p>Login</p></Link> }
+          </div>) : <Link to='/login'><Button style={{ color: 'white' }}>Login</Button></Link> }
           
           {/* mobile styling section */}
           <div className={classes.sectionMobile}>

@@ -11,6 +11,7 @@ import SettingsPage from '../settings/SettingsPage'
 import WatchlistPage from '../watchlist/WatchlistPage'
 import PropertiesPage from '../properties/PropertiesPage'
 import PropertyShowPage from '../singleProperty/PropertyShow'
+import LeaderboardPage from '../leaderboard/LeaderboardPage'
 
 const SignedInRouter = () => {
   return (
@@ -29,6 +30,8 @@ const SignedInRouter = () => {
             <Route exact path='/settings' component={SettingsPage} />
             <Route exact path='/properties' component={PropertiesPage} />
             <Route exact path='/property/:id' component={PropertyShowPage} />
+            <Route exact path='/leaderboard' component={LeaderboardPage} />
+            <Route exact path='*' component={LeaderboardPage} />
           </Switch>
         </div>
       </div>

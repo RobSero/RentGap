@@ -9,7 +9,6 @@ function Home() {
   return (
     <>
       <Hero />
-      <Tabs />
       <TeamSection />
       <FooterHero />
       <Footer />

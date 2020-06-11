@@ -16,6 +16,10 @@ body {
   box-shadow: 0 1px 5px rgb(177, 176, 176);
 }
 
+.styled-theme-background {
+  background-image: url("https://www.transparenttextures.com/patterns/black-thread.png");
+}
+
 //  ------------------- GENERIC LAYOUT AND POSITIONING CLASSES -------------------------
 .no-padding {
   padding: 0
@@ -47,4 +51,15 @@ body {
 
 .clear-background {
   background-color: white;
+}
+
+
+//  ------------------- FONT WEIGHTS -------------------------
+
+.thin-sub-text {
+  font-weight: 300;
+}
+
+.normal-sub-text {
+  font-weight: 800;
 }

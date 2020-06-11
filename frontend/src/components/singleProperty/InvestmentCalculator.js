@@ -44,7 +44,10 @@ function InvestmentCalculator(props){
               <InputNumber
                 min={10000}
                 max={propValue}
-            
+                onChange={(e)=>{
+               
+                  props.handleChange({ target: { name: 'investment', value: e } })
+                }}
                 value={typeof investment === 'number' ? investment : 0}
               />
             </Col>
@@ -107,7 +110,7 @@ function InvestmentCalculator(props){
             </Row>
             <Row style={{ margin: '15px' }}>
               <p>Current Rental: £{propRent}</p>
-              <p style={{ marginLeft: '25px', fontWeight: 700 }}>Your NEW Monthly Rental: £{(( investment / propValue ) * propRent).toFixed(2)}pcm</p>
+              <p style={{ marginLeft: '25px', fontWeight: 700 }}>Your NEW Rental: £{(( investment / propValue ) * propRent).toFixed(2)}pcm</p>
             </Row></> : '' }
             
             <p>Please note there will be a 1% fee to your investment upon opening this order and withdrawal of investment </p>

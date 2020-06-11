@@ -65,43 +65,43 @@ function FullWidthTabs() {
   }
 
   return (
-    <div className='columns'>
-      <div className='column' style={{ backgroudColor: 'red', textAlign: 'center', padding: 0 }}>
-        <div className={classes.root}>
-          <AppBar position="static" color="default">
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              indicatorColor="primary"
-              textColor="primary"
-              variant="fullWidth"
-              aria-label="full width tabs example" 
-              centered
-            >
-              <Tab label="The Process" {...a11yProps(0)} />
-              <Tab label="Properties" {...a11yProps(1)} />
-              <Tab label="Investments" {...a11yProps(2)} />
-            </Tabs>
-          </AppBar>
-          <SwipeableViews
-            axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-            index={value}
-            onChangeIndex={handleChangeIndex}
-            className='sub-section'
+   
+    <div className='sub-section' style={{ backgroudColor: 'red', textAlign: 'center', padding: 0, width: '100%' }}>
+      <div className={classes.root} style={{ width: '60%', margin: '0 auto' }}>
+        <AppBar position="static" color="default">
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            indicatorColor="primary"
+            textColor="primary"
+            variant="fullWidth"
+            aria-label="full width tabs example" 
+            centered
           >
-            <TabPanel value={value} index={0} dir={theme.direction} >
-              <TabItemOne />
-            </TabPanel>
-            <TabPanel value={value} index={1} dir={theme.direction}>
-              <TabItemTwo />
-            </TabPanel>
-            <TabPanel value={value} index={2} dir={theme.direction}>
-              <TabItemThree />
-            </TabPanel>
-          </SwipeableViews>
-        </div>
+            <Tab label="The Process" {...a11yProps(0)} />
+            <Tab label="Properties" {...a11yProps(1)} />
+            <Tab label="Investments" {...a11yProps(2)} />
+          </Tabs>
+        </AppBar>
+        <SwipeableViews
+          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+          index={value}
+          onChangeIndex={handleChangeIndex}
+          className='sub-section'
+        >
+          <TabPanel value={value} index={0} dir={theme.direction} >
+            <TabItemOne />
+          </TabPanel>
+          <TabPanel value={value} index={1} dir={theme.direction}>
+            <TabItemTwo />
+          </TabPanel>
+          <TabPanel value={value} index={2} dir={theme.direction}>
+            <TabItemThree />
+          </TabPanel>
+        </SwipeableViews>
       </div>
     </div>
+
  
 
    
