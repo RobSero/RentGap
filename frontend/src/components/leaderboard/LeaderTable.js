@@ -1,83 +1,71 @@
 import React from 'react'
-import { Table, Tag, Space } from 'antd'
-
-const columns = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-    render: text => <a>{text}</a>
-  },
-  {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age'
-  },
-  {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address'
-  },
-  {
-    title: 'Tags',
-    key: 'tags',
-    dataIndex: 'tags',
-    render: tags => (
-      <>
-        {tags.map(tag => {
-          let color = tag.length > 5 ? 'geekblue' : 'green'
-          if (tag === 'loser') {
-            color = 'volcano'
-          }
-          return (
-            <Tag color={color} key={tag}>
-              {tag.toUpperCase()}
-            </Tag>
-          )
-        })}
-      </>
-    )
-  },
-  {
-    title: 'Action',
-    key: 'action',
-    render: (text, record) => (
-      <Space size="middle">
-        <a>Invite {record.name}</a>
-        <a>Delete</a>
-      </Space>
-    )
-  }
-]
-
-const data = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer']
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser']
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher']
-  }
-]
+import { Table, Tag, Space, Avatar } from 'antd'
+import { getLeaders } from '../../lib/api'
+import { loadingTimer, thisMonth, months } from '../../lib/settings'
+import LoadingSpinner from '../common/LoadingSpinners'
 
 function LeaderTable(props) {
+  const [users, setUsers] = React.useState(null)
+
+
+  React.useEffect(()=>{
+    console.log('HEYYYY')
+    const getUsers = async() => {
+      const res = await getLeaders()
+      const ranked = res.data.map((user,index) => {
+        user.rank = index + 1
+        return user
+      })
+      setUsers(ranked)
+    }
+    getUsers()
+  },[])
+
+  const columns = [
+    {
+      title: 'Rank',
+      dataIndex: 'rank',
+      key: 'rank'
+    },
+    {
+      title: '',
+      dataIndex: 'profile_image',
+      key: 'profile_image',
+      render: (url) => <Avatar src={url} />
+    },
+    {
+      title: 'Username',
+      dataIndex: 'username',
+      key: 'username'
+    },
+    {
+      title: 'Total Assets (£)',
+      dataIndex: 'total_money',
+      key: 'total_money'
+    },
+    {
+      title: 'Joined',
+      dataIndex: 'date_joined',
+      key: 'date_joined'
+    }
+  
+  ]
+
+  // const data = [
+  //   {
+  //     id: '1',
+  //     username: 'John Brown',
+  //     age: 32,
+  //     total_money: 'New York No. 1 Lake Park'
+  //   }
+  // ]
+
+  if (!users) {
+    return <LoadingSpinner />
+  }
 
   return (
-    <Table columns={columns} dataSource={data} />
+    <Table columns={columns} dataSource={users} />
   )
 }
 

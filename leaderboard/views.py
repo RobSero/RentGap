@@ -42,7 +42,6 @@ class LeaderboardIndex(APIView):
     # Sort List
     all_users_leaderboard.sort(key=self.most_money, reverse=True)
     serialized_leaderboard = UserSerializer(all_users_leaderboard, many=True)
-    print(serialized_leaderboard.data[0])
     
     
     return Response(serialized_leaderboard.data[:20])

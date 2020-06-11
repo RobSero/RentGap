@@ -14,6 +14,10 @@ export const getProfile = async() => {
   return await axios.get(`${baseUrl}/auth/user/`, withHeaders())
 }
 
+export const getLeaders = async() => {
+  return await axios.get(`${baseUrl}/leaderboard`)
+}
+
 export const getProperties = async() => {
   return await axios.get(`${baseUrl}/property/`, withHeaders())
 }

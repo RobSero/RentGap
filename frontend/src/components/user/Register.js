@@ -7,15 +7,15 @@ import { registerUser } from '../../lib/api'
 class Register extends React.Component {
 state = {
   formData: {
-    'username': 'Robbo',
-    'email': 'robbo@email.com',
-    'profile_image': 'https://ga-core.s3.amazonaws.com/production/uploads/instructor/image/14618/thumb_Screen_Shot_2019-05-30_at_16.42.14.png',
-    'bio': 'Software Engineering Instructor in LDN',
-    'first_name': 'Rob',
-    'last_name': 'Sero',
-    'password': 'pass',
-    'password_confirmation': 'pass',
-    'experience': 'mid'
+    'username': null,
+    'email': null,
+    'profile_image': 'https://res.cloudinary.com/dy7eycl8m/image/upload/v1591819721/empty-avatar-png-transparent_mighcw.png',
+    'bio': null,
+    'first_name': null,
+    'last_name': null,
+    'password': null,
+    'password_confirmation': null,
+    'experience': null
   }
 }
 
