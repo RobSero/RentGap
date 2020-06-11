@@ -57,6 +57,7 @@ class SettingsPage extends React.Component {
     try {
       const res = await updateUserDetails(this.state.user)
       console.log(res.data)
+      window.location.reload(true)
     } catch (err){
       console.log(err)
     }

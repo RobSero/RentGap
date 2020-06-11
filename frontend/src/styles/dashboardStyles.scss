@@ -1,10 +1,20 @@
 .side-bar{
- background-color: rgba(88, 88, 88, 0.822);
+ background-color: rgba(17, 15, 15, 0.822);
  height: 100vh;
+
+ .link {
+   color: white
+ }
 }
 
 .page-title {
   margin-left: 30px;
   margin-top: 10px;
   font-size: 25px;
+}
+
+.subpage-title {
+  font-size: 17px;
+  margin: 5px;
+  color: rgb(185, 185, 185)
 }

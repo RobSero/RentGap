@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import { Link, withRouter, useLocation } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
@@ -8,74 +8,90 @@ import ListItemText from '@material-ui/core/ListItemText'
 import Divider from '@material-ui/core/Divider'
 import InboxIcon from '@material-ui/icons/Inbox'
 import DraftsIcon from '@material-ui/icons/Drafts'
-
-const useStyles = makeStyles(() => ({
-  root: {
-    width: '100%',
-    color: 'white'
-    // backgroundColor: theme.palette.background.paper
-  }
-}))
-
-
+import { getProfile } from '../../lib/api'
+import HomeIcon from '@material-ui/icons/Home'
+import FolderSharedIcon from '@material-ui/icons/FolderShared'
+import PieChartIcon from '@material-ui/icons/PieChart'
+import FavoriteIcon from '@material-ui/icons/Favorite'
+import AppsIcon from '@material-ui/icons/Apps'
+import LiveHelpIcon from '@material-ui/icons/LiveHelp'
+import ImportContactsIcon from '@material-ui/icons/ImportContacts'
+import SettingsIcon from '@material-ui/icons/Settings'
 
 function Sidebar() {
-  const classes = useStyles()
   const [selectedIndex, setSelectedIndex] = React.useState(1)
+  const location = useLocation()
+  const [user, setUser] = React.useState(null)
 
-  const handleListItemClick = (event, index) => {
-    setSelectedIndex(index)
+  const locations = {
+    dashboard: 0,
+    portfolio: 1,
+    investments: 2,
+    watchlist: 3,
+    properties: 4,
+    advice: 5,
+    news: 6,
+    settings: 7
   }
+
+  React.useEffect(()=> {
+    setSelectedIndex(locations[location.pathname.substring(1)])
+  }, [location])
+
+  React.useEffect(async()=> {
+    const res = await getProfile()
+    setUser(res.data)
+  }, [])
 
   return (
     <div className="column side-bar is-one-fifth">
-      <div className={classes.root}>
+      <div >
         <List component="nav" aria-label="main mailbox folders">
-          <h5 className='centered'>---USERNAME HERE---</h5>
-          <Link to='/dashboard'>
+          <h5 className='subpage-title'>Welcome back, {user ? user.username : 'Friend'}</h5>
+          <Link className='link' to='/dashboard'>
             <ListItem
               button
               selected={selectedIndex === 0}
-              onClick={(event) => handleListItemClick(event, 0)}
+              
             >
               <ListItemIcon>
-                <InboxIcon />
+                <HomeIcon />
               </ListItemIcon>
               <ListItemText primary="Home" />
             </ListItem>
           </Link>
-          <Link to='/portfolio'>
+          <Link className='link'  to='/portfolio'>
             <ListItem
               button
               selected={selectedIndex === 1}
-              onClick={(event) => handleListItemClick(event, 1)}
+             
             >
               <ListItemIcon>
-                <DraftsIcon />
+                <FolderSharedIcon />
               </ListItemIcon>
               <ListItemText primary="Portfolio" />
             </ListItem>
           </Link>
-          <Link to='/investments'>
+          <Link className='link'  to='/investments'>
             <ListItem
               button
               selected={selectedIndex === 2}
-              onClick={(event) => handleListItemClick(event, 2)}
+         
             >
               <ListItemIcon>
-                <InboxIcon />
+                <PieChartIcon />
               </ListItemIcon>
               <ListItemText primary="Investments" />
             </ListItem>
           </Link>
-          <Link to='/watchlist'>
+          <Link className='link'  to='/watchlist'>
             <ListItem
               button
               selected={selectedIndex === 3}
-              onClick={(event) => handleListItemClick(event, 3)}
+            
             >
               <ListItemIcon>
-                <InboxIcon />
+                <FavoriteIcon />
               </ListItemIcon>
               <ListItemText primary="WatchList" />
             </ListItem>
@@ -83,39 +99,38 @@ function Sidebar() {
         </List>
         <Divider />
         <List component="nav" aria-label="secondary mailbox folder">
-          <h5 className='centered'>--- MARKETPLACE ---</h5>
-          <Link to='/properties'>
+          <h5 className='subpage-title'>The Marketplace</h5>
+          <Link className='link'  to='/properties'>
             <ListItem
               button
               selected={selectedIndex === 4}
-              onClick={(event) => handleListItemClick(event, 4)}
+             
             >
               <ListItemIcon>
-                <InboxIcon />
+                <AppsIcon />
               </ListItemIcon>
               <ListItemText primary="Properties" />
             </ListItem>
           </Link>
-          <Link to='/advice'>
+          <Link className='link'  to='/advice'>
             <ListItem
               button
               selected={selectedIndex === 5}
-              onClick={(event) => handleListItemClick(event, 5)}
+              
             >
               <ListItemIcon>
-                <InboxIcon />
+                <LiveHelpIcon />
               </ListItemIcon>
               <ListItemText primary="Investor Advice" />
             </ListItem>
           </Link>
-          <Link to='/news'>
+          <Link className='link'  to='/news'>
             <ListItem
               button
               selected={selectedIndex === 6}
-              onClick={(event) => handleListItemClick(event, 6)}
             >
               <ListItemIcon>
-                <InboxIcon />
+                <ImportContactsIcon />
               </ListItemIcon>
               <ListItemText primary="Property News" />
             </ListItem>
@@ -123,14 +138,14 @@ function Sidebar() {
         </List>
         <Divider />
         <List component="nav" aria-label="secondary mailbox folder">
-          <Link to='/settings' onClick={(event) => handleListItemClick(event, 7)}>
+          <Link className='link'  to='/settings' >
             <ListItem
               button
               selected={selectedIndex === 7}
               
             >
               <ListItemIcon>
-                <InboxIcon />
+                <SettingsIcon />
               </ListItemIcon>
               <ListItemText primary="Settings" />
             </ListItem>
