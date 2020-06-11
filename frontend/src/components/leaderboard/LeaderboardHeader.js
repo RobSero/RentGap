@@ -7,8 +7,7 @@ function NewsHeader(){
   return (
     <div>
       <PageHeader
-        title={'Property News'}
-       
+        title={'Leaderboards'}
       >
       </PageHeader>
     </div>

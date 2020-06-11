@@ -2,6 +2,7 @@ import React from 'react'
 import { notification } from 'antd'
 import { SmileOutlined } from '@ant-design/icons'
 import LeaderboardHeader from './LeaderboardHeader'
+import LeaderTable from './LeaderTable'
 
 class LeaderboardPage extends React.Component {
   state={
@@ -28,7 +29,7 @@ class LeaderboardPage extends React.Component {
           <LeaderboardHeader  />
         </div>
         <div style = {{ backgroundColor: 'white', margin: '15px 30px' }} className='shadow'>
-        
+          <LeaderTable />
         </div>
        
       </div>

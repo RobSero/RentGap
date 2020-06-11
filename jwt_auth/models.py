@@ -9,4 +9,5 @@ class User(AbstractUser):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     money = models.IntegerField(default=100000)
-    experience = models.CharField(max_length=20, blank=True)
+    total_money = models.IntegerField(blank=True,null=True)
+    experience = models.CharField(max_length=20, blank=True )

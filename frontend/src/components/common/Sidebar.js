@@ -18,6 +18,7 @@ import LiveHelpIcon from '@material-ui/icons/LiveHelp'
 import ImportContactsIcon from '@material-ui/icons/ImportContacts'
 import SettingsIcon from '@material-ui/icons/Settings'
 import Tooltip from '@material-ui/core/Tooltip'
+import StorageIcon from '@material-ui/icons/Storage'
 
 function Sidebar() {
   const [selectedIndex, setSelectedIndex] = React.useState(1)
@@ -33,7 +34,8 @@ function Sidebar() {
     properties: 4,
     advice: 5,
     news: 6,
-    settings: 7
+    leaderboard: 7,
+    settings: 8
   }
 
   React.useEffect(()=> {
@@ -152,6 +154,19 @@ function Sidebar() {
               <ListItemText primary="Property News" />
             </ListItem>
           </Link>
+          <Link className='link'  to='/leaderboard'>
+            <ListItem
+              button
+              selected={selectedIndex === 7}
+            >
+              <Tooltip title="Keep up to date with news and events" arrow>
+                <ListItemIcon>
+                  <StorageIcon style={{ fill: 'white' }}/>
+                </ListItemIcon>
+              </Tooltip>
+              <ListItemText primary="Leaderboards" />
+            </ListItem>
+          </Link>
         </List>
         <Divider />
         
@@ -159,7 +174,7 @@ function Sidebar() {
           <Link className='link'  to='/settings' >
             <ListItem
               button
-              selected={selectedIndex === 7}
+              selected={selectedIndex === 8}
               
             >
               <Tooltip title="Update your account details" arrow>
