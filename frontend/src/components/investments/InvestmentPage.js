@@ -4,7 +4,8 @@ import InvestmentHeader from './InvestmentHeader'
 import PieChart from './PieChart'
 import DoughnutChart from './DoughnutChart'
 import BarChart from './BarChart'
-
+import LoadingSpinner from '../common/LoadingSpinners'
+import { loadingTimer, thisMonth, months } from '../../lib/settings'
 import LineChart from './LineChart'
 
 
@@ -15,25 +16,27 @@ class InvestmentPage extends React.Component {
   }
 
   async componentDidMount(){
-    try {
-      const res = await getOrders()
-      const userRes = await getProfile()
-      console.log(res.data)
+    setTimeout(async()=> {
+      try {
+        const res = await getOrders()
+        const userRes = await getProfile()
+        console.log(res.data)
       
-      this.setState({
-        orderData: res.data,
-        user: userRes.data
-      })
-    } catch (err){
-      console.log(err)
-    }
+        this.setState({
+          orderData: res.data,
+          user: userRes.data
+        })
+      } catch (err){
+        console.log(err)
+      }
+    }, loadingTimer)
   }
 
 
   render(){
     const { orderData, user } = this.state
     if (!orderData){
-      return null
+      return <LoadingSpinner />
     }
     return (
       <div style={{ overflowY: 'scroll',overflowX: 'hidden', height: '90vh', position: 'relative', width: '100%' }}>

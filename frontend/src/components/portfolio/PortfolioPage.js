@@ -1,5 +1,5 @@
 import React from 'react'
-import { List, Avatar, Space } from 'antd'
+import { List, Space } from 'antd'
 import { CarOutlined, ReloadOutlined, PoundCircleOutlined , FileOutlined } from '@ant-design/icons'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 import FavoriteIcon from '@material-ui/icons/Favorite'
@@ -7,6 +7,8 @@ import { getOrders, watchToggle, getWatchlist } from '../../lib/api'
 import SearchSection from '../common/SearchSection'
 import { Link } from 'react-router-dom'
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn'
+import LoadingSpinner from '../common/LoadingSpinners'
+import { loadingTimer, thisMonth, months } from '../../lib/settings'
 
 const IconText = ({ icon, text }) => (
   <Space>
@@ -30,23 +32,25 @@ class PortfolioPage extends React.Component {
   }
 
   async componentDidMount(){
-    try {
-      const res = await getOrders()
-      const watchRes = await getWatchlist()
-      console.log(res.data)
-      const watchingArray = watchRes.data.map(watchedProperty => {
-        return watchedProperty.id
-      })
-      console.log(res.data)
+    setTimeout(async()=> {
+      try {
+        const res = await getOrders()
+        const watchRes = await getWatchlist()
+        console.log(res.data)
+        const watchingArray = watchRes.data.map(watchedProperty => {
+          return watchedProperty.id
+        })
+        console.log(res.data)
       
-      this.setState({
-        orderData: res.data,
-        filteredOrders: res.data,
-        watching: watchingArray
-      })
-    } catch (err){
-      console.log(err)
-    }
+        this.setState({
+          orderData: res.data,
+          filteredOrders: res.data,
+          watching: watchingArray
+        })
+      } catch (err){
+        console.log(err)
+      }
+    }, loadingTimer )
   }
 
 handleChange = ({ target }) => {
@@ -100,7 +104,7 @@ handleWatch = async(propertyId) => {
 
 render(){
   if (!this.state.filteredOrders) {
-    return <h1>LOADING</h1>
+    return <LoadingSpinner />
   }
     
   return (

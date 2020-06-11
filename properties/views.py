@@ -6,6 +6,7 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from .serializers import PropertySerializer, SimplePropertySerializer, PopulatedPropertySerializer
 from django.contrib.auth import get_user_model
+import random
 
 # import requests
 from .models import Property
@@ -40,6 +41,32 @@ class PropertyList(APIView):
         print(f'PROPERTY LIST RIGHT HERE: {properties_list}')
         properties_json = SimplePropertySerializer(properties_list, many=True)
         return Response(properties_json.data, status=status.HTTP_200_OK)
+
+
+#  --------------------------- FEATURED PROPERTIES CONTROLLERS (ONLY RETURNS TOP 5 RESULTS)---------------------------------
+
+class FeaturedPropertyList(APIView):
+  
+    permission_classes = (IsAuthenticated,)
+    
+    
+    
+    def get_featured_properties(self):
+        try:
+            all_properties = Property.objects.all()
+            return random.sample(list(all_properties),3)
+        except Property.DoesNotExist:
+            raise NotFound()
+        
+
+    #   -------- DISPLAY PROPERTY INDEX -----------
+      # GET request to baseURL/property 
+      # no body required - valid token required
+    def get(self,req):
+        featured_properties_list = self.get_featured_properties()
+        print(f'PROPERTY LIST RIGHT HERE: {featured_properties_list}')
+        featured_properties_json = SimplePropertySerializer(featured_properties_list, many=True)
+        return Response(featured_properties_json.data, status=status.HTTP_200_OK)
 
 
 

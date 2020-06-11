@@ -18,6 +18,10 @@ export const getProperties = async() => {
   return await axios.get(`${baseUrl}/property/`, withHeaders())
 }
 
+export const getFeaturedProperties = async() => {
+  return await axios.get(`${baseUrl}/property/featured/`, withHeaders())
+}
+
 export const getOrders = async() => {
   return await axios.get(`${baseUrl}/portfolio/`, withHeaders())
 }

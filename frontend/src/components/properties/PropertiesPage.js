@@ -6,6 +6,8 @@ import FavoriteIcon from '@material-ui/icons/Favorite'
 import { getProperties, getWatchlist, watchToggle } from '../../lib/api'
 import SearchSection from '../common/SearchSection'
 import { Link } from 'react-router-dom'
+import LoadingSpinner from '../common/LoadingSpinners'
+import { loadingTimer, thisMonth, months } from '../../lib/settings'
 
 const IconText = ({ icon, text }) => (
   <Space>
@@ -29,22 +31,24 @@ class PropertiesPage extends React.Component {
   } 
 
   async componentDidMount(){
-    try {
-      const res = await getProperties()
-      const watchRes = await getWatchlist()
-      console.log(res.data)
-      const watchingArray = watchRes.data.map(watchedProperty => {
-        return watchedProperty.id
-      })
+    setTimeout(async()=> {
+      try {
+        const res = await getProperties()
+        const watchRes = await getWatchlist()
+        console.log(res.data)
+        const watchingArray = watchRes.data.map(watchedProperty => {
+          return watchedProperty.id
+        })
       
-      this.setState({
-        propertyData: res.data,
-        filteredProperties: res.data,
-        watching: watchingArray
-      })
-    } catch (err){
-      console.log(err)
-    }
+        this.setState({
+          propertyData: res.data,
+          filteredProperties: res.data,
+          watching: watchingArray
+        })
+      } catch (err){
+        console.log(err)
+      }
+    },loadingTimer)
   }
 
 handleChange = ({ target }) => {
@@ -100,7 +104,7 @@ handleWatch = async(propertyId) => {
 render(){
 
   if (!this.state.filteredProperties) {
-    return <h1>LOADING</h1>
+    return <LoadingSpinner />
   }
     
   return (

@@ -6,6 +6,8 @@ import FavoriteIcon from '@material-ui/icons/Favorite'
 import { getWatchlist, watchToggle } from '../../lib/api'
 import SearchSection from '../common/SearchSection'
 import { Link } from 'react-router-dom'
+import LoadingSpinner from '../common/LoadingSpinners'
+import { loadingTimer, thisMonth, months } from '../../lib/settings'
 
 const IconText = ({ icon, text }) => (
   <Space>
@@ -29,21 +31,23 @@ class WatchlistPage extends React.Component {
   }
 
   async componentDidMount(){
-    try {
-      const res = await getWatchlist()
-      console.log(res.data)
-      const watchingArray = res.data.map(watchedProperty => {
-        return watchedProperty.id
-      })
+    setTimeout(async()=> {
+      try {
+        const res = await getWatchlist()
+        console.log(res.data)
+        const watchingArray = res.data.map(watchedProperty => {
+          return watchedProperty.id
+        })
       
-      this.setState({
-        propertyData: res.data,
-        filteredProperties: res.data,
-        watching: watchingArray
-      })
-    } catch (err){
-      console.log(err)
-    }
+        this.setState({
+          propertyData: res.data,
+          filteredProperties: res.data,
+          watching: watchingArray
+        })
+      } catch (err){
+        console.log(err)
+      }
+    },loadingTimer)
   }
 
 handleChange = ({ target }) => {
@@ -104,13 +108,13 @@ handleWatch = async(propertyId) => {
 render(){
 
   if (!this.state.filteredProperties) {
-    return <h1>LOADING</h1>
+    return <LoadingSpinner />
   }
     
   return (
     <div style={{ overflowY: 'scroll', height: '90vh', position: 'relative', width: '100%' }}>
       <div className='centered '>
-        <h1 className='page-title'>Your Watchlist</h1>
+        <h1 className='page-title'>Your {months[thisMonth]} Watchlist</h1>
       </div>
       <div className='centered shadow' style = {{ backgroundColor: 'white', margin: '15px 30px', padding: '10px' }}>
         <SearchSection handleChange={this.handleChange} {...this.state.filterData} />

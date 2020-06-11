@@ -10,33 +10,39 @@ import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 import FavoriteIcon from '@material-ui/icons/Favorite'
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345
+    width: '100%'
   },
   media: {
-    height: 140
+    height: 160
   }
 })
 
 function FeaturedPropCard(props) {
   const classes = useStyles()
 
+
+
   return (
     <Card className={`shadow ${classes.root}`}>
       <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image="/static/images/cards/contemplative-reptile.jpg"
-          title="Contemplative Reptile"
-        />
+        <Link to={`property/${props.id}`}>
+          <CardMedia
+            className={classes.media}
+            image={props.image_main}
+            title="Contemplative Reptile"
+          />
+        </Link>
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Property Title
+          <Typography gutterBottom variant="h5" component="p" style={{ fontSize: '15px' }}>
+            {props.title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Property Description.max haracters (30)
+            <p>{props.prop_type}</p>
+            {props.region[0].toUpperCase() + props.region.substring(1)}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -45,8 +51,11 @@ function FeaturedPropCard(props) {
           <FavoriteBorderIcon />
         </Button>
         <Button size="small" color="primary">
+          <Link to={`property/${props.id}`}>
           Learn More
+          </Link>
         </Button>
+        
       </CardActions>
     </Card>
   )

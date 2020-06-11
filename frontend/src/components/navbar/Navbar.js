@@ -4,25 +4,17 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
-import InputBase from '@material-ui/core/InputBase'
-import Badge from '@material-ui/core/Badge'
+
 import MenuItem from '@material-ui/core/MenuItem'
 import Menu from '@material-ui/core/Menu'
-import MenuIcon from '@material-ui/icons/Menu'
-import SearchIcon from '@material-ui/icons/Search'
-import AccountCircle from '@material-ui/icons/AccountCircle'
-import MailIcon from '@material-ui/icons/Mail'
-import NotificationsIcon from '@material-ui/icons/Notifications'
+
 import MoreIcon from '@material-ui/icons/MoreVert'
 import { Link, withRouter, useHistory, useLocation } from 'react-router-dom'
 import { isAuthenticated, logout } from '../../lib/auth'
 import { getProfile } from '../../lib/api'
 import { Avatar } from 'antd'
-import MonetizationOnIcon from '@material-ui/icons/MonetizationOn'
 import { PoundOutlined } from '@ant-design/icons'
 import Tooltip from '@material-ui/core/Tooltip'
-import { notification } from 'antd'
-import { SmileOutlined } from '@ant-design/icons'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -110,16 +102,11 @@ function Navbar() {
     }
   },[location]) 
 
-  React.useEffect(()=> {
-    if (user){
-      openNotification()
-    }
-    
-  },[user]) 
 
   const handleLogout = () => {
     logout()
-    history.push('/')
+    history.push('')
+    window.location.reload(true)
   }
 
 
@@ -158,16 +145,6 @@ function Navbar() {
   )
 
   const mobileMenuId = 'primary-search-account-menu-mobile'
-
-  const openNotification = () => {
-    notification.open({
-      message: `Welcome ${user.first_name}`,
-      description:
-        'Check in on our property options or analyze your investments',
-      icon: <SmileOutlined style={{ color: '#108ee9' }} />
-    })
-  }
-
 
 
   return (

@@ -4,7 +4,8 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { Link } from 'react-router-dom'
 import { setToken } from '../../lib/auth'
-
+import { notification } from 'antd'
+import { SmileOutlined } from '@ant-design/icons'
 
 
 class LoginPage extends React.Component {
@@ -30,7 +31,9 @@ handleChange = ({ target }) => {
 handleSubmit = async () => {
   try {
     const res = await axios.post('/api/auth/login/', { ...this.state.formData })
+    
     setToken(res.data.token)
+    this.openNotification(res.data.username)
     setTimeout(()=> {
       this.props.history.push('/dashboard')
     }, 500)
@@ -41,6 +44,16 @@ handleSubmit = async () => {
     
   }
 }
+
+openNotification = (user) => {
+  notification.open({
+    message: `Hey ${user}, Have a good day for investing!`,
+    description:
+      'Check in on our property options or analyze your investments',
+    icon: <SmileOutlined style={{ color: '#108ee9' }} />
+  })
+}
+
 render(){
   
   const { formData } = this.state

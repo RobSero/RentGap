@@ -50,7 +50,7 @@ class LoginView(APIView):
             'sub': user.id,
             'exp' : int(dt.strftime('%s'))
         }, settings.SECRET_KEY)
-        return Response({'token': token, 'message' : f'Welcome back {user.username}'}, status=status.HTTP_202_ACCEPTED)
+        return Response({'token': token, 'message' : f'Welcome back {user.username}','username': user.username}, status=status.HTTP_202_ACCEPTED)
       
       
 class UpdateProfile(APIView):

@@ -1,12 +1,15 @@
 import React from 'react'
-import CircularProgress from '@material-ui/core/CircularProgress'
+import { Space, Spin } from 'antd'
 
 function LoadingSpinners() {
 
   return (
-    <div className='centered top2margin'>
-      <CircularProgress />
-    </div>
+    <div style={{ overflowY: 'scroll', height: '90vh', position: 'relative', width: '100%', textAlign: 'center' }}>
+      <Space size="middle" style={{ marginTop: '30%' }}>
+        <Spin size="large" />
+        
+      </Space>
+    </div> 
   )
 }
 
