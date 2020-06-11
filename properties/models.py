@@ -37,6 +37,7 @@ class Property(models.Model):
     growth_2018 = models.FloatField(blank=True, null=True)
     growth_2019 = models.FloatField(blank=True, null=True)
     growth_2020 = models.FloatField(blank=True, null=True)
+    database_ref = models.IntegerField()
     watchers = models.ManyToManyField(
       'jwt_auth.User',
       related_name='watching'

@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'orders',
     'portfolio',
     'comments',
-    'advice'
+    'advice',
+    'rentalmanager'
 ]
 
 REST_FRAMEWORK = {
