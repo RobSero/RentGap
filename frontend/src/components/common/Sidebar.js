@@ -8,7 +8,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 import Divider from '@material-ui/core/Divider'
 import InboxIcon from '@material-ui/icons/Inbox'
 import DraftsIcon from '@material-ui/icons/Drafts'
-import { getProfile } from '../../lib/api'
+import { getProfile, getOrders } from '../../lib/api'
 import HomeIcon from '@material-ui/icons/Home'
 import FolderSharedIcon from '@material-ui/icons/FolderShared'
 import PieChartIcon from '@material-ui/icons/PieChart'
@@ -17,11 +17,13 @@ import AppsIcon from '@material-ui/icons/Apps'
 import LiveHelpIcon from '@material-ui/icons/LiveHelp'
 import ImportContactsIcon from '@material-ui/icons/ImportContacts'
 import SettingsIcon from '@material-ui/icons/Settings'
+import Tooltip from '@material-ui/core/Tooltip'
 
 function Sidebar() {
   const [selectedIndex, setSelectedIndex] = React.useState(1)
   const location = useLocation()
   const [user, setUser] = React.useState(null)
+  const [orders, setOrders] = React.useState(null)
 
   const locations = {
     dashboard: 0,
@@ -40,22 +42,23 @@ function Sidebar() {
 
   React.useEffect(async()=> {
     const res = await getProfile()
+    const resOrders = await getOrders()
     setUser(res.data)
+    setOrders(resOrders.data.length)
   }, [])
 
   return (
     <div className="column side-bar is-one-fifth">
       <div >
         <List component="nav" aria-label="main mailbox folders">
-          <h5 className='subpage-title'>Welcome back, {user ? user.username : 'Friend'}</h5>
+          <h5 className='subpage-title'>Welcome, {user ? user.username : 'Friend'}</h5>
           <Link className='link' to='/dashboard'>
             <ListItem
               button
               selected={selectedIndex === 0}
-              
             >
               <ListItemIcon>
-                <HomeIcon />
+                <HomeIcon style={{ fill: 'white' }} />
               </ListItemIcon>
               <ListItemText primary="Home" />
             </ListItem>
@@ -66,33 +69,41 @@ function Sidebar() {
               selected={selectedIndex === 1}
              
             >
-              <ListItemIcon>
-                <FolderSharedIcon />
-              </ListItemIcon>
-              <ListItemText primary="Portfolio" />
+              <Tooltip title="Review your current property investments" arrow>
+                <ListItemIcon>
+                  <FolderSharedIcon style={{ fill: 'white' }} />
+                </ListItemIcon>
+              </Tooltip>
+              <ListItemText primary={`Portfolio (${orders})`} />
             </ListItem>
           </Link>
+          
           <Link className='link'  to='/investments'>
             <ListItem
               button
               selected={selectedIndex === 2}
          
             >
-              <ListItemIcon>
-                <PieChartIcon />
-              </ListItemIcon>
+              <Tooltip title="Use analytics to predict your next move" arrow>
+                <ListItemIcon>
+                  <PieChartIcon  style={{ fill: 'white' }}/>
+                </ListItemIcon>
+              </Tooltip>
               <ListItemText primary="Investments" />
             </ListItem>
           </Link>
+          
           <Link className='link'  to='/watchlist'>
             <ListItem
               button
               selected={selectedIndex === 3}
             
             >
-              <ListItemIcon>
-                <FavoriteIcon />
-              </ListItemIcon>
+              <Tooltip title="Track properites before investing" arrow>
+                <ListItemIcon>
+                  <FavoriteIcon style={{ fill: 'white' }} />
+                </ListItemIcon>
+              </Tooltip>
               <ListItemText primary="WatchList" />
             </ListItem>
           </Link>
@@ -106,9 +117,11 @@ function Sidebar() {
               selected={selectedIndex === 4}
              
             >
-              <ListItemIcon>
-                <AppsIcon />
-              </ListItemIcon>
+              <Tooltip title="View all available properties we have on offer" arrow>
+                <ListItemIcon>
+                  <AppsIcon style={{ fill: 'white' }} />
+                </ListItemIcon>
+              </Tooltip>
               <ListItemText primary="Properties" />
             </ListItem>
           </Link>
@@ -118,9 +131,11 @@ function Sidebar() {
               selected={selectedIndex === 5}
               
             >
-              <ListItemIcon>
-                <LiveHelpIcon />
-              </ListItemIcon>
+              <Tooltip title="Learn about the market and strategies" arrow>
+                <ListItemIcon>
+                  <LiveHelpIcon style={{ fill: 'white' }}/>
+                </ListItemIcon>
+              </Tooltip>
               <ListItemText primary="Investor Advice" />
             </ListItem>
           </Link>
@@ -129,14 +144,17 @@ function Sidebar() {
               button
               selected={selectedIndex === 6}
             >
-              <ListItemIcon>
-                <ImportContactsIcon />
-              </ListItemIcon>
+              <Tooltip title="Keep up to date with news and events" arrow>
+                <ListItemIcon>
+                  <ImportContactsIcon style={{ fill: 'white' }}/>
+                </ListItemIcon>
+              </Tooltip>
               <ListItemText primary="Property News" />
             </ListItem>
           </Link>
         </List>
         <Divider />
+        
         <List component="nav" aria-label="secondary mailbox folder">
           <Link className='link'  to='/settings' >
             <ListItem
@@ -144,13 +162,17 @@ function Sidebar() {
               selected={selectedIndex === 7}
               
             >
-              <ListItemIcon>
-                <SettingsIcon />
-              </ListItemIcon>
+              <Tooltip title="Update your account details" arrow>
+                <ListItemIcon>
+                  <SettingsIcon style={{ fill: 'white' }} />
+                </ListItemIcon>
+              </Tooltip>
               <ListItemText primary="Settings" />
             </ListItem>
           </Link>
         </List>
+      
+       
       </div>
     </div>
   )

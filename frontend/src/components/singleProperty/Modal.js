@@ -1,12 +1,21 @@
 import React from 'react'
 import { Modal } from 'antd'
 import Button from '@material-ui/core/Button'
+
+
+
+
+
+
+
 class ConfirmationModal extends React.Component {
   state = {
     ModalText: '',
     visible: false,
     confirmLoading: false
   };
+
+ 
 
   showModal = () => {
     this.setState({
@@ -26,6 +35,7 @@ class ConfirmationModal extends React.Component {
         visible: false,
         confirmLoading: false
       })
+      
       this.props.handleNewOrderSubmit()
     }, 2000)
   };

@@ -37,24 +37,24 @@ class InvestmentPage extends React.Component {
     }
     return (
       <div style={{ overflowY: 'scroll',overflowX: 'hidden', height: '90vh', position: 'relative', width: '100%' }}>
-        <div style = {{ backgroundColor: 'white', margin: '15px 30px' }}>
+        <div className='shadow' style = {{ backgroundColor: 'white', margin: '15px 30px' }}>
           <InvestmentHeader orders={orderData} user={user} />
         </div>
         {/* Chart Section */}
         <div className='columns is-multiline' style = {{  margin: '15px 30px' }}>
-          <div className='column' style = {{ backgroundColor: 'white', textAlign: 'center', marginRight: '5px' }}>
+          <div className='column shadow' style = {{ backgroundColor: 'white', textAlign: 'center', marginRight: '5px' }}>
             <PieChart orders={orderData}/>
           </div>
-          <div className='column' style = {{ backgroundColor: 'white', textAlign: 'center', marginLeft: '5px' }}>
+          <div className='column shadow' style = {{ backgroundColor: 'white', textAlign: 'center', marginLeft: '5px' }}>
             <BarChart orders={orderData} />
           </div>
         </div>
         {/* Line Chart */}
         <div className='columns is-multiline' style = {{  margin: '15px 30px' }}>
-          <div className='column' style = {{ backgroundColor: 'white', textAlign: 'center', marginRight: '5px' }}>
+          <div className='column shadow' style = {{ backgroundColor: 'white', textAlign: 'center', marginRight: '5px' }}>
             <LineChart orders={orderData}/>
           </div>
-          <div className='column' style = {{ backgroundColor: 'white', textAlign: 'center', marginLeft: '5px' }}>
+          <div className='column shadow' style = {{ backgroundColor: 'white', textAlign: 'center', marginLeft: '5px' }}>
             <DoughnutChart orders={orderData}/>
           </div>
         </div>

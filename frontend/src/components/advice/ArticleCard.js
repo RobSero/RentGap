@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 function ArticleCard(props){
   if (props.article.id % 2 === 0){
     return (
-      <div className='columns' style = {{ backgroundColor: 'white', margin: '15px 30px', padding: 0 }}>
+      <div className='columns shadow' style = {{ backgroundColor: 'white', margin: '15px 30px', padding: 0 }}>
         
         <div className='column' style={{ padding: '0' }}>
           <Link to={`/advice/${props.article.id}`}>
@@ -27,7 +27,7 @@ function ArticleCard(props){
     )
   }
   return (
-    <div className='columns' style = {{ backgroundColor: 'white', margin: '15px 30px', padding: 0 }}>
+    <div className='columns shadow' style = {{ backgroundColor: 'white', margin: '15px 30px', padding: 0 }}>
     
       <div className='column' style={{ padding: '25px' }}>
         <Link to={`/advice/${props.article.id}`}>

@@ -46,7 +46,7 @@ render(){
   return (
     <>
       <div className='columns main-section'>
-        <div className='column is-half is-offset-one-quarter clear-background' style={{ height: '500px', marginTop: '5%' }}>
+        <div className='column is-half is-offset-one-quarter clear-background shadow' style={{ height: '500px', marginTop: '5%' }}>
           <Stepper onChange={this.handleChange} {...this.state.formData} handleSubmit={this.handleSubmit} />
         </div>
       </div>

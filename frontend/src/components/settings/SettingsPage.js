@@ -68,12 +68,12 @@ class SettingsPage extends React.Component {
     const { user } = this.state
     return (
       <div style={{ overflowY: 'scroll',overflowX: 'hidden', height: '90vh', position: 'relative', width: '100%' }}>
-        <div style = {{ backgroundColor: 'white', margin: '15px 30px' }}>
+        <div className='shadow' style = {{ backgroundColor: 'white', margin: '15px 30px' }}>
           <SettingsHeader />
         </div>
         <div className='columns'>
           <div className='column is-8'>
-            <div style = {{ backgroundColor: 'white', margin: '15px 30px' }}>
+            <div className='shadow' style = {{ backgroundColor: 'white', margin: '15px 30px' }}>
               <Collapse accordion>
                 <Panel header="Avatar Settings" key="1">
                   <div className='centered'>
@@ -114,6 +114,7 @@ class SettingsPage extends React.Component {
               color="primary"
               onClick={this.handleSubmit}
               style={{ margin: '15px' }}
+              className='shadow'
             >
                 Update Account Details
             </Button> 
@@ -121,6 +122,7 @@ class SettingsPage extends React.Component {
               variant="contained"
               color="secondary"
               style={{ margin: '15px' }}
+              className='shadow'
             >
                 Delete Account
             </Button> 

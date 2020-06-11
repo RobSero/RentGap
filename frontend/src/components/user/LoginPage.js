@@ -48,7 +48,7 @@ render(){
     
     <>
       <div className='columns main-section'>
-        <div className='column is-half is-offset-one-quarter clear-background centered' style={{ height: '300px', marginTop: '5%' }}>
+        <div className='column is-half is-offset-one-quarter clear-background centered shadow' style={{ height: '300px', marginTop: '5%' }}>
           <h1 style={{ marginTop: '10px' }}>Welcome Back</h1>
           <p>Sign In</p>
           <div style={{  width: '60%', margin: '0 auto' }}>

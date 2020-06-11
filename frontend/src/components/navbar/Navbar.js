@@ -20,6 +20,9 @@ import { getProfile } from '../../lib/api'
 import { Avatar } from 'antd'
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn'
 import { PoundOutlined } from '@ant-design/icons'
+import Tooltip from '@material-ui/core/Tooltip'
+import { notification } from 'antd'
+import { SmileOutlined } from '@ant-design/icons'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -107,6 +110,13 @@ function Navbar() {
     }
   },[location]) 
 
+  React.useEffect(()=> {
+    if (user){
+      openNotification()
+    }
+    
+  },[user]) 
+
   const handleLogout = () => {
     logout()
     history.push('/')
@@ -149,10 +159,20 @@ function Navbar() {
 
   const mobileMenuId = 'primary-search-account-menu-mobile'
 
+  const openNotification = () => {
+    notification.open({
+      message: `Welcome ${user.first_name}`,
+      description:
+        'Check in on our property options or analyze your investments',
+      icon: <SmileOutlined style={{ color: '#108ee9' }} />
+    })
+  }
+
+
 
   return (
     <div  className='no-padding' style={{ position: 'relative', width: '100%' }}>
-      <AppBar position="static" style={{ backgroundColor: 'rgb(30, 21, 73)' }} >
+      <AppBar position="static" style={{ backgroundColor: 'rgb(30, 21, 73)' }} className='shadow' >
         <Toolbar>
           <Link to ='/'>
             <Typography className={classes.title} variant="h6" noWrap>
@@ -164,9 +184,9 @@ function Navbar() {
           <div className={classes.grow} />
           {isAuthenticated() && user ? (<div className={classes.sectionDesktop}>
             {/* INSERT MESSAGES AND NOTIFICATIONS BUTTONS HERE */}
-           
-            <IconButton><p style={{ color: 'white', margin: '0 10px', fontSize: '15px' }}>{user.money ? `£${user.money}` : ''}</p><PoundOutlined style={{ color: 'white' }} /></IconButton>
-              
+            <Tooltip title="These are your account funds. They can be used to invest in our properties. You will be creditted every month based on how much rental income your properties generate" arrow>
+              <IconButton><p style={{ color: 'white', margin: '0 10px', fontSize: '15px' }}>{user.money ? `£${user.money}` : ''}</p><PoundOutlined style={{ color: 'white' }} /></IconButton>
+            </Tooltip>
             
             <IconButton
               edge="end"

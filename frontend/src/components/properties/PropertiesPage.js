@@ -108,7 +108,7 @@ render(){
       <div className='centered'>
         <h1 className='page-title'>Our Property List</h1>
       </div>
-      <div className='centered' style = {{ backgroundColor: 'white', margin: '15px 30px', padding: '10px' }}>
+      <div className='centered shadow' style = {{ backgroundColor: 'white', margin: '15px 30px', padding: '10px' }}>
         <SearchSection handleChange={this.handleChange} {...this.state.filterData} />
       </div>
       <List
@@ -125,6 +125,7 @@ render(){
         renderItem={property => (
           <List.Item
             style = {{ backgroundColor: 'white', margin: '15px' }}
+            className='shadow'
             // PROPERTY MAP KEY
             key={property.id}
             // PRICE, WATCH, RENT

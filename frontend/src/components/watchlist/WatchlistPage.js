@@ -109,10 +109,10 @@ render(){
     
   return (
     <div style={{ overflowY: 'scroll', height: '90vh', position: 'relative', width: '100%' }}>
-      <div className='centered'>
+      <div className='centered '>
         <h1 className='page-title'>Your Watchlist</h1>
       </div>
-      <div className='centered' style = {{ backgroundColor: 'white', margin: '15px 30px', padding: '10px' }}>
+      <div className='centered shadow' style = {{ backgroundColor: 'white', margin: '15px 30px', padding: '10px' }}>
         <SearchSection handleChange={this.handleChange} {...this.state.filterData} />
       </div>
       <List
@@ -129,6 +129,7 @@ render(){
         renderItem={property => (
           <List.Item
             style = {{ backgroundColor: 'white', margin: '15px' }}
+            className='shadow'
             // PROPERTY MAP KEY
             key={property.id}
             // PRICE, WATCH, RENT

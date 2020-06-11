@@ -21,7 +21,7 @@ function InvestmentCalculator(props){
   return (
     <div style={{ backgroundColor: 'white', textAlign: 'center' }}>
       <p style={{ backgroundColor: 'rgb(30, 21, 73)', width: '100%', height: '35px', color: 'white', fontSize: '20px' }}>Investment Calculator</p>
-      {existingOrder ? <Alert message={`You have an investment of £${existingOrder.investment} in this property, but you can still edit your existing investment`} type="info" style={{ margin: '5px 15px' }} /> : '' }
+      {existingOrder ? <Alert message={`You have an investment of £${existingOrder.investment} in this property, but you can still edit your existing investment`} type="success" style={{ margin: '5px 15px' }} /> : '' }
 
       <p>Use the calculator to find which investment strategy is right for you</p>
       {/* CALCULATOR ADAPTS BASED ON IF THERE IS AN EXISTING ORDER */}
