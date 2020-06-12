@@ -14,9 +14,10 @@ function PropertyHeader(props){
           <Row>
             {props.orderData ? <><Statistic 
               title="Change" 
-              value={`${((currentVal / valueAtInvestment) * 100) - 100}%`} 
+              value={`${(((currentVal / valueAtInvestment) * 100) - 100).toFixed(2)}%`} 
               valueStyle={{ color: currentVal === valueAtInvestment ? 'black' : currentVal > valueAtInvestment ? 'green' : 'red' }} 
-              style={{ margin: '0 20px' } }/> <Statistic title="Your Ownership" value={`${(props.orderData.ownership * 100).toFixed(2)}%`} style={{
+              style={{ margin: '0 20px' } }/> 
+            <Statistic title="Your Ownership" value={`${(props.orderData.ownership * 100).toFixed(2)}%`} style={{
               margin: '0 20px'
             }} /></> : ''
             }

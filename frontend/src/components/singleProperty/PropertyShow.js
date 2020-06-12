@@ -41,7 +41,7 @@ class propertyShowPage extends React.Component {
           propertyData: res.data.property,
           orderData: res.data.order,
           newOrder: {
-            investment: res.data.order.investment
+            investment: (res.data.property.current_valuation * res.data.order.ownership)
           } 
         })
       } else {
@@ -154,7 +154,7 @@ render(){
 
       
     <div style={{ overflowY: 'scroll',overflowX: 'hidden', height: '90vh', position: 'relative', width: '100%' }}>
-      {orderData ? <Alert message={`You have an investment of £${orderData.investment} in this property`} type="success" closeText="Close Now" style={{ margin: '5px 30px' }} /> : '' }
+      {orderData ? <Alert message={`Your investment of £${orderData.investment} in this property is currently worth £${propertyData.current_valuation * orderData.ownership}`} type="success" closeText="Close Now" style={{ margin: '5px 30px' }} /> : '' }
       
       <div className='shadow' style = {{ backgroundColor: 'white', margin: '15px 30px' }}>
         <PropertyHeader {...propertyData} orderData={orderData}/>

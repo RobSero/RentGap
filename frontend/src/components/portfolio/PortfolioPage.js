@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom'
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn'
 import LoadingSpinner from '../common/LoadingSpinners'
 import { loadingTimer, thisMonth, months } from '../../lib/settings'
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 
 const IconText = ({ icon, text }) => (
   <Space>
@@ -133,7 +135,7 @@ render(){
         renderItem={order => (
           <List.Item
             className='shadow'
-            style = {{ backgroundColor: 'white', margin: '15px', border: order.value_change !== 0 ? `${order.value_change > 0 ? 'thin solid green' : 'thin solid red' }`  : '' }}
+            style = {{  backgroundColor: 'white', margin: '15px', border: order.value_change !== 0 ? `${order.value_change > 0 ? 'thin solid green' : 'thin solid red' }`  : '' }}
             // PROPERTY MAP KEY
             key={order.id}
             // PRICE, WATCH, RENT
@@ -162,13 +164,14 @@ render(){
                 this.handleWatch(order.property_detail.id)
               }} />}
               // PROPERTY TITLE
-              title={<><Link to={`property/${order.property_detail.id}`}><span>{order.property_detail.title}</span></Link><span style={{ color: order.value_change !== 0 ? `${order.value_change > 0 ? ' green' : ' red' }`  : 'blue' }}>:  {order.value_change}% </span></>}
+              title={<><Link to={`property/${order.property_detail.id}`}><span>{order.property_detail.title}</span></Link><span style={{  color: order.value_change !== 0 ? `${order.value_change > 0 ? ' green' : ' red' }`  : 'blue' }}>:  {order.value_change.toFixed(2)}% </span>
+                {order.value_change !== 0 ? order.value_change > 0 ? <ArrowUpwardIcon style={{ fontSize: 'small', fill: 'green' }} /> : <ArrowDownwardIcon style={{ fontSize: 'small', fill: 'red'  }} /> : ''}</>}
               // PROPERTY DESCRIPTION
               description={order.property_detail.address}
             />
-            <p>You invested in this property on: {order.created_at} at a valuation of : £{order.value_at_time}</p>
+            <p>You invested in this property on <span style={{ fontWeight: '800' }}>{order.created_at}</span> at a valuation of :<span style={{ fontWeight: '800' }}> £{order.value_at_time}</span></p>
             {order.value_change !== 0 ? 
-              <p>Your rental income from this property has {order.value_change > 0 ? 'increased' : 'decreased' } to £{(order.ownership * order.property_detail.rental_value).toFixed(2)}pcm </p> : <p>Your rental income from this property remains at £{(order.ownership * order.property_detail.rental_value).toFixed(2)}pcm </p> 
+              <p>Your rental income from this property has {order.value_change > 0 ? <span style={{ color: 'green',fontWeight: '800'  }}>increased </span> : <span style={{ color: 'red',fontWeight: '800'  }}>decreased </span>  } to<span style={{ fontWeight: '800' }}> £{(order.ownership * order.property_detail.rental_value).toFixed(2)}pcm </span> </p> : <p>Your rental income from this property remains at <span style={{ fontWeight: '800' }}>£{(order.ownership * order.property_detail.rental_value).toFixed(2)}pcm </span> </p> 
             }
             
           </List.Item>
