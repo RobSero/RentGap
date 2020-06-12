@@ -10,12 +10,14 @@ function InvestmentHeader(props){
     totalRental: 0
   }
 
-  if (props.orders){
+  if (props.orders.length !== 0){
     props.orders.forEach(order => {
       totalValues.totalInvested += order.investment
       totalValues.totalAssets = totalValues.totalInvested + props.user.money
       totalValues.totalRental += order.property_detail.rental_value * order.ownership
     })
+  } else {
+    totalValues.totalAssets = props.user.money
   }
   console.log(totalValues)
 

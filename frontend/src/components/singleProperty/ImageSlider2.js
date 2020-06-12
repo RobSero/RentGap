@@ -8,6 +8,7 @@ function ImageSlider2(props){
 
 
   React.useEffect(()=>{
+    propertyImages.push(props['image_main'])
     for (let i = 1; i < 10; i++){
       if (props[`image_${i}`]){
         propertyImages.push(props[`image_${i}`])

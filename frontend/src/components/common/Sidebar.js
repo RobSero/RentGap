@@ -91,7 +91,7 @@ function Sidebar() {
                   <PieChartIcon  style={{ fill: 'white' }}/>
                 </ListItemIcon>
               </Tooltip>
-              <ListItemText primary="Investments" />
+              <ListItemText primary="Analysis" />
             </ListItem>
           </Link>
           

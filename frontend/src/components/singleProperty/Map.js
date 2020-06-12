@@ -16,7 +16,7 @@ function Map(props) {
         mapStyle={'mapbox://styles/mapbox/light-v10'} //check docs for other styles
         latitude={props.lat} //position
         longitude={props.lon} //position
-        zoom={15} //higher number, higher the zoom
+        zoom={14} //higher number, higher the zoom
       >
       
         <Marker latitude={props.lat}  longitude={props.lon}>

@@ -12,7 +12,8 @@ class AdviceShowPage extends React.Component {
     const articleId = this.props.match.params.id
     try {
       const res = await getArticle(articleId)
-      console.log(res.data)
+      const date = new Date(res.data.created_at)
+      res.data.created_at = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
       
       this.setState({
         article: res.data

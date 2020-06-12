@@ -45,7 +45,7 @@ class PortfolioPage extends React.Component {
         console.log(res.data)
         const portfolioFormatted = res.data.map(order => {
           const date = new Date(order.created_at)
-          order.created_at = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`
+          order.created_at = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
           return order
         })
         this.setState({

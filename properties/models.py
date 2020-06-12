@@ -40,7 +40,8 @@ class Property(models.Model):
     database_ref = models.IntegerField()
     watchers = models.ManyToManyField(
       'jwt_auth.User',
-      related_name='watching'
+      related_name='watching',
+      blank=True
     )
     
     

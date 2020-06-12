@@ -53,9 +53,14 @@ class NewComment extends React.Component {
     try {
       const res = await getOneProperty(propertyId)
       const userRes = await getProfile()
+      const commentsFormatted = res.data.property.comments.map(comment => {
+        const date = new Date(comment.created_at)
+        comment.created_at = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
+        return comment
+      })
       this.setState({
         user: userRes.data,
-        comments: res.data.property.comments
+        comments: commentsFormatted
       })
     } catch (err){
       console.log(err)

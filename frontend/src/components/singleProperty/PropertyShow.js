@@ -154,13 +154,13 @@ render(){
 
       
     <div style={{ overflowY: 'scroll',overflowX: 'hidden', height: '90vh', position: 'relative', width: '100%' }}>
-      {orderData ? <Alert message={`Your investment of £${orderData.investment} in this property is currently worth £${propertyData.current_valuation * orderData.ownership}`} type="success" closeText="Close Now" style={{ margin: '5px 30px' }} /> : '' }
+      {orderData ? <Alert message={`Your investment of £${orderData.investment} in this property is currently worth £${(propertyData.current_valuation * orderData.ownership).toFixed(2)}`} type="success" closeText="Close Now" style={{ margin: '5px 30px' }} /> : '' }
       
       <div className='shadow' style = {{ backgroundColor: 'white', margin: '15px 30px' }}>
         <PropertyHeader {...propertyData} orderData={orderData}/>
           
       </div>
-      
+       
       {/* LEFT SIDE OF PROPERTY SHOW PAGE */}
         
       <div className='columns'>

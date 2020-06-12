@@ -15,7 +15,7 @@ function LeaderTable(props) {
       const ranked = res.data.map((user,index) => {
         user.rank = index + 1
         const date = new Date(user.date_joined)
-        user.date_joined = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`
+        user.date_joined = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
         return user
       })
       setUsers(ranked)
