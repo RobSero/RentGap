@@ -14,6 +14,8 @@ function LeaderTable(props) {
       const res = await getLeaders()
       const ranked = res.data.map((user,index) => {
         user.rank = index + 1
+        const date = new Date(user.date_joined)
+        user.date_joined = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`
         return user
       })
       setUsers(ranked)
@@ -44,7 +46,7 @@ function LeaderTable(props) {
       key: 'total_money'
     },
     {
-      title: 'Joined',
+      title: 'Date Joined',
       dataIndex: 'date_joined',
       key: 'date_joined'
     }

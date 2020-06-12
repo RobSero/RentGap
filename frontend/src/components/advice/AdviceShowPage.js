@@ -36,7 +36,7 @@ class AdviceShowPage extends React.Component {
         <div className='columns' style = {{ margin: '15px 30px', padding: 0 }}>
     
           <div className='column' style={{ padding: '25px', backgroundColor: 'white', marginRight: '10px' }}>
-            <div style={{ backgroundColor: 'grey' }}>
+            <div style={{ backgroundColor: 'rgba(231, 231, 231, 0.947)' }}>
               <p>Author:</p>
               <Avatar src={article.author.profile_image} /><span style={{ margin: '2px 5px', color: 'grey', fontSize: '11px' }}>{article.author.username}</span>
             </div>
