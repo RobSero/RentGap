@@ -45,7 +45,12 @@ INSTALLED_APPS = [
     'comments',
     'advice',
     'rentalmanager',
-    'leaderboard'
+    'leaderboard',
+    'django_crontab'
+]
+
+CRONJOBS = [
+    ('*/2 * * * *', 'market_data.crontest.update_test')
 ]
 
 REST_FRAMEWORK = {
