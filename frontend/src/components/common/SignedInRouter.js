@@ -31,7 +31,6 @@ const SignedInRouter = () => {
             <Route exact path='/properties' component={PropertiesPage} />
             <Route exact path='/property/:id' component={PropertyShowPage} />
             <Route exact path='/leaderboard' component={LeaderboardPage} />
-            <Route exact path='*' component={LeaderboardPage} />
           </Switch>
         </div>
       </div>

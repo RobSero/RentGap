@@ -1,63 +1,7 @@
 apiKey = 'ZPN3BFTUC4'
  
-all_property_params = [
-  
-                 {
-      'key': apiKey, 
-      'postcode': 'BN15DB',
-      'property_type': 'detached_house',
-      'construction_date': '1914_2000',
-      'internal_area' : 2000,
-      'bedrooms': 4, 
-      'bathrooms' : 4,
-      'finish_quality' : 'high',
-      'outdoor_space' : 'garden',
-      'off_street_parking' : 1,
-      'database_ref': 13
-      },
-                    {
-      'key': apiKey, 
-      'postcode': 'PL14JT',
-      'property_type': 'terraced_house',
-      'construction_date': '2000_onwards',
-      'internal_area' : 1500,
-      'bedrooms': 3, 
-      'bathrooms' : 2,
-      'finish_quality' : 'high',
-      'outdoor_space' : 'garden',
-      'off_street_parking' : 1,
-      'database_ref': 14
-      },
-                          {
-      'key': apiKey, 
-      'postcode': 'M4 6DH',
-      'property_type': 'flat',
-      'construction_date': '2000_onwards',
-      'internal_area' : 690,
-      'bedrooms': 2, 
-      'bathrooms' : 1,
-      'finish_quality' : 'average',
-      'outdoor_space' : 'none',
-      'off_street_parking' : 0,
-      'database_ref': 15
-      },
-                                               {
-      'key': apiKey, 
-      'postcode': 'YO24 4LW',
-      'property_type': 'terraced_house',
-      'construction_date': '1914_2000',
-      'internal_area' : 4390,
-      'bedrooms': 4, 
-      'bathrooms' : 3,
-      'finish_quality' : 'high',
-      'outdoor_space' : 'garden',
-      'off_street_parking' : 0,
-      'database_ref': 16
-      }
-      ]
- 
 
-safeall_property_params = [
+all_property_params = [
   {
       'key': apiKey, 
       'postcode': 'SE270RS',
@@ -266,6 +210,32 @@ safeall_property_params = [
       'off_street_parking' : 0,
       'database_ref': 16
       },
+                                                                                         {
+      'key': apiKey, 
+      'postcode': 'HA03JE',
+      'property_type': 'semi-detached_house',
+      'construction_date': '1914_2000',
+      'internal_area' : 1977,
+      'bedrooms': 5, 
+      'bathrooms' : 3,
+      'finish_quality' : 'average',
+      'outdoor_space' : 'garden',
+      'off_street_parking' : 3,
+      'database_ref': 17
+      },
+                                                                                                                                                                           {
+      'key': apiKey, 
+      'postcode': 'OX3 7SH',
+      'property_type': 'flat',
+      'construction_date': '2000_onwards',
+      'internal_area' : 547,
+      'bedrooms': 2, 
+      'bathrooms' : 1,
+      'finish_quality' : 'average',
+      'outdoor_space' : 'none',
+      'off_street_parking' : 1,
+      'database_ref': 18
+      },
       ]
  
 
@@ -277,8 +247,6 @@ safeall_property_params = [
 
 
 #  -------------- Growth and Yield ------------------
-
-
 
 
 all_prop_growth_params = [{
@@ -376,5 +344,17 @@ all_prop_growth_params = [{
       'postcode': 'YO24 4LW',
       'bedrooms' : 4,
       'database_ref': 16
+      },
+            {
+      'key': apiKey, 
+      'postcode': 'HA03JE',
+      'bedrooms' : 5,
+      'database_ref': 17
+      },
+             {
+      'key': apiKey, 
+      'postcode': 'OX3 7SH',
+      'bedrooms' : 2,
+      'database_ref': 18
       },
                           ]

@@ -43,7 +43,7 @@ function RegisterStepper(props) {
         return (
           <>
             <div className='centered full-height-form'>
-              <TextFieldsOne handleChange={props.onChange} {...props} />
+              <TextFieldsOne handleChange={props.onChange} {...props} errors={props.errors} />
             </div>
             
           </>
@@ -80,6 +80,10 @@ function RegisterStepper(props) {
   }
 
   const handleNext = () => {
+    // if (!props.first_name || !props.last_name || !props.username || !props.email){
+    //   return
+      
+    // }
     let newSkipped = skipped
     if (isStepSkipped(activeStep)) {
       newSkipped = new Set(newSkipped.values())
