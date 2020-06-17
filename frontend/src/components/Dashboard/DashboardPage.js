@@ -1,9 +1,10 @@
 import React from 'react'
 import { getOrders, getProfile, getFeaturedProperties, getWatchlist, watchToggle } from '../../lib/api'
+import { newsAPI } from '../../lib/thirdpartyapi'
 import { Row, Col } from 'antd'
 import DashboardHeader from './DashboardHeader'
 import FeaturedPropCard from './FeaturedPropertyCard'
-import NewsLoading from '../news/NewsLoading'
+import DashboardNewsFeed from './DashboardNewsFeed'
 import LoadingSpinner from '../common/LoadingSpinners'
 import { loadingTimer, thisMonth, months } from '../../lib/settings'
 
@@ -14,7 +15,8 @@ class DashboardPage extends React.Component {
     propertyData: null,
     orderData: null,
     user: null,
-    watching: null
+    watching: null,
+    articles: null
   }
 
   async componentDidMount(){
@@ -24,6 +26,7 @@ class DashboardPage extends React.Component {
         const userRes = await getProfile()
         const propRes = await getFeaturedProperties()
         const watchRes = await getWatchlist()
+        const newsRes = await newsAPI()
         const watchingArray = watchRes.data.map(watchedProperty => {
           return watchedProperty.id
         })
@@ -33,7 +36,8 @@ class DashboardPage extends React.Component {
           propertyData: propRes.data,
           orderData: res.data,
           user: userRes.data,
-          watching: watchingArray
+          watching: watchingArray,
+          articles: newsRes.data.articles.splice(0,4)
         })
       } catch (err){
         console.log(err)
@@ -80,12 +84,7 @@ class DashboardPage extends React.Component {
         <div className='centered'>
           <p className='page-title' style={{ color: 'rgba(17, 15, 15, 0.822)' }} > Latest Property News</p>
         </div>
-        <div style = {{ backgroundColor: 'white', margin: '15px 30px' }} className='shadow'>
-          <NewsLoading />
-        </div>
-        <div style = {{ backgroundColor: 'white', margin: '15px 30px' }} className='shadow'>
-          <NewsLoading />
-        </div>
+        <DashboardNewsFeed articles={this.state.articles} />
       </div>
       
     )

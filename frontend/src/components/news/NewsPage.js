@@ -1,39 +1,43 @@
 import React from 'react'
-import { notification } from 'antd'
-import { SmileOutlined } from '@ant-design/icons'
+import LoadingSpinner from '../common/LoadingSpinners'
 import NewsHeader from './NewsHeader'
-import NewsLoading from './NewsLoading'
+import NewsFeed from './NewsFeed'
+import { newsAPI } from '../../lib/thirdpartyapi'
+import { loadingTimer, thisMonth, months } from '../../lib/settings'
 
 class NewsPage extends React.Component {
   state={
-
+    articles: null
   }
 
-  componentDidMount(){
-    this.openNotification()
+  async componentDidMount(){
+    setTimeout(async() => {
+      try {
+        const res = await newsAPI()
+        console.log(res.data)
+        this.setState({
+          articles: res.data.articles
+        })
+      } catch (err){
+        console.log(err)
+        
+      }
+    }, loadingTimer)
+   
   }
-
-  openNotification = () => {
-    notification.open({
-      message: 'This part of the site is under construction!',
-      description:
-        'Check back in soon for all your property and investing news.',
-      icon: <SmileOutlined style={{ color: '#108ee9' }} />
-    })
-  };
 
   render(){
+    if (!this.state.articles){
+      return <LoadingSpinner />
+    }
     return (
       <div style={{ overflowY: 'scroll',overflowX: 'hidden', height: '90vh', position: 'relative', width: '100%' }}>
         <div style = {{ backgroundColor: 'white', margin: '15px 30px' }} className='shadow'>
           <NewsHeader  />
         </div>
-        <div style = {{ backgroundColor: 'white', margin: '15px 30px' }} className='shadow'>
-          <NewsLoading />
-        </div>
-        <div style = {{ backgroundColor: 'white', margin: '15px 30px' }} className='shadow'>
-          <NewsLoading />
-        </div>
+      
+        <NewsFeed articles={this.state.articles} />
+        
       </div>
       
      
