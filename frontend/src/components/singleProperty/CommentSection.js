@@ -1,5 +1,6 @@
 import React from 'react'
-import { Comment, Avatar, Form, Button, List, Input } from 'antd'
+import { Comment, Avatar, Form, List, Input } from 'antd'
+import Button from '@material-ui/core/Button'
 import moment from 'moment'
 import { getOneProperty, postComment, getProfile } from '../../lib/api'
 
@@ -31,7 +32,7 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
       <TextArea rows={4} onChange={onChange} value={value} />
     </Form.Item>
     <Form.Item>
-      <Button htmlType="submit" loading={submitting} onClick={onSubmit} type="primary">
+      <Button htmlType="submit"  variant="contained" loading={submitting} onClick={onSubmit} type="primary" color="primary">
         Add Comment
       </Button>
     </Form.Item>

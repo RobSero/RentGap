@@ -49,7 +49,9 @@ class ReviseOrderModal extends React.Component {
     this.setState({
       ModalTextWithdraw: `Are you sure you wish to withdraw ALL of your investment of £${this.props.existingInvestment.toLocaleString(undefined, {
         maximumFractionDigits: 2
-      })}? There will be a fee of £${Math.abs(this.props.existingInvestment * 0.01)} for making this transaction.`,
+      })}? There will be a fee of £${(Math.abs(this.props.existingInvestment * 0.01)).toLocaleString(undefined, {
+        maximumFractionDigits: 2
+      })} for making this transaction.`,
       visibleWithdraw: true
     })
   };

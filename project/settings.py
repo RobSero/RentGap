@@ -50,7 +50,7 @@ INSTALLED_APPS = [
 ]
 
 CRONJOBS = [
-    ('*/2 * * * *', 'market_data.crontest.update_test')
+    ('56 * * * *', 'market_data.cron_functions.update_growth_data')
 ]
 
 REST_FRAMEWORK = {
