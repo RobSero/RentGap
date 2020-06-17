@@ -140,7 +140,9 @@ render(){
             key={order.id}
             // PRICE, WATCH, RENT
             actions={[
-              <IconText icon={PoundCircleOutlined} text={`£${order.property_detail.current_valuation.toLocaleString()}`} key="list-vertical-star-o" />,
+              <IconText icon={PoundCircleOutlined} text={`£${order.property_detail.current_valuation.toLocaleString(undefined, {
+                maximumFractionDigits: 2
+              })}`} key="list-vertical-star-o" />,
               <IconText icon={ReloadOutlined} text={`£${order.property_detail.rental_value}pcm`} key="list-vertical-like-o" />,
               <IconText icon={FileOutlined} text={order.property_detail.bedrooms} key="list-vertical-message" />,
               <IconText icon={CarOutlined} text={order.property_detail.parking} key="list-vertical-message" />
@@ -169,9 +171,15 @@ render(){
               // PROPERTY DESCRIPTION
               description={order.property_detail.address}
             />
-            <p>You invested in this property on <span style={{ fontWeight: '800' }}>{order.created_at}</span> at a valuation of :<span style={{ fontWeight: '800' }}> £{order.value_at_time}</span></p>
+            <p>You invested in this property on <span style={{ fontWeight: '800' }}>{order.created_at}</span> at a valuation of :<span style={{ fontWeight: '800' }}> £{order.value_at_time.toLocaleString(undefined, {
+              maximumFractionDigits: 2
+            })}</span></p>
             {order.value_change !== 0 ? 
-              <p>Your rental income from this property has {order.value_change > 0 ? <span style={{ color: 'green',fontWeight: '800'  }}>increased </span> : <span style={{ color: 'red',fontWeight: '800'  }}>decreased </span>  } to<span style={{ fontWeight: '800' }}> £{(order.ownership * order.property_detail.rental_value).toFixed(2)}pcm </span> </p> : <p>Your rental income from this property remains at <span style={{ fontWeight: '800' }}>£{(order.ownership * order.property_detail.rental_value).toFixed(2)}pcm </span> </p> 
+              <p>Your rental income from this property has {order.value_change > 0 ? <span style={{ color: 'green',fontWeight: '800'  }}>increased </span> : <span style={{ color: 'red',fontWeight: '800'  }}>decreased </span>  } to<span style={{ fontWeight: '800' }}> £{(order.ownership * order.property_detail.rental_value).toLocaleString(undefined, {
+                maximumFractionDigits: 2
+              })}pcm </span> </p> : <p>Your rental income from this property remains at <span style={{ fontWeight: '800' }}>£{(order.ownership * order.property_detail.rental_value).toLocaleString(undefined, {
+                maximumFractionDigits: 2
+              })}pcm </span> </p> 
             }
             
           </List.Item>

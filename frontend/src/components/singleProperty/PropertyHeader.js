@@ -17,14 +17,20 @@ function PropertyHeader(props){
               value={`${(((currentVal / valueAtInvestment) * 100) - 100).toFixed(2)}%`} 
               valueStyle={{ color: currentVal === valueAtInvestment ? 'blue' : currentVal > valueAtInvestment ? 'green' : 'red' }} 
               style={{ margin: '0 20px' } }/> 
-            <Statistic title="Your Ownership" value={`${(props.orderData.ownership * 100).toFixed(2)}%`} style={{
+            <Statistic title="Your Ownership" value={`${(props.orderData.ownership * 100).toLocaleString(undefined, {
+              maximumFractionDigits: 2
+            })}%`} style={{
               margin: '0 20px'
             }} /></> : ''
             }
-            <Statistic title="Current Value" prefix="£" value={props.current_valuation} style={{
+            <Statistic title="Current Value" prefix="£" value={props.current_valuation.toLocaleString(undefined, {
+              maximumFractionDigits: 2
+            })} style={{
               margin: '0 20px'
             }} />
-            <Statistic title="Rental Value" prefix="£" value={`${props.rental_value}pcm`} style={{
+            <Statistic title="Rental Value" prefix="£" value={`${props.rental_value.toLocaleString(undefined, {
+              maximumFractionDigits: 2
+            })}pcm`} style={{
               margin: '0 20px'
             }} />
           </Row>

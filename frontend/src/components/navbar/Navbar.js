@@ -109,7 +109,20 @@ function Navbar() {
     window.location.reload(true)
   }
 
+  const handleClickAccount = () => {
+    history.push('/settings')
+    window.location.reload(true)
+  }
 
+  const handleClickDashboard = () => {
+    history.push('/dashboard')
+    window.location.reload(true)
+  }
+
+  const handleClickHome = () => {
+    history.push('')
+    window.location.reload(true)
+  }
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget)
@@ -135,8 +148,8 @@ function Navbar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}><Link className='link' to='/dashboard'>Profile</Link></MenuItem>
-      <MenuItem onClick={handleMenuClose}><Link className='link' to='/settings'>My account</Link></MenuItem>
+      <MenuItem onClick={handleMenuClose}><Link className='link' to='/dashboard' onClick={handleClickDashboard}>Profile</Link></MenuItem>
+      <MenuItem onClick={handleMenuClose}><Link className='link' to='/settings' onClick={handleClickAccount}>My account</Link></MenuItem>
       <MenuItem onClick={() =>{
         handleLogout()
         handleMenuClose()
@@ -151,9 +164,9 @@ function Navbar() {
     <div  className='no-padding' style={{ position: 'relative', width: '100%' }}>
       <AppBar position="static" style={{ backgroundColor: 'rgb(30, 21, 73)' }} className='shadow' >
         <Toolbar>
-          <Link to ='/'>
+          <Link to =''>
             <Typography className={classes.title} variant="h6" noWrap>
-              <img src='https://res.cloudinary.com/dy7eycl8m/image/upload/v1591804026/my_images/logo_utimcd.png' alt='logo' />
+              <img src='https://res.cloudinary.com/dy7eycl8m/image/upload/v1591804026/my_images/logo_utimcd.png' alt='logo' onClick={handleClickHome} />
             </Typography>
           </Link>
           {/* SEARCHBAR HERE */}

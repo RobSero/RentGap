@@ -1,5 +1,5 @@
 import React from 'react'
-import { getOrders, getProfile, getFeaturedProperties } from '../../lib/api'
+import { getOrders, getProfile, getFeaturedProperties, getWatchlist, watchToggle } from '../../lib/api'
 import { Row, Col } from 'antd'
 import DashboardHeader from './DashboardHeader'
 import FeaturedPropCard from './FeaturedPropertyCard'
@@ -13,7 +13,8 @@ class DashboardPage extends React.Component {
   state={
     propertyData: null,
     orderData: null,
-    user: null
+    user: null,
+    watching: null
   }
 
   async componentDidMount(){
@@ -22,13 +23,17 @@ class DashboardPage extends React.Component {
         const res = await getOrders()
         const userRes = await getProfile()
         const propRes = await getFeaturedProperties()
-
+        const watchRes = await getWatchlist()
+        const watchingArray = watchRes.data.map(watchedProperty => {
+          return watchedProperty.id
+        })
         console.log(res.data)
       
         this.setState({
           propertyData: propRes.data,
           orderData: res.data,
-          user: userRes.data
+          user: userRes.data,
+          watching: watchingArray
         })
       } catch (err){
         console.log(err)
@@ -36,8 +41,20 @@ class DashboardPage extends React.Component {
     },loadingTimer)
   }
 
+  handleWatch = async(propertyId) => {
+    const res = await watchToggle(propertyId)
+    const watchRes = await getWatchlist()
+    const watchingArray = watchRes.data.map(watchedProperty => {
+      return watchedProperty.id
+    })
+    this.setState({
+      watching: watchingArray
+    })
+    console.log(res.data)
+  }
+
   render(){
-    const { orderData, user, propertyData } = this.state
+    const { orderData, user, propertyData, watching } = this.state
     if (!orderData){
       return <LoadingSpinner />
     }
@@ -55,7 +72,7 @@ class DashboardPage extends React.Component {
           <Row justify="center">
             {propertyData.map(property => {
               return <Col span={7} key={property.id} style={{ margin: '6px' }}>
-                <FeaturedPropCard  {...property} />
+                <FeaturedPropCard  {...property} watching={watching} handleWatch={this.handleWatch} />
               </Col>
             })}
           </Row>

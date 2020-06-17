@@ -16,6 +16,7 @@ function LeaderTable(props) {
         user.rank = index + 1
         const date = new Date(user.date_joined)
         user.date_joined = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
+        user.total_money = user.total_money.toLocaleString()
         return user
       })
       setUsers(ranked)

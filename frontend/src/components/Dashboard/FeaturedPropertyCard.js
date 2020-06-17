@@ -48,7 +48,11 @@ function FeaturedPropCard(props) {
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          <FavoriteBorderIcon />
+          {props.watching && props.watching.includes(props.id) ? <FavoriteIcon onClick = {() =>{
+            props.handleWatch(props.id)
+          }} /> : <FavoriteBorderIcon onClick = {() =>{
+            props.handleWatch(props.id)
+          }} />}
         </Button>
         <Button size="small" color="primary">
           <Link to={`property/${props.id}`}>

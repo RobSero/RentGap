@@ -12,12 +12,24 @@ function LineChart(props){
   }
 
   const rentOverTime = {
-    monthOne: totalRental,
-    monthTwo: totalRental * 2,
-    monthThree: totalRental * 3,
-    monthFour: totalRental * 4,
-    monthFive: totalRental * 5,
-    monthSix: totalRental * 6
+    monthOne: totalRental.toLocaleString(undefined, {
+      maximumFractionDigits: 2
+    }),
+    monthTwo: (totalRental * 2).toLocaleString(undefined, {
+      maximumFractionDigits: 2
+    }),
+    monthThree: (totalRental * 3).toLocaleString(undefined, {
+      maximumFractionDigits: 2
+    }),
+    monthFour: (totalRental * 4).toLocaleString(undefined, {
+      maximumFractionDigits: 2
+    }),
+    monthFive: (totalRental * 5).toLocaleString(undefined, {
+      maximumFractionDigits: 2
+    }),
+    monthSix: (totalRental * 6).toLocaleString(undefined, {
+      maximumFractionDigits: 2
+    })
   }
 
  

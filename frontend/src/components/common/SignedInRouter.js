@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, useLocation, withRouter } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import DashboardPage from '../dashboard/DashboardPage'
 import PortfolioPage from '../portfolio/PortfolioPage'
@@ -14,10 +14,14 @@ import PropertyShowPage from '../singleProperty/PropertyShow'
 import LeaderboardPage from '../leaderboard/LeaderboardPage'
 
 function SignedInRouter (){
+  // const [page, setPage] = React.useState(null)
+  // const location = useLocation()
+
+  // React.useEffect(()=> {
+  //   setPage(location)
+  // }, [location])
 
 
-
-  
   return (
     <BrowserRouter>
       <div className="columns no-column-margin" style={{ position: 'fixed', width: '100% ' }}>
@@ -31,7 +35,7 @@ function SignedInRouter (){
             <Route exact path='/news' component={NewsPage} />
             <Route exact path='/advice' component={AdvicePage} />
             <Route exact path='/advice/:id' component={AdviceShowPage} />
-            <Route exact path='/settings' component={SettingsPage} />
+            <Route exact path='/settings' component={SettingsPage } />
             <Route exact path='/properties' component={PropertiesPage} />
             <Route exact path='/property/:id' component={PropertyShowPage} />
             <Route exact path='/leaderboard' component={LeaderboardPage} />
@@ -41,6 +45,6 @@ function SignedInRouter (){
     </BrowserRouter>
   )
 }
-export default SignedInRouter
+export default withRouter(SignedInRouter)
 
 

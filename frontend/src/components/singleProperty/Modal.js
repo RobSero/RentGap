@@ -19,7 +19,9 @@ class ConfirmationModal extends React.Component {
 
   showModal = () => {
     this.setState({
-      ModalText: `Are you sure you wish to make an investment of £${this.props.investment.toLocaleString()}? There will be a fee of £${this.props.investment * 0.01} for making this transaction.`,
+      ModalText: `Are you sure you wish to make an investment of £${this.props.investment.toLocaleString(undefined, {
+        maximumFractionDigits: 2
+      })}? There will be a fee of £${this.props.investment * 0.01} for making this transaction.`,
       visible: true
     })
   };

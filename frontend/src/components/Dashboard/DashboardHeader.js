@@ -28,13 +28,19 @@ function InvestmentHeader(props){
         title={'Your Dashboard'}
         extra={
           <Row>
-            <Statistic title="Total Assets" prefix="£" value={totalValues.totalAssets} style={{
+            <Statistic title="Total Assets" prefix="£" value={totalValues.totalAssets.toLocaleString(undefined, {
+              maximumFractionDigits: 2
+            })} style={{
               margin: '0 20px'
             }} />
-            <Statistic title="Total Invested" prefix="£" value={totalValues.totalInvested} style={{
+            <Statistic title="Total Invested" prefix="£" value={totalValues.totalInvested.toLocaleString(undefined, {
+              maximumFractionDigits: 2
+            })} style={{
               margin: '0 20px'
             }} />
-            <Statistic title="Total Rental Income" prefix="£" value={`${totalValues.totalRental.toFixed(2)}pcm`} style={{
+            <Statistic title="Total Rental Income" prefix="£" value={`${totalValues.totalRental.toLocaleString(undefined, {
+              maximumFractionDigits: 2
+            })}pcm`} style={{
               margin: '0 20px'
             }} />
           </Row>

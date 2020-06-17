@@ -48,6 +48,7 @@ class InvestmentPage extends React.Component {
           <div className='column shadow' style = {{ backgroundColor: 'white', textAlign: 'center', marginRight: '5px' }}>
             <PieChart orders={orderData}/>
           </div>
+          {/* Bar Chart */}
           <div className='column shadow' style = {{ backgroundColor: 'white', textAlign: 'center', marginLeft: '5px' }}>
             <BarChart orders={orderData} />
           </div>
@@ -57,6 +58,7 @@ class InvestmentPage extends React.Component {
           <div className='column shadow' style = {{ backgroundColor: 'white', textAlign: 'center', marginRight: '5px' }}>
             <LineChart orders={orderData}/>
           </div>
+          {/* Doughnut Chart */}
           <div className='column shadow' style = {{ backgroundColor: 'white', textAlign: 'center', marginLeft: '5px' }}>
             <DoughnutChart orders={orderData}/>
           </div>
