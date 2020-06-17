@@ -14,10 +14,10 @@ class ReviseOrderModal extends React.Component {
 
   showModalRevise = () => {
     this.setState({
-      ModalTextRevise: `Are you sure you wish to alter your current investment of £${this.props.existingInvestment}?
+      ModalTextRevise: `Are you sure you wish to alter your current investment of £${this.props.existingInvestment.toLocaleString()}?
       ${this.props.investment > this.props.existingInvestment ? 'You are increasing your investment by £' : 'You are decreasing your investment by £'}
-      ${Math.abs(this.props.investment - this.props.existingInvestment)}. This results in a TOTAL INVESTMENT OF: £${this.props.investment} 
-      There will be a fee of £${Math.abs((this.props.investment - this.props.existingInvestment) * 0.01)} for making this transaction.`,
+      ${(Math.abs(this.props.investment - this.props.existingInvestment)).toLocaleString()}. This results in a TOTAL INVESTMENT OF: £${this.props.investment.toLocaleString()} 
+      There will be a fee of £${(Math.abs((this.props.investment - this.props.existingInvestment) * 0.01)).toLocaleString()} for making this transaction.`,
       visibleRevise: true
     })
   };
@@ -39,7 +39,7 @@ class ReviseOrderModal extends React.Component {
 
   showModalWithdraw = () => {
     this.setState({
-      ModalTextWithdraw: `Are you sure you wish to withdraw ALL of your investment of £${this.props.existingInvestment}? There will be a fee of £${Math.abs(this.props.existingInvestment * 0.01)} for making this transaction.`,
+      ModalTextWithdraw: `Are you sure you wish to withdraw ALL of your investment of £${this.props.existingInvestment.toLocaleString()}? There will be a fee of £${Math.abs(this.props.existingInvestment * 0.01)} for making this transaction.`,
       visibleWithdraw: true
     })
   };

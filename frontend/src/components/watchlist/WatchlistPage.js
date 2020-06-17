@@ -138,7 +138,7 @@ render(){
             key={property.id}
             // PRICE, WATCH, RENT
             actions={[
-              <IconText icon={PoundCircleOutlined} text={`£${property.current_valuation}`} key="list-vertical-star-o" />,
+              <IconText icon={PoundCircleOutlined} text={`£${property.current_valuation.toLocaleString()}`} key="list-vertical-star-o" />,
               <IconText icon={ReloadOutlined} text={`£${property.rental_value}pcm`} key="list-vertical-like-o" />,
               <IconText icon={FileOutlined} text={property.bedrooms} key="list-vertical-message" />,
               <IconText icon={CarOutlined} text={property.parking} key="list-vertical-message" />

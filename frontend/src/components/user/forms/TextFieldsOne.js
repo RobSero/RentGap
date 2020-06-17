@@ -25,8 +25,8 @@ function TextFieldsOne(props) {
         <br />
         {'last_name' in props.errors ? <TextField fullWidth error helperText={props.errors.last_name[0]} id="standard-error" label="Last Name" name='last_name' onChange={props.handleChange} value={props.last_name} /> : <TextField fullWidth id="standard-error" label="Last Name" name='last_name' onChange={props.handleChange} value={props.last_name} /> }
         
-        {'email' in props.errors ? <TextField fullWidth error helperText={props.errors.email[0]} id="standard-error" label="Last Name" name='email' onChange={props.handleChange} value={props.email} /> : <TextField fullWidth id="standard-error" label="Last Name" name='email' onChange={props.handleChange} value={props.email} /> }
-        {'username' in props.errors ? <TextField fullWidth error helperText={props.errors.username[0]} id="standard-error" label="Last Name" name='username' onChange={props.handleChange} value={props.username} /> : <TextField fullWidth id="standard-error" label="Last Name" name='username' onChange={props.handleChange} value={props.username} /> }
+        {'email' in props.errors ? <TextField fullWidth error helperText={props.errors.email[0]} id="standard-error" label="Email" name='email' onChange={props.handleChange} value={props.email} /> : <TextField fullWidth id="standard-error" label="Email" name='email' onChange={props.handleChange} value={props.email} /> }
+        {'username' in props.errors ? <TextField fullWidth error helperText={props.errors.username[0]} id="standard-error" label="Username" name='username' onChange={props.handleChange} value={props.username} /> : <TextField fullWidth id="standard-error" label="Username" name='username' onChange={props.handleChange} value={props.username} /> }
       </div>
     </form>
   )

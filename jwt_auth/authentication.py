@@ -22,7 +22,7 @@ class JWTAuthentication(BasicAuthentication):
             payload = jwt.decode(token, settings.SECRET_KEY)
             user = User.objects.get(pk=payload.get('sub'))
         except jwt.exceptions.InvalidTokenError:
-            raise PermissionDenied({'message' : 'Invalid Token :-('})
+            raise PermissionDenied({'message' : 'Invalid Token'})
         except User.DoesNotExist:
             raise PermissionDenied({'message': 'User not found'})
         return (user, token)

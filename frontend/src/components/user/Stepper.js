@@ -9,7 +9,7 @@ import TextFieldsOne from './forms/TextFieldsOne'
 import TextFieldsTwo from './forms/TextFieldsTwo'
 import TextFieldsThree from './forms/TextFieldsThree'
 import LoadingSpinners from '../common/LoadingSpinners'
-
+import { Alert } from 'antd'
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%'
@@ -61,7 +61,7 @@ function RegisterStepper(props) {
         return (
           <>
             <div className='centered full-height-form'>
-              <TextFieldsThree handleChange={props.onChange} {...props}   />
+              <TextFieldsThree handleChange={props.onChange} {...props}  errors={props.errors}  />
             </div>
             
           </>
@@ -119,6 +119,7 @@ function RegisterStepper(props) {
 
   return (
     <div className={classes.root}>
+      
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => {
           const stepProps = {}

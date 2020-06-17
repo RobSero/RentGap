@@ -42,9 +42,14 @@ class LoginView(APIView):
     def post(self,req):
         email = req.data.get('email')
         password = req.data.get('password')
+        if not email:
+          return Response({'email' : 'Please enter email'}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+        if not password:
+          return Response({'password' : 'Please enter password'}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
         user = get_user(email)
         if not user.check_password(password):
             raise PermissionDenied()
+        user = get_user(email)
         dt = datetime.now() + timedelta(days=7)
         token = jwt.encode({
             'sub': user.id,

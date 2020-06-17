@@ -25,8 +25,10 @@ function TextFieldsThree(props) {
       <div>
         <ImageUpload handleChange={props.handleChange} />
         <br />
-        <TextField fullWidth id="standard-error" label="Password" name='password' type='password' onChange={props.handleChange} value={props.password} />
-        <TextField fullWidth id="standard-error" label="Confirm Password" name='password_confirmation' type='password' onChange={props.handleChange} value={props.password_confirmation} />
+        {'password' in props.errors ? <TextField fullWidth error helperText={props.errors.password[0]} id="standard-error" label="Password" name='password' type='password' onChange={props.handleChange} value={props.password} /> : <TextField fullWidth id="standard-error" label="Password" name='password' onChange={props.handleChange}  type='password' value={props.password} /> 
+        }
+        {'password_confirmation' in props.errors ? <TextField fullWidth error helperText={props.errors.password_confirmation[0]} id="standard-error" label="Confirm Password" name='password_confirmation' onChange={props.handleChange} value={props.password_confirmation} type='password' /> : <TextField fullWidth id="standard-error" label="Confirm Password" name='password_confirmation' onChange={props.handleChange}  type='password' value={props.password_confirmation} /> 
+        }
       </div>
     </form>
   )

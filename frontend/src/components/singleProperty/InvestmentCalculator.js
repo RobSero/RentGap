@@ -21,7 +21,7 @@ function InvestmentCalculator(props){
   return (
     <div style={{ backgroundColor: 'white', textAlign: 'center' }}>
       <p style={{ backgroundColor: 'rgb(30, 21, 73)', width: '100%', height: '35px', color: 'white', fontSize: '20px' }}>Investment Calculator</p>
-      {existingOrder ? <Alert message={`You have an investment of £${propValue * existingOrder.ownership} in this property, but you can still edit your existing investment`} type="success" style={{ margin: '5px 15px' }} /> : '' }
+      {existingOrder ? <Alert message={`You have an investment of £${(propValue * existingOrder.ownership).toLocaleString()} in this property, but you can still edit your existing investment`} type="success" style={{ margin: '5px 15px' }} /> : '' }
 
       <p>Use the calculator to find which investment strategy is right for you</p>
       {/* CALCULATOR ADAPTS BASED ON IF THERE IS AN EXISTING ORDER */}
@@ -54,7 +54,7 @@ function InvestmentCalculator(props){
           </Row>
           <div>
             <Row style={{ margin: '15px' }}>
-              <p>Current Value: £{propValue}</p>
+              <p>Current Value: £{propValue.toLocaleString()}</p>
               <p style={{ marginLeft: '25px', fontWeight: 700 }}>Your Ownership: {(( investment / propValue ) * 100).toFixed(2)}%</p>
             </Row>
             <Row style={{ margin: '15px' }}>
@@ -101,12 +101,12 @@ function InvestmentCalculator(props){
             </Row>
             <Row style={{ margin: '15px' }}>
               {investment - existingOrder.ownership * propValue !== 0 ? 
-                <p>{investment - (existingOrder.ownership * propValue)  > 0 ? <span style={{ color: 'green' }}>You are increasing your investment by</span> : <span style={{ color: 'red' }}>You are decreasing your investment by</span>}  £{Math.abs(investment - (existingOrder.ownership * propValue))}</p> : ''
+                <p>{investment - (existingOrder.ownership * propValue)  > 0 ? <span style={{ color: 'green' }}>You are increasing your investment by</span> : <span style={{ color: 'red' }}>You are decreasing your investment by</span>}  £{(Math.abs(investment - (existingOrder.ownership * propValue))).toLocaleString()}</p> : ''
               }
               {investment - (existingOrder.ownership * propValue) === 0 ? <p>No Change to your investment</p> : '' }
             </Row>
             {investment - (existingOrder.ownership * propValue) !== 0 ? <><Row style={{ margin: '15px' }}>
-              <p>Current Value: £{propValue}</p>
+              <p>Current Value: £{propValue.toLocaleString()}</p>
               <p style={{ marginLeft: '25px', fontWeight: 700 }}>Your NEW Ownership: {(( investment / propValue ) * 100).toFixed(2)}%</p>
             </Row>
             <Row style={{ margin: '15px' }}>

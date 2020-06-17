@@ -1,6 +1,7 @@
 import React from 'react'
 import Stepper from './Stepper'
 import axios from 'axios'
+import { Alert } from 'antd'
 import { registerUser } from '../../lib/api'
 
 
@@ -33,7 +34,6 @@ handleChange = ({ target }) => {
 }
 
 handleSubmit = async () => {
-
   try {
     const res = await registerUser(this.state.formData)
     this.props.history.push('/login')
@@ -52,8 +52,12 @@ handleSubmit = async () => {
 render(){
   return (
     <>
+      {'message' in this.state.error ? <div className='sub-section'><Alert  message={this.state.error.message[0]} type="error" closeText="Close Now" style={{ margin: '5px 30px' }} /></div>  : '' }
+      {'first_name' in this.state.error || 'last_name' in this.state.error || 'email' in this.state.error || 'username' in this.state.error ? <div className='sub-section'><Alert  message='Invalid Registration, please check alerts on your information' type="error" closeText="Close Now" style={{ margin: '5px 30px' }} /></div>  : '' }
       <div className='columns main-section'>
+        
         <div className='column is-half is-offset-one-quarter clear-background shadow' style={{ height: '500px', marginTop: '5%' }}>
+          
           <Stepper onChange={this.handleChange} {...this.state.formData} handleSubmit={this.handleSubmit} errors={this.state.error} />
         </div>
       </div>

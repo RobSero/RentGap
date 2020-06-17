@@ -26,6 +26,9 @@ class SettingsPage extends React.Component {
       password: null,
       password_confirmation: null,
       experience: null
+    },
+    existingUser: {
+      
     }
   }
 
