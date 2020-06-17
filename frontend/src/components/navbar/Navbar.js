@@ -135,8 +135,8 @@ function Navbar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}><Link to='/dashboard'> Profile</Link></MenuItem>
-      <MenuItem onClick={handleMenuClose}><Link to='/settings'>My account</Link></MenuItem>
+      <MenuItem onClick={handleMenuClose}><Link className='link' to='/dashboard'>Profile</Link></MenuItem>
+      <MenuItem onClick={handleMenuClose}><Link className='link' to='/settings'>My account</Link></MenuItem>
       <MenuItem onClick={() =>{
         handleLogout()
         handleMenuClose()
@@ -162,7 +162,7 @@ function Navbar() {
           {isAuthenticated() && user ? (<div className={classes.sectionDesktop}>
             {/* INSERT MESSAGES AND NOTIFICATIONS BUTTONS HERE */}
             <Tooltip title="These are your account funds. They can be used to invest in our properties. You will be creditted every month based on how much rental income your properties generate" arrow>
-              <IconButton><p style={{ color: 'white', margin: '0 10px', fontSize: '15px' }}>{user.money ? `£${user.money}` : ''}</p><PoundOutlined style={{ color: 'white' }} /></IconButton>
+              <IconButton><p style={{ color: 'white', margin: '0 10px', fontSize: '15px' }}>{user.money ? `£${user.money.toLocaleString()}` : ''}</p><PoundOutlined style={{ color: 'white' }} /></IconButton>
             </Tooltip>
             
             <IconButton

@@ -13,7 +13,11 @@ import PropertiesPage from '../properties/PropertiesPage'
 import PropertyShowPage from '../singleProperty/PropertyShow'
 import LeaderboardPage from '../leaderboard/LeaderboardPage'
 
-const SignedInRouter = () => {
+function SignedInRouter (){
+
+
+
+  
   return (
     <BrowserRouter>
       <div className="columns no-column-margin" style={{ position: 'fixed', width: '100% ' }}>

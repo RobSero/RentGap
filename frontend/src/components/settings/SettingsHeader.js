@@ -8,13 +8,13 @@ function SettingsHeader(props){
     <div>
       <PageHeader
         title={'Account Settings'}
-        extra={
-          <Row>
-            <Statistic title="Total Assets" prefix="£" value={5} style={{
-              margin: '0 20px'
-            }} />
-          </Row>
-        }
+        // extra={
+        //   <Row>
+        //     <Statistic title="Total Assets" prefix="£" value={5} style={{
+        //       margin: '0 20px'
+        //     }} />
+        //   </Row>
+        // }
       >
       </PageHeader>
     </div>
