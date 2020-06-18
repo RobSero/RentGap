@@ -13,6 +13,7 @@ djangorestframework = "*"
 requests = "*"
 psycopg2-binary = "*"
 django-heroku = "*"
+django-crontab = "*"
 
 [requires]
 python_version = "3.8"
