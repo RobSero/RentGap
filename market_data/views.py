@@ -53,7 +53,6 @@ class ValuationDataOne(APIView):
     property_to_update.save()
     return Response({'message': 'updated'}, status=status.HTTP_200_OK)
   
-  
 
 class GrowthDataOne(APIView):
   

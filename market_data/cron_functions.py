@@ -17,13 +17,14 @@ def get_property(pk):
 
 def update_value_rent_data_artificial():
     properties = [3,7,10,13,17]
-    for prop in properties:
+    for prop_id in properties:
       # Randomly Alter property value and rentals
-      property_to_update = get_property(pk=prop)
-      property_to_update.current_valuation = random.randint(property_to_update.current_valuation * 0.95, property_to_update.current_valuation * 1.05)
-      property_to_update.rental_value = random.randint(property_to_update.rental_value * 0.95, property_to_update.rental_value * 1.05)
-      property_to_update.margin = random.randint(property_to_update.margin * 0.95, property_to_update.margin * 1.05)
-      property_to_update.save()
+      property_to_update = get_property(pk=prop_id)
+      if property_to_update:
+        property_to_update.current_valuation = random.randint(int(property_to_update.current_valuation * 0.98), int(property_to_update.current_valuation * 1.02))
+        property_to_update.rental_value = random.randint(int(property_to_update.rental_value * 0.98), int(property_to_update.rental_value * 1.02))
+        property_to_update.margin = random.randint(int(property_to_update.margin * 0.98), int(property_to_update.margin * 1.02))
+        property_to_update.save()
 
 
 def update_value_rent_data():

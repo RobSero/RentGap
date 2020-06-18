@@ -50,10 +50,9 @@ INSTALLED_APPS = [
 ]
 
 CRONJOBS = [
-    # ('0 3 * * *', 'market_data.cron_functions.update_growth_data'),
-    # ('37 19 * * *', 'market_data.cron_functions.update_test'),
-    ('46 19 * * *', 'market_data.cron_functions.update_value_rent_data'),
-    ('*/2 * * * *', 'market_data.cron_functions.update_value_rent_data_artificial')
+    ('0 3 */2 * *', 'market_data.cron_functions.update_growth_data'),
+    ('0 3 */2 * *', 'market_data.cron_functions.update_value_rent_data'),
+    ('0 */4 * * *', 'market_data.cron_functions.update_value_rent_data_artificial')
 ]
 
 REST_FRAMEWORK = {
