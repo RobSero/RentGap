@@ -7,10 +7,9 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import SimpleSelect from '../user/forms/SimpleSelect'
 import SwitchLabels from '../user/forms/SwitchLabels'
-
+import { notification } from 'antd'
+import { WarningOutlined } from '@ant-design/icons'
 const { Panel } = Collapse
-
-
 
 
 class SettingsPage extends React.Component {
@@ -57,15 +56,25 @@ class SettingsPage extends React.Component {
   }
 
   handleSubmit = async() => {
-    try {
-      const res = await updateUserDetails(this.state.user)
-      console.log(res.data)
-      window.location.reload(true)
-    } catch (err){
-      console.log(err)
-    }
+    this.openNotification()
+    // try {
+    //   const res = await updateUserDetails(this.state.user)
+    //   console.log(res.data)
+    //   window.location.reload(true)
+    // } catch (err){
+    //   console.log(err)
+    // }
   }
   
+
+  openNotification = () => {
+    notification.open({
+      message: 'This functionality is currently in development',
+      description:
+        'Please check back very soon if you would like to edit your profile',
+      icon: <WarningOutlined style={{ color: '#108ee9' }} />
+    })
+  };
 
   render(){
     const { user } = this.state
@@ -126,6 +135,7 @@ class SettingsPage extends React.Component {
               color="secondary"
               style={{ margin: '15px' }}
               className='shadow'
+              onClick={this.handleSubmit}
             >
                 Delete Account
             </Button> 

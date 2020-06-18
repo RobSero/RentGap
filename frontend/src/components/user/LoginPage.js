@@ -30,7 +30,8 @@ handleChange = ({ target }) => {
   })
 }
 
-handleSubmit = async () => {
+handleSubmit = async (e) => {
+  e.preventDefault()
   try {
     const res = await axios.post('/api/auth/login/', { ...this.state.formData })
     setToken(res.data.token)
@@ -71,7 +72,7 @@ render(){
           <h1 style={{ marginTop: '10px' }}>Welcome Back</h1>
           <p>Sign In</p>
           <div style={{  width: '60%', margin: '0 auto' }}>
-            <form  Validate autoComplete="off" style={{ width: '100%', padding: '0 60px' }}>
+            <form  onSubmit={this.handleSubmit} Validate autoComplete="off" style={{ width: '100%', padding: '0 60px' }}>
               <div className='centered' style={{ margin: '0 auto' }}>
                 {'email' in this.state.error ? <TextField  id="standard-error" error helperText={this.state.error.email}  label="Email" name='email' onChange={this.handleChange} value={formData.email} style={{ width: '100%' }} /> : <TextField  id="standard-error" label="Email" name='email' onChange={this.handleChange} value={formData.email} style={{ width: '100%' }} />
                 }
@@ -87,11 +88,13 @@ render(){
               <Button
                 variant="contained"
                 color="primary"
+                
                 onClick={this.handleSubmit}
                 style={{ marginTop: '10px' }}
               >
                 Sign In
               </Button>
+              <input type='submit' style={{ display: 'none' }}></input>
             </form>
           </div>
          

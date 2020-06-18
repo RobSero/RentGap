@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.exceptions import NotFound
 from .property_param_data_many import all_property_params, all_prop_growth_params
-
+import random
 from properties.models import Property
 from properties.serializers import PropertySerializer
 import requests
@@ -177,6 +177,7 @@ class GrowthDataAll(APIView):
       property_to_update.save()
       sleep(5)
     return Response({'message': 'GROWTH updated'}, status=status.HTTP_200_OK)
+  
   
   
   

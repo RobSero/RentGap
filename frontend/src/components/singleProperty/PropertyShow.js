@@ -6,7 +6,7 @@ import PropertyHeader from './PropertyHeader'
 import LineChart from './LineChart'
 import CommentSection from './CommentSection'
 import InvestmentCalculator from './InvestmentCalculator'
-import { getOneProperty, submitNewOrder, reviseOrder, clearOrder } from '../../lib/api'
+import { getOneProperty, submitNewOrder, reviseOrder, clearOrder, getProfile } from '../../lib/api'
 import { Alert } from 'antd'
 import { notification } from 'antd'
 import { SmileOutlined } from '@ant-design/icons'
@@ -33,6 +33,7 @@ class propertyShowPage extends React.Component {
     const propertyId = this.props.match.params.id
     try {
       const res = await getOneProperty(propertyId)
+      const userRes = await getProfile()
       console.log(res.data)
       if (res.data.order){
         console.log('WE HAVE ORDER DATA')
@@ -42,12 +43,14 @@ class propertyShowPage extends React.Component {
           orderData: res.data.order,
           newOrder: {
             investment: (res.data.property.current_valuation * res.data.order.ownership)
-          } 
+          },
+          user: userRes.data 
         })
       } else {
         this.setState({
           propertyData: res.data.property,
-          orderData: res.data.order
+          orderData: res.data.order,
+          user: userRes.data 
         })
       }
      
@@ -146,7 +149,7 @@ openNotificationIfInvested = () => {
 };
 
 render(){
-  const { propertyData, orderData, newOrder } = this.state
+  const { propertyData, orderData, newOrder, user } = this.state
   if (!propertyData){
     return <p>loading</p>
   }
@@ -175,7 +178,7 @@ render(){
           <div className='information-container shadow'>
             <TabDisplay floorplan={propertyData.image_floorplan} lat={propertyData.latitude} lon={propertyData.longitude}/>
           </div>
-          <div className='information-container shadow'>
+          <div className={'information-container shadow'}>
             <InvestmentCalculator {...propertyData} {...newOrder} 
               handleChange={this.handleChange} 
               handleNewOrderSubmit={this.handleNewOrderSubmit} 
@@ -184,6 +187,7 @@ render(){
               handleChangeRevisedOrder={this.handleChangeRevisedOrder}
               handleRevisedOrderSubmit={this.handleRevisedOrderSubmit}
               handleWithdrawAll={this.handleWithdrawAll}
+              userMoney = {user.money}
             />
           </div>
             

@@ -10,6 +10,7 @@ function InvestmentCalculator(props){
   const propRent = props.rental_value
   const investment = props.investment
   const existingOrder = props.existingOrderData
+  const fundsAvailable = existingOrder ? props.userMoney >= investment - (propValue * existingOrder.ownership) : ''
 
 
 
@@ -24,7 +25,9 @@ function InvestmentCalculator(props){
       {existingOrder ? <Alert message={`You have an investment of £${(propValue * existingOrder.ownership).toLocaleString(undefined, {
         maximumFractionDigits: 2
       })} in this property, but you can still edit your existing investment`} type="success" style={{ margin: '5px 15px' }} /> : '' }
-
+      
+      {!existingOrder && props.userMoney < investment ? <Alert message='Insufficient Funds, Please revise your investment' type="warning" style={{ margin: '5px 15px' }} /> : '' }
+      {existingOrder && !fundsAvailable ? <Alert message='Insufficient Funds, Please revise your investment' type="warning" style={{ margin: '5px 15px' }} /> : '' }
       <p>Use the calculator to find which investment strategy is right for you</p>
       {/* CALCULATOR ADAPTS BASED ON IF THERE IS AN EXISTING ORDER */}
       {!existingOrder ?   
@@ -64,7 +67,7 @@ function InvestmentCalculator(props){
               <p style={{ marginLeft: '25px', fontWeight: 700 }}>Your Monthly Rental: £{(( investment / propValue ) * propRent).toFixed(2)}pcm</p>
             </Row>
             <p>Please note there will be a 1% fee to your investment upon opening this order and withdrawal of investment </p>
-            <ConfirmationModal handleNewOrderSubmit = {props.handleNewOrderSubmit} clearData={props.clearData} investment={investment}/>
+            <ConfirmationModal handleNewOrderSubmit = {props.handleNewOrderSubmit} clearData={props.clearData} investment={investment} fundsAvailable={props.userMoney > investment} />
           </div>
         </div> :   
 
@@ -126,6 +129,7 @@ function InvestmentCalculator(props){
               handleRevisedOrderSubmit={props.handleRevisedOrderSubmit}  
               handleWithdrawAll={props.handleWithdrawAll}
               existingInvestment={(existingOrder.ownership * propValue)}
+              fundsAvailable = {fundsAvailable}
             />
           </div>
         </div> 

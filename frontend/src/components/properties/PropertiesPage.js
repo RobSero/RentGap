@@ -83,7 +83,7 @@ filteredProperties = () => {
     (property.outdoor_space === outdoorSpace || outdoorSpace === null) &&
     (property.finish === finish || finish === null) &&
     (property.prop_type === type || type === null) &&
-    property.current_valuation < max && property.current_valuation > min 
+    property.current_valuation <= max && property.current_valuation >= min 
   })
   this.setState({ filteredProperties: filteredPropertyList })
 }

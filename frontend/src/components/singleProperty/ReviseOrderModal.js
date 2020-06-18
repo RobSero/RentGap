@@ -85,9 +85,9 @@ class ReviseOrderModal extends React.Component {
       <div>
         {this.props.investment !== this.props.existingInvestment ?  <Button
           variant="contained"
-          color={this.props.investment !== this.props.existingInvestment ? 'primary' : ''}
+          color={this.props.investment !== this.props.existingInvestment && this.props.fundsAvailable  ? 'primary' : ''}
           style={{ marginRight: '10px' }}
-          onClick={this.props.investment !== this.props.existingInvestment ? this.showModalRevise : ''}
+          onClick={this.props.investment !== this.props.existingInvestment && this.props.fundsAvailable  ? this.showModalRevise : ''}
         >
         Change Investment
         </Button> : ''}
