@@ -85,8 +85,8 @@
     "growth_2020": 321491.0,
     "database_ref": 2,
     "watchers": [
-      4,
-      17
+      17,
+      4
     ]
   }
 },
@@ -108,9 +108,9 @@
     "finish": "High",
     "outdoor_space": "Garden",
     "parking": 2,
-    "current_valuation": 1026787,
-    "margin": 58189,
-    "rental_value": 636.0,
+    "current_valuation": 1040659,
+    "margin": 57444,
+    "rental_value": 649.0,
     "gross_yield": 4.2,
     "image_main": "https://res.cloudinary.com/dy7eycl8m/image/upload/v1591890684/Property_investor/Property%203/property3_image1_soiiv6.jpg",
     "image_1": "https://res.cloudinary.com/dy7eycl8m/image/upload/v1591890685/Property_investor/Property%203/property3_image8_ptwokd.jpg",
@@ -267,8 +267,8 @@
     "growth_2020": 385620.0,
     "database_ref": 6,
     "watchers": [
-      3,
-      17
+      17,
+      3
     ]
   }
 },
@@ -290,9 +290,9 @@
     "finish": "Average",
     "outdoor_space": "Garden",
     "parking": 1,
-    "current_valuation": 454713,
-    "margin": 25210,
-    "rental_value": 308.0,
+    "current_valuation": 452915,
+    "margin": 25539,
+    "rental_value": 309.0,
     "gross_yield": 1.8,
     "image_main": "https://res.cloudinary.com/dy7eycl8m/image/upload/v1591893666/Property_investor/Property%207/property7_image1_vkfsmx.jpg",
     "image_1": "https://res.cloudinary.com/dy7eycl8m/image/upload/v1591893666/Property_investor/Property%207/property7_image3_ecwrfx.jpg",
@@ -403,7 +403,8 @@
     "growth_2020": 375664.0,
     "database_ref": 9,
     "watchers": [
-      12
+      12,
+      13
     ]
   }
 },
@@ -425,9 +426,9 @@
     "finish": "High",
     "outdoor_space": "Balcony Terrace",
     "parking": 1,
-    "current_valuation": 574811,
-    "margin": 30194,
-    "rental_value": 470.0,
+    "current_valuation": 571905,
+    "margin": 29544,
+    "rental_value": 462.0,
     "gross_yield": 3.7,
     "image_main": "https://res.cloudinary.com/dy7eycl8m/image/upload/v1591893887/Property_investor/Property%2010/property_10_-_image_1_cakrra.jpg",
     "image_1": "https://res.cloudinary.com/dy7eycl8m/image/upload/v1591893887/Property_investor/Property%2010/property_10_-_image_2_krbncn.jpg",
@@ -560,9 +561,9 @@
     "finish": "High",
     "outdoor_space": "Garden",
     "parking": 1,
-    "current_valuation": 1344066,
-    "margin": 55123,
-    "rental_value": 415.0,
+    "current_valuation": 1318114,
+    "margin": 55484,
+    "rental_value": 407.0,
     "gross_yield": 3.6,
     "image_main": "https://res.cloudinary.com/dy7eycl8m/image/upload/v1591961724/Property_investor/Property%2013/2245_32412165_IMG_17_0000_max_656x437_fwf6fs.jpg",
     "image_1": "https://res.cloudinary.com/dy7eycl8m/image/upload/v1591961724/Property_investor/Property%2013/2245_32412165_IMG_18_0000_max_656x437_wsn4r3.jpg",
@@ -735,9 +736,9 @@
     "finish": "Average",
     "outdoor_space": "Garden",
     "parking": 3,
-    "current_valuation": 699342,
-    "margin": 38717,
-    "rental_value": 591.0,
+    "current_valuation": 718563,
+    "margin": 39297,
+    "rental_value": 584.0,
     "gross_yield": 4.1,
     "image_main": "https://res.cloudinary.com/dy7eycl8m/image/upload/v1592219445/Property_investor/17/13501_29652369_IMG_01_0000_max_656x437_shgvt4.jpg",
     "image_1": "https://res.cloudinary.com/dy7eycl8m/image/upload/v1592219445/Property_investor/17/13501_29652369_IMG_13_0000_max_656x437_xe3asx.jpg",

@@ -41,7 +41,8 @@ class Property(models.Model):
     watchers = models.ManyToManyField(
       'jwt_auth.User',
       related_name='watching',
-      blank=True
+      blank=True,
+      null=True
     )
     
     
