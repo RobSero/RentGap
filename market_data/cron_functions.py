@@ -46,15 +46,6 @@ def update_value_rent_data():
       property_to_update.save()
       sleep(5)
       
-  
-def update_test():
-    prop_to_update = Property.objects.get(pk=1)
-    prop_to_update.current_valuation += 25000
-    print('UPDATED PROPERTY!')
-    prop_to_update.save()
-  
-
-
 
 def update_growth_data():
     url_path_growth = 'https://api.propertydata.co.uk/growth'
