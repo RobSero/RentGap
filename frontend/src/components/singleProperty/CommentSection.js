@@ -1,7 +1,6 @@
 import React from 'react'
 import { Comment, Avatar, Form, List, Input } from 'antd'
 import Button from '@material-ui/core/Button'
-import moment from 'moment'
 import { getOneProperty, postComment, getProfile } from '../../lib/api'
 
 const { TextArea } = Input
