@@ -81,9 +81,14 @@ class NewComment extends React.Component {
       try {
         const res = await postComment(propertyId,this.state.newComment)
         const CommentsRes = await getOneProperty(propertyId)
+        const commentsFormatted = CommentsRes.data.property.comments.map(comment => {
+          const date = new Date(comment.created_at)
+          comment.created_at = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
+          return comment
+        })
         console.log(res.data)
         this.setState({
-          comments: CommentsRes.data.property.comments,
+          comments: commentsFormatted,
           submitting: false,
           newComment: {
             content: ''
