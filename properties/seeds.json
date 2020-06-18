@@ -38,10 +38,7 @@
     "growth_2018": 540202.0,
     "growth_2019": 541595.0,
     "growth_2020": 556441.0,
-    "database_ref": 1,
-    "watchers": [
-      4
-    ]
+    "database_ref": 1
   }
 },
 {
@@ -83,11 +80,7 @@
     "growth_2018": 313557.0,
     "growth_2019": 307369.0,
     "growth_2020": 321491.0,
-    "database_ref": 2,
-    "watchers": [
-      17,
-      4
-    ]
+    "database_ref": 2
   }
 },
 {
@@ -129,10 +122,7 @@
     "growth_2018": 357989.0,
     "growth_2019": 364399.0,
     "growth_2020": 370741.0,
-    "database_ref": 3,
-    "watchers": [
-      3
-    ]
+    "database_ref": 3
   }
 },
 {
@@ -174,10 +164,7 @@
     "growth_2018": 309911.0,
     "growth_2019": 315867.0,
     "growth_2020": 323856.0,
-    "database_ref": 4,
-    "watchers": [
-      14
-    ]
+    "database_ref": 4
   }
 },
 {
@@ -219,11 +206,7 @@
     "growth_2018": 141704.0,
     "growth_2019": 140771.0,
     "growth_2020": 150781.0,
-    "database_ref": 5,
-    "watchers": [
-      9,
-      4
-    ]
+    "database_ref": 5
   }
 },
 {
@@ -265,11 +248,7 @@
     "growth_2018": 373190.0,
     "growth_2019": 377052.0,
     "growth_2020": 385620.0,
-    "database_ref": 6,
-    "watchers": [
-      17,
-      3
-    ]
+    "database_ref": 6
   }
 },
 {
@@ -311,10 +290,7 @@
     "growth_2018": 664375.0,
     "growth_2019": 671642.0,
     "growth_2020": 702887.0,
-    "database_ref": 7,
-    "watchers": [
-      11
-    ]
+    "database_ref": 7
   }
 },
 {
@@ -356,10 +332,7 @@
     "growth_2018": 600540.0,
     "growth_2019": 604755.0,
     "growth_2020": 620093.0,
-    "database_ref": 8,
-    "watchers": [
-      11
-    ]
+    "database_ref": 8
   }
 },
 {
@@ -401,11 +374,7 @@
     "growth_2018": 370629.0,
     "growth_2019": 358555.0,
     "growth_2020": 375664.0,
-    "database_ref": 9,
-    "watchers": [
-      12,
-      13
-    ]
+    "database_ref": 9
   }
 },
 {
@@ -447,10 +416,7 @@
     "growth_2018": 501548.0,
     "growth_2019": 489662.0,
     "growth_2020": 540602.0,
-    "database_ref": 10,
-    "watchers": [
-      12
-    ]
+    "database_ref": 10
   }
 },
 {
@@ -492,10 +458,7 @@
     "growth_2018": 719529.0,
     "growth_2019": 693775.0,
     "growth_2020": 739541.0,
-    "database_ref": 11,
-    "watchers": [
-      12
-    ]
+    "database_ref": 11
   }
 },
 {
@@ -537,10 +500,7 @@
     "growth_2018": 141704.0,
     "growth_2019": 140771.0,
     "growth_2020": 150781.0,
-    "database_ref": 12,
-    "watchers": [
-      12
-    ]
+    "database_ref": 12
   }
 },
 {
@@ -582,11 +542,7 @@
     "growth_2018": 423878.0,
     "growth_2019": 424133.0,
     "growth_2020": 436377.0,
-    "database_ref": 13,
-    "watchers": [
-      15,
-      17
-    ]
+    "database_ref": 13
   }
 },
 {
@@ -628,8 +584,7 @@
     "growth_2018": 190847.0,
     "growth_2019": 195760.0,
     "growth_2020": 210248.0,
-    "database_ref": 14,
-    "watchers": []
+    "database_ref": 14
   }
 },
 {
@@ -671,8 +626,7 @@
     "growth_2018": 192489.0,
     "growth_2019": 193768.0,
     "growth_2020": 203360.0,
-    "database_ref": 15,
-    "watchers": []
+    "database_ref": 15
   }
 },
 {
@@ -714,8 +668,7 @@
     "growth_2018": 269407.0,
     "growth_2019": 280116.0,
     "growth_2020": 281276.0,
-    "database_ref": 16,
-    "watchers": []
+    "database_ref": 16
   }
 },
 {
@@ -757,10 +710,7 @@
     "growth_2018": 408872.0,
     "growth_2019": 402065.0,
     "growth_2020": 414296.0,
-    "database_ref": 17,
-    "watchers": [
-      17
-    ]
+    "database_ref": 17
   }
 },
 {
@@ -802,8 +752,7 @@
     "growth_2018": 439995.0,
     "growth_2019": 435792.0,
     "growth_2020": 451453.0,
-    "database_ref": 18,
-    "watchers": []
+    "database_ref": 18
   }
 }
 ]
