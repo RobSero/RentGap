@@ -14,6 +14,7 @@ requests = "*"
 psycopg2-binary = "*"
 django-heroku = "*"
 django-crontab = "*"
+pyjwt = "*"
 
 [requires]
 python_version = "3.8"
