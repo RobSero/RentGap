@@ -1,5 +1,5 @@
 import React from 'react'
-import { getOrders, getProfile, getFeaturedProperties, getWatchlist, watchToggle } from '../../lib/api'
+import { getOrders, getProfile, getFeaturedProperties, getWatchlist, watchToggle, getNews } from '../../lib/api'
 import { newsAPI } from '../../lib/thirdpartyapi'
 import { Row, Col } from 'antd'
 import DashboardHeader from './DashboardHeader'
@@ -26,7 +26,7 @@ class DashboardPage extends React.Component {
         const userRes = await getProfile()
         const propRes = await getFeaturedProperties()
         const watchRes = await getWatchlist()
-        const newsRes = await newsAPI()
+        const newsRes = await getNews()
         const watchingArray = watchRes.data.map(watchedProperty => {
           return watchedProperty.id
         })
@@ -37,7 +37,7 @@ class DashboardPage extends React.Component {
           orderData: res.data,
           user: userRes.data,
           watching: watchingArray,
-          articles: newsRes.data.articles.splice(0,4)
+          articles: newsRes.data.splice(0,4)
         })
       } catch (err){
         console.log(err)

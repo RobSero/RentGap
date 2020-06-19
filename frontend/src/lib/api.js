@@ -74,3 +74,7 @@ export const getArticles = async() => {
 export const getArticle = async(articleId) => {
   return await axios.get(`${baseUrl}/articles/${articleId}`)
 }
+
+export const getNews = async() => {
+  return await axios.get(`${baseUrl}/news/articles`)
+}
