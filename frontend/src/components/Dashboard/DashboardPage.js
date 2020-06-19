@@ -1,6 +1,5 @@
 import React from 'react'
 import { getOrders, getProfile, getFeaturedProperties, getWatchlist, watchToggle, getNews } from '../../lib/api'
-import { newsAPI } from '../../lib/thirdpartyapi'
 import { Row, Col } from 'antd'
 import DashboardHeader from './DashboardHeader'
 import FeaturedPropCard from './FeaturedPropertyCard'
