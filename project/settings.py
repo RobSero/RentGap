@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'advice',
     'rentalmanager',
     'leaderboard',
+    'news',
     'django_crontab'
 ]
 

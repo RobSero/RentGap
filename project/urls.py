@@ -28,5 +28,6 @@ urlpatterns = [
     path('api/articles', include('advice.urls')),
     path('api/handleorder', include('rentalmanager.urls')),
     path('api/leaderboard', include('leaderboard.urls')),
+    path('api/news', include('news.urls')),
     re_path(r'^.*$', index)
 ]
