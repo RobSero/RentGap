@@ -1,8 +1,8 @@
-import { PageHeader, Tag, Button, Statistic, Descriptions, Row } from 'antd'
+import { PageHeader } from 'antd'
 import React from 'react'
 
 
-function SettingsHeader(props){
+function SettingsHeader(){
 
   return (
     <div>

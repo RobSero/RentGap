@@ -1,13 +1,10 @@
 import React from 'react'
 import { Link, withRouter, useLocation } from 'react-router-dom'
-import { makeStyles } from '@material-ui/core/styles'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import Divider from '@material-ui/core/Divider'
-import InboxIcon from '@material-ui/icons/Inbox'
-import DraftsIcon from '@material-ui/icons/Drafts'
 import { getProfile, getOrders } from '../../lib/api'
 import HomeIcon from '@material-ui/icons/Home'
 import FolderSharedIcon from '@material-ui/icons/FolderShared'
@@ -26,27 +23,32 @@ function Sidebar() {
   const [user, setUser] = React.useState(null)
   const [orders, setOrders] = React.useState(null)
 
-  const locations = {
-    dashboard: 0,
-    portfolio: 1,
-    investments: 2,
-    watchlist: 3,
-    properties: 4,
-    advice: 5,
-    news: 6,
-    leaderboard: 7,
-    settings: 8
-  }
+
 
   React.useEffect(()=> {
+    const locations = {
+      dashboard: 0,
+      portfolio: 1,
+      investments: 2,
+      watchlist: 3,
+      properties: 4,
+      advice: 5,
+      news: 6,
+      leaderboard: 7,
+      settings: 8
+    }
     setSelectedIndex(locations[location.pathname.substring(1)])
   }, [location])
 
-  React.useEffect(async()=> {
-    const res = await getProfile()
-    const resOrders = await getOrders()
-    setUser(res.data)
-    setOrders(resOrders.data.length)
+  React.useEffect(()=> {
+    
+    const updateSideBar = async () => {
+      const res = await getProfile()
+      const resOrders = await getOrders()
+      setUser(res.data)
+      setOrders(resOrders.data.length)
+    }
+    updateSideBar()
   }, [])
 
   return (

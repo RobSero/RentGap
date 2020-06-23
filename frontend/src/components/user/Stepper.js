@@ -9,7 +9,6 @@ import TextFieldsOne from './forms/TextFieldsOne'
 import TextFieldsTwo from './forms/TextFieldsTwo'
 import TextFieldsThree from './forms/TextFieldsThree'
 import LoadingSpinners from '../common/LoadingSpinners'
-import { Alert } from 'antd'
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%'
@@ -111,10 +110,6 @@ function RegisterStepper(props) {
       newSkipped.add(activeStep)
       return newSkipped
     })
-  }
-
-  const handleReset = () => {
-    setActiveStep(0)
   }
 
   return (

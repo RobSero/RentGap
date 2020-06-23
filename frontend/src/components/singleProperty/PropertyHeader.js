@@ -1,6 +1,5 @@
-import { PageHeader, Tag, Button, Statistic, Descriptions, Row } from 'antd'
+import { PageHeader, Statistic,  Row } from 'antd'
 import React from 'react'
-import FavoriteIcon from '@material-ui/icons/Favorite'
 
 function PropertyHeader(props){
   const currentVal = props.current_valuation

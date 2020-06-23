@@ -28,7 +28,7 @@ class EditProfileImageUpload extends React.Component {
   render(){
     return (
       <>
-        <Button><label htmlFor="file-input-id"><img src={this.props.image} alt='picture-upload' className='avatar-upload' /></label><input type="file" id="file-input-id" onChange={this.handleUpload} /></Button> 
+        <Button><label htmlFor="file-input-id"><img src={this.props.image} alt='upload' className='avatar-upload' /></label><input type="file" id="file-input-id" onChange={this.handleUpload} /></Button> 
 
         
       </>

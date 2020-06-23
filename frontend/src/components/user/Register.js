@@ -1,6 +1,5 @@
 import React from 'react'
 import Stepper from './Stepper'
-import axios from 'axios'
 import { Alert } from 'antd'
 import { registerUser } from '../../lib/api'
 

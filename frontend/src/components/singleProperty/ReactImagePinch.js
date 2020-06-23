@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Button from '@material-ui/core/Button'
-import { makeStyles } from '@material-ui/core/styles'
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch'
  
 
@@ -12,7 +11,7 @@ function ReactImagePinch(props) {
       defaultPositionX={200}
       defaultPositionY={100}
     >
-      {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
+      {({ zoomIn, zoomOut }) => (
         <React.Fragment>
           <div className="tools" style={{ marginBottom: '8px' }}>
             <Button

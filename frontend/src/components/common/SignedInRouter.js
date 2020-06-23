@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Switch, Route, useLocation, withRouter } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, withRouter } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import DashboardPage from '../dashboard/DashboardPage'
 import PortfolioPage from '../portfolio/PortfolioPage'

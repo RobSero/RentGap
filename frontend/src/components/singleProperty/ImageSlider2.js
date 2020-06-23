@@ -4,10 +4,11 @@ import { Carousel } from 'react-responsive-carousel'
 
 function ImageSlider2(props){
   const [images, setImages] = React.useState(null)
-  const propertyImages = []
+  
 
 
   React.useEffect(()=>{
+    const propertyImages = []
     propertyImages.push(props['image_main'])
     for (let i = 1; i < 10; i++){
       if (props[`image_${i}`]){
@@ -32,7 +33,7 @@ function ImageSlider2(props){
         {images.map((imageSource, index) => {
           return (
             <div key={index}>
-              <img src={imageSource} />
+              <img src={imageSource} alt='property-internal' />
               
             </div>
           )

@@ -1,7 +1,6 @@
 import React from 'react'
 import MapGL, { Marker } from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
-import axios from 'axios'
 import RoomIcon from '@material-ui/icons/Room'
 
 
