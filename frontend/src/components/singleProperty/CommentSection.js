@@ -19,7 +19,7 @@ const CommentList = ({ comments,user,handleDelete }) => (
         <Comment
           author={item.owner.username}
           avatar={item.owner.profile_image}
-          content={item.owner.id === user.id ? <span key="comment-nested-reply-to"> {item.content}<HighlightOffIcon onClick={()=>{
+          content={item.owner.id === user.id ? <span key="comment-nested-reply-to"> {item.content}<HighlightOffIcon className='watch-buttons' onClick={()=>{
             handleDelete(item.id)
           }} style={{ fontSize: 'small', marginLeft: '15px', fill: 'red' }} /></span> : item.content}
           datetime={item.created_at}

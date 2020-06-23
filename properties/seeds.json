@@ -38,7 +38,7 @@
     "growth_2018": 540202.0,
     "growth_2019": 541595.0,
     "growth_2020": 556441.0,
-    "database_ref": 1,
+    "description": null,
     "watchers": []
   }
 },
@@ -81,8 +81,10 @@
     "growth_2018": 313557.0,
     "growth_2019": 307369.0,
     "growth_2020": 321491.0,
-    "database_ref": 2,
-    "watchers": []
+    "description": null,
+    "watchers": [
+      3
+    ]
   }
 },
 {
@@ -103,9 +105,9 @@
     "finish": "High",
     "outdoor_space": "Garden",
     "parking": 2,
-    "current_valuation": 1069549,
-    "margin": 57444,
-    "rental_value": 659.0,
+    "current_valuation": 1080642,
+    "margin": 58498,
+    "rental_value": 657.0,
     "gross_yield": 4.2,
     "image_main": "https://res.cloudinary.com/dy7eycl8m/image/upload/v1591890684/Property_investor/Property%203/property3_image1_soiiv6.jpg",
     "image_1": "https://res.cloudinary.com/dy7eycl8m/image/upload/v1591890685/Property_investor/Property%203/property3_image8_ptwokd.jpg",
@@ -124,7 +126,7 @@
     "growth_2018": 357989.0,
     "growth_2019": 364399.0,
     "growth_2020": 370741.0,
-    "database_ref": 3,
+    "description": null,
     "watchers": []
   }
 },
@@ -167,7 +169,7 @@
     "growth_2018": 309911.0,
     "growth_2019": 315867.0,
     "growth_2020": 323856.0,
-    "database_ref": 4,
+    "description": null,
     "watchers": []
   }
 },
@@ -210,7 +212,7 @@
     "growth_2018": 141704.0,
     "growth_2019": 140771.0,
     "growth_2020": 150781.0,
-    "database_ref": 5,
+    "description": null,
     "watchers": []
   }
 },
@@ -253,8 +255,10 @@
     "growth_2018": 373190.0,
     "growth_2019": 377052.0,
     "growth_2020": 385620.0,
-    "database_ref": 6,
-    "watchers": []
+    "description": null,
+    "watchers": [
+      3
+    ]
   }
 },
 {
@@ -275,9 +279,9 @@
     "finish": "Average",
     "outdoor_space": "Garden",
     "parking": 1,
-    "current_valuation": 446824,
-    "margin": 24733,
-    "rental_value": 309.0,
+    "current_valuation": 450227,
+    "margin": 24575,
+    "rental_value": 314.0,
     "gross_yield": 1.8,
     "image_main": "https://res.cloudinary.com/dy7eycl8m/image/upload/v1591893666/Property_investor/Property%207/property7_image1_vkfsmx.jpg",
     "image_1": "https://res.cloudinary.com/dy7eycl8m/image/upload/v1591893666/Property_investor/Property%207/property7_image3_ecwrfx.jpg",
@@ -296,7 +300,7 @@
     "growth_2018": 664375.0,
     "growth_2019": 671642.0,
     "growth_2020": 702887.0,
-    "database_ref": 7,
+    "description": null,
     "watchers": []
   }
 },
@@ -339,7 +343,7 @@
     "growth_2018": 600540.0,
     "growth_2019": 604755.0,
     "growth_2020": 620093.0,
-    "database_ref": 8,
+    "description": null,
     "watchers": []
   }
 },
@@ -382,7 +386,7 @@
     "growth_2018": 370629.0,
     "growth_2019": 358555.0,
     "growth_2020": 375664.0,
-    "database_ref": 9,
+    "description": null,
     "watchers": []
   }
 },
@@ -404,9 +408,9 @@
     "finish": "High",
     "outdoor_space": "Balcony Terrace",
     "parking": 1,
-    "current_valuation": 576131,
-    "margin": 29308,
-    "rental_value": 453.0,
+    "current_valuation": 565299,
+    "margin": 29662,
+    "rental_value": 462.0,
     "gross_yield": 3.7,
     "image_main": "https://res.cloudinary.com/dy7eycl8m/image/upload/v1591893887/Property_investor/Property%2010/property_10_-_image_1_cakrra.jpg",
     "image_1": "https://res.cloudinary.com/dy7eycl8m/image/upload/v1591893887/Property_investor/Property%2010/property_10_-_image_2_krbncn.jpg",
@@ -425,7 +429,7 @@
     "growth_2018": 501548.0,
     "growth_2019": 489662.0,
     "growth_2020": 540602.0,
-    "database_ref": 10,
+    "description": null,
     "watchers": []
   }
 },
@@ -468,8 +472,10 @@
     "growth_2018": 719529.0,
     "growth_2019": 693775.0,
     "growth_2020": 739541.0,
-    "database_ref": 11,
-    "watchers": []
+    "description": null,
+    "watchers": [
+      3
+    ]
   }
 },
 {
@@ -511,7 +517,7 @@
     "growth_2018": 141704.0,
     "growth_2019": 140771.0,
     "growth_2020": 150781.0,
-    "database_ref": 12,
+    "description": null,
     "watchers": []
   }
 },
@@ -533,9 +539,9 @@
     "finish": "High",
     "outdoor_space": "Garden",
     "parking": 1,
-    "current_valuation": 1359567,
-    "margin": 55662,
-    "rental_value": 400.0,
+    "current_valuation": 1376177,
+    "margin": 55360,
+    "rental_value": 401.0,
     "gross_yield": 3.6,
     "image_main": "https://res.cloudinary.com/dy7eycl8m/image/upload/v1591961724/Property_investor/Property%2013/2245_32412165_IMG_17_0000_max_656x437_fwf6fs.jpg",
     "image_1": "https://res.cloudinary.com/dy7eycl8m/image/upload/v1591961724/Property_investor/Property%2013/2245_32412165_IMG_18_0000_max_656x437_wsn4r3.jpg",
@@ -554,7 +560,7 @@
     "growth_2018": 423878.0,
     "growth_2019": 424133.0,
     "growth_2020": 436377.0,
-    "database_ref": 13,
+    "description": null,
     "watchers": []
   }
 },
@@ -597,8 +603,10 @@
     "growth_2018": 190847.0,
     "growth_2019": 195760.0,
     "growth_2020": 210248.0,
-    "database_ref": 14,
-    "watchers": []
+    "description": null,
+    "watchers": [
+      3
+    ]
   }
 },
 {
@@ -640,7 +648,7 @@
     "growth_2018": 192489.0,
     "growth_2019": 193768.0,
     "growth_2020": 203360.0,
-    "database_ref": 15,
+    "description": null,
     "watchers": []
   }
 },
@@ -683,7 +691,7 @@
     "growth_2018": 269407.0,
     "growth_2019": 280116.0,
     "growth_2020": 281276.0,
-    "database_ref": 16,
+    "description": null,
     "watchers": []
   }
 },
@@ -705,9 +713,9 @@
     "finish": "Average",
     "outdoor_space": "Garden",
     "parking": 3,
-    "current_valuation": 701595,
-    "margin": 38993,
-    "rental_value": 559.0,
+    "current_valuation": 700663,
+    "margin": 38660,
+    "rental_value": 552.0,
     "gross_yield": 4.1,
     "image_main": "https://res.cloudinary.com/dy7eycl8m/image/upload/v1592219445/Property_investor/17/13501_29652369_IMG_01_0000_max_656x437_shgvt4.jpg",
     "image_1": "https://res.cloudinary.com/dy7eycl8m/image/upload/v1592219445/Property_investor/17/13501_29652369_IMG_13_0000_max_656x437_xe3asx.jpg",
@@ -726,7 +734,7 @@
     "growth_2018": 408872.0,
     "growth_2019": 402065.0,
     "growth_2020": 414296.0,
-    "database_ref": 17,
+    "description": null,
     "watchers": []
   }
 },
@@ -769,7 +777,7 @@
     "growth_2018": 439995.0,
     "growth_2019": 435792.0,
     "growth_2020": 451453.0,
-    "database_ref": 18,
+    "description": null,
     "watchers": []
   }
 },
@@ -812,7 +820,7 @@
     "growth_2018": 223878.0,
     "growth_2019": 227522.0,
     "growth_2020": 229258.0,
-    "database_ref": 19,
+    "description": null,
     "watchers": []
   }
 },
@@ -855,7 +863,7 @@
     "growth_2018": 364766.0,
     "growth_2019": 355828.0,
     "growth_2020": 370969.0,
-    "database_ref": 20,
+    "description": null,
     "watchers": []
   }
 },
@@ -898,7 +906,7 @@
     "growth_2018": 179140.0,
     "growth_2019": 179401.0,
     "growth_2020": 180067.0,
-    "database_ref": 21,
+    "description": null,
     "watchers": []
   }
 },
@@ -941,7 +949,7 @@
     "growth_2018": 218857.0,
     "growth_2019": 226104.0,
     "growth_2020": 242811.0,
-    "database_ref": 22,
+    "description": null,
     "watchers": []
   }
 },
@@ -984,7 +992,7 @@
     "growth_2018": 287902.0,
     "growth_2019": 288166.0,
     "growth_2020": 292863.0,
-    "database_ref": 23,
+    "description": null,
     "watchers": []
   }
 },
@@ -1027,7 +1035,7 @@
     "growth_2018": 446182.0,
     "growth_2019": 441387.0,
     "growth_2020": 446990.0,
-    "database_ref": 23,
+    "description": null,
     "watchers": []
   }
 },
@@ -1070,7 +1078,7 @@
     "growth_2018": 283066.0,
     "growth_2019": 296790.0,
     "growth_2020": 300926.0,
-    "database_ref": 25,
+    "description": null,
     "watchers": []
   }
 }
