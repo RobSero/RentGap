@@ -5,7 +5,7 @@ import PieChart from './PieChart'
 import DoughnutChart from './DoughnutChart'
 import BarChart from './BarChart'
 import LoadingSpinner from '../common/LoadingSpinners'
-import { loadingTimer, thisMonth, months } from '../../lib/settings'
+import { loadingTimer } from '../../lib/settings'
 import LineChart from './LineChart'
 
 
@@ -20,7 +20,6 @@ class InvestmentPage extends React.Component {
       try {
         const res = await getOrders()
         const userRes = await getProfile()
-        console.log(res.data)
       
         this.setState({
           orderData: res.data,

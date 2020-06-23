@@ -2,7 +2,7 @@ import React from 'react'
 import LeaderboardHeader from './LeaderboardHeader'
 import LeaderTable from './LeaderTable'
 
-function LeaderboardPage(props){
+function LeaderboardPage(){
 
   return (
     <div style={{ overflowY: 'scroll',overflowX: 'hidden', height: '90vh', position: 'relative', width: '100%' }}>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { List, Avatar, Space } from 'antd'
+import { List, Space } from 'antd'
 import { CarOutlined, ReloadOutlined, PoundCircleOutlined , FileOutlined } from '@ant-design/icons'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 import FavoriteIcon from '@material-ui/icons/Favorite'
@@ -7,7 +7,7 @@ import { getProperties, getWatchlist, watchToggle } from '../../lib/api'
 import SearchSection from '../common/SearchSection'
 import { Link } from 'react-router-dom'
 import LoadingSpinner from '../common/LoadingSpinners'
-import { loadingTimer, thisMonth, months } from '../../lib/settings'
+import { loadingTimer } from '../../lib/settings'
 
 const IconText = ({ icon, text }) => (
   <Space>
@@ -35,7 +35,6 @@ class PropertiesPage extends React.Component {
       try {
         const res = await getProperties()
         const watchRes = await getWatchlist()
-        console.log(res.data)
         const watchingArray = watchRes.data.map(watchedProperty => {
           return watchedProperty.id
         })
@@ -52,7 +51,6 @@ class PropertiesPage extends React.Component {
   }
 
 handleChange = ({ target }) => {
-  console.log(target)
   this.setState({
     filterData: {
       ...this.state.filterData,
@@ -75,8 +73,6 @@ filteredProperties = () => {
     case 4: max = 1500000; min = 500000; break
     default: max = 1500000; min = 0
   }
-  console.log(`max: ${max} & min: ${min}`)
-  console.log(propertyData[0])
   
   const filteredPropertyList = propertyData.filter(property => {
     return (property.region === region || region  === null) &&
@@ -89,7 +85,7 @@ filteredProperties = () => {
 }
 
 handleWatch = async(propertyId) => {
-  const res = await watchToggle(propertyId)
+  await watchToggle(propertyId)
   const watchRes = await getWatchlist()
   const watchingArray = watchRes.data.map(watchedProperty => {
     return watchedProperty.id
@@ -97,7 +93,6 @@ handleWatch = async(propertyId) => {
   this.setState({
     watching: watchingArray
   })
-  console.log(res.data)
 }
 
 
@@ -119,9 +114,6 @@ render(){
         itemLayout="vertical"
         size="large"
         pagination={{
-          onChange: page => {
-            console.log(page)
-          },
           pageSize: 5
         }}
         dataSource={this.state.filteredProperties}

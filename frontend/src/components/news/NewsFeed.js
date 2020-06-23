@@ -1,6 +1,6 @@
 import React from 'react'
-import { List, Avatar, Space } from 'antd'
-import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons'
+import { List, Space } from 'antd'
+import { StarOutlined } from '@ant-design/icons'
 
 
 const IconText = ({ icon, text }) => (

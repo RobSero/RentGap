@@ -1,15 +1,13 @@
 import React from 'react'
-import { Table, Tag, Space, Avatar } from 'antd'
+import { Table, Avatar } from 'antd'
 import { getLeaders } from '../../lib/api'
-import { loadingTimer, thisMonth, months } from '../../lib/settings'
 import LoadingSpinner from '../common/LoadingSpinners'
 
-function LeaderTable(props) {
+function LeaderTable() {
   const [users, setUsers] = React.useState(null)
 
 
   React.useEffect(()=>{
-    console.log('HEYYYY')
     const getUsers = async() => {
       const res = await getLeaders()
       const ranked = res.data.map((user,index) => {
@@ -34,6 +32,7 @@ function LeaderTable(props) {
       title: '',
       dataIndex: 'profile_image',
       key: 'profile_image',
+      // eslint-disable-next-line react/display-name
       render: (url) => <Avatar src={url} />
     },
     {

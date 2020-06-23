@@ -15,7 +15,6 @@ function BarChart(props){
       propertyTypes[order.property_detail.prop_type] += order.investment
     })
   }
-  console.log(propertyTypes)
   
 
 

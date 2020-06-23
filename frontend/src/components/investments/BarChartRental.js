@@ -15,7 +15,6 @@ function BarChartRental(props){
       propertyTypes[order.property_detail.prop_type] += order.property_detail.rental_value * order.ownership
     })
   }
-  console.log(propertyTypes)
   
 
 

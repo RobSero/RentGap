@@ -16,7 +16,6 @@ function PieChart(props){
       propertyTypes[order.property_detail.prop_type] += 1
     })
   }
-  console.log(propertyTypes)
   
   
   const data = {

@@ -13,8 +13,6 @@ class AdvicePage extends React.Component {
     setTimeout(async()=> {
       try {
         const res = await getArticles()
-        console.log(res.data)
-      
         this.setState({
           articles: res.data
         })

@@ -3,7 +3,7 @@ import LoadingSpinner from '../common/LoadingSpinners'
 import NewsHeader from './NewsHeader'
 import NewsFeed from './NewsFeed'
 import { getNews } from '../../lib/api'
-import { loadingTimer, thisMonth, months } from '../../lib/settings'
+import { loadingTimer } from '../../lib/settings'
 
 class NewsPage extends React.Component {
   state={
@@ -14,7 +14,6 @@ class NewsPage extends React.Component {
     setTimeout(async() => {
       try {
         const res = await getNews()
-        console.log(res.data)
         this.setState({
           articles: res.data
         })

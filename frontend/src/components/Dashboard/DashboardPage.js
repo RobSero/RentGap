@@ -29,7 +29,6 @@ class DashboardPage extends React.Component {
         const watchingArray = watchRes.data.map(watchedProperty => {
           return watchedProperty.id
         })
-        console.log(res.data)
       
         this.setState({
           propertyData: propRes.data,
@@ -45,7 +44,7 @@ class DashboardPage extends React.Component {
   }
 
   handleWatch = async(propertyId) => {
-    const res = await watchToggle(propertyId)
+    await watchToggle(propertyId)
     const watchRes = await getWatchlist()
     const watchingArray = watchRes.data.map(watchedProperty => {
       return watchedProperty.id
@@ -53,7 +52,6 @@ class DashboardPage extends React.Component {
     this.setState({
       watching: watchingArray
     })
-    console.log(res.data)
   }
 
   render(){

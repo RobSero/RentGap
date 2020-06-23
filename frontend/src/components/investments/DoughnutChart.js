@@ -17,7 +17,6 @@ function DoughnutChart(props){
       propertyLocations[order.property_detail.region] += 1
     })
   }
-  console.log(propertyLocations)
   
   
   const data = {

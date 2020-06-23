@@ -6,9 +6,8 @@ import FavoriteIcon from '@material-ui/icons/Favorite'
 import { getOrders, watchToggle, getWatchlist } from '../../lib/api'
 import SearchSection from '../common/SearchSection'
 import { Link } from 'react-router-dom'
-import MonetizationOnIcon from '@material-ui/icons/MonetizationOn'
 import LoadingSpinner from '../common/LoadingSpinners'
-import { loadingTimer, thisMonth, months } from '../../lib/settings'
+import { loadingTimer } from '../../lib/settings'
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 
@@ -38,11 +37,9 @@ class PortfolioPage extends React.Component {
       try {
         const res = await getOrders()
         const watchRes = await getWatchlist()
-        console.log(res.data)
         const watchingArray = watchRes.data.map(watchedProperty => {
           return watchedProperty.id
         })
-        console.log(res.data)
         const portfolioFormatted = res.data.map(order => {
           const date = new Date(order.created_at)
           order.created_at = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
@@ -60,7 +57,6 @@ class PortfolioPage extends React.Component {
   }
 
 handleChange = ({ target }) => {
-  console.log(target)
   this.setState({
     filterData: {
       ...this.state.filterData,
@@ -83,7 +79,6 @@ filteredOrders = () => {
     case 4: max = 1500000; min = 500000; break
     default: max = 1500000; min = 0
   }
-  console.log(`max: ${max} & min: ${min}`)
   
   const filteredOrderList = orderData.filter(order => {
     return (order.property_detail.region === region || region  === null) &&
@@ -96,7 +91,7 @@ filteredOrders = () => {
 }
 
 handleWatch = async(propertyId) => {
-  const res = await watchToggle(propertyId)
+  await watchToggle(propertyId)
   const watchRes = await getWatchlist()
   const watchingArray = watchRes.data.map(watchedProperty => {
     return watchedProperty.id
@@ -104,7 +99,6 @@ handleWatch = async(propertyId) => {
   this.setState({
     watching: watchingArray
   })
-  console.log(res.data)
 }
 
 
