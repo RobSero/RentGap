@@ -11,25 +11,14 @@ function LineChart(props){
     })
   }
 
+
   const rentOverTime = {
-    monthOne: totalRental.toLocaleString(undefined, {
-      maximumFractionDigits: 2
-    }),
-    monthTwo: (totalRental * 2).toLocaleString(undefined, {
-      maximumFractionDigits: 2
-    }),
-    monthThree: (totalRental * 3).toLocaleString(undefined, {
-      maximumFractionDigits: 2
-    }),
-    monthFour: (totalRental * 4).toLocaleString(undefined, {
-      maximumFractionDigits: 2
-    }),
-    monthFive: (totalRental * 5).toLocaleString(undefined, {
-      maximumFractionDigits: 2
-    }),
-    monthSix: (totalRental * 6).toLocaleString(undefined, {
-      maximumFractionDigits: 2
-    })
+    monthOne: totalRental,
+    monthTwo: (totalRental * 2),
+    monthThree: (totalRental * 3),
+    monthFour: (totalRental * 4),
+    monthFive: (totalRental * 5),
+    monthSix: (totalRental * 6)
   }
 
  
@@ -65,14 +54,17 @@ function LineChart(props){
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: [rentOverTime.monthOne,rentOverTime.monthTwo,rentOverTime.monthThree,rentOverTime.monthFour,rentOverTime.monthFive,rentOverTime.monthSix]
+        data: [rentOverTime.monthOne.toFixed(2),rentOverTime.monthTwo.toFixed(2),rentOverTime.monthThree.toFixed(2),rentOverTime.monthFour.toFixed(2),rentOverTime.monthFive.toFixed(2),rentOverTime.monthSix.toFixed(2)]
       }
     ]
   }
-
-  return (
-    <Line data={data} />
-  )
+  console.log(rentOverTime.monthSix)
+ 
+  if (rentOverTime.monthSix){
+    return (
+      <Line data={data} />
+    )
+  }
 }
 
 export default LineChart

@@ -48,9 +48,9 @@ function FeaturedPropCard(props) {
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          {props.watching && props.watching.includes(props.id) ? <FavoriteIcon onClick = {() =>{
+          {props.watching && props.watching.includes(props.id) ? <FavoriteIcon className='watch-buttons' onClick = {() =>{
             props.handleWatch(props.id)
-          }} /> : <FavoriteBorderIcon onClick = {() =>{
+          }} /> : <FavoriteBorderIcon className='watch-buttons' onClick = {() =>{
             props.handleWatch(props.id)
           }} />}
         </Button>

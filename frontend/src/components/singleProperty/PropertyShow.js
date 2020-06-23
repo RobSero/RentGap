@@ -10,7 +10,7 @@ import { getOneProperty, submitNewOrder, reviseOrder, clearOrder, getProfile } f
 import { Alert } from 'antd'
 import { notification } from 'antd'
 import { SmileOutlined } from '@ant-design/icons'
-
+import LoadingSpinner from '../common/LoadingSpinners'
 
 
 
@@ -151,7 +151,7 @@ openNotificationIfInvested = () => {
 render(){
   const { propertyData, orderData, newOrder, user } = this.state
   if (!propertyData){
-    return <p>loading</p>
+    return <LoadingSpinner />
   }
   return (
 

@@ -154,9 +154,9 @@ render(){
           >
             <List.Item.Meta
               // HEART BUTTON - WATCHLIST TOGGLE
-              avatar={this.state.watching.includes(order.property_detail.id) ? <FavoriteIcon onClick = {() =>{
+              avatar={this.state.watching.includes(order.property_detail.id) ? <FavoriteIcon className='watch-buttons' onClick = {() =>{
                 this.handleWatch(order.property_detail.id)
-              }} /> : <FavoriteBorderIcon onClick = {() =>{
+              }} /> : <FavoriteBorderIcon className='watch-buttons' onClick = {() =>{
                 this.handleWatch(order.property_detail.id)
               }} />}
               // PROPERTY TITLE
