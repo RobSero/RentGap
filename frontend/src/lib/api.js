@@ -59,6 +59,10 @@ export const postComment = async(propId, commentDetails) => {
   return await axios.post(`${baseUrl}/comment/properties/${propId}/`, commentDetails ,withHeaders())
 }
 
+export const deleteComment = async(commentId) => {
+  return await axios.delete(`${baseUrl}/comment/${commentId}/` ,withHeaders())
+}
+
 export const registerUser = async(userDetails) => {
   return await axios.post(`${baseUrl}/auth/register/`, userDetails)
 }
