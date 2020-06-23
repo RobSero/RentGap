@@ -77,8 +77,9 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'frontend')
-                 ]  #Look, we have added the root folder of frontend here
+        'DIRS': [os.path.join(BASE_DIR, 'frontend'),
+                 os.path.join(BASE_DIR, 'templates')
+                 ]  
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -166,5 +167,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'frontend', "build", "static"), 
 )
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 django_heroku.settings(locals()) # put this last

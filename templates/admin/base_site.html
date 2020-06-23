@@ -1,0 +1,29 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+{% block branding %}
+<div>
+  <img class='logo-admin' src="https://res.cloudinary.com/dy7eycl8m/image/upload/v1591803596/my_images/b8ceff1b-d9fb-4fcb-ba08-016e68d19cc7_200x200_fme3mf.png" alt="logo"  />
+</div>
+
+{% endblock %}
+{% block extrastyle %}
+
+<style>
+.logo-admin {
+  margin: 0;
+  height: 100px
+}
+
+#header {
+  background-color: rgb(91, 145, 136);
+  padding: 10px 20px;
+  height: 60px
+}
+
+.breadcrumbs {
+  background: rgb(45, 42, 87) !important;
+}
+
+</style>
+
+{% endblock %}
