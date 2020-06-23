@@ -1,10 +1,6 @@
 import React from 'react'
 import axios from 'axios'
 import Button from '@material-ui/core/Button'
-import CloudUploadIcon from '@material-ui/icons/CloudUpload'
-
-const uploadUrl = 'https://api.cloudinary.com/v1_1/dy7eycl8m/image/upload' // get this info from cloudinary
-const uploadPreset = 'Property-Investor-Avatars' // get this info from cloudinary. Presets of what to do with image like cropping
 
 class ImageUpload extends React.Component {
   state = {
