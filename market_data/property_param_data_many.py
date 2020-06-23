@@ -197,7 +197,7 @@ all_property_params = [
       'off_street_parking' : 0,
       'database_ref': 15
       },
-                                               {
+     {
       'key': apiKey, 
       'postcode': 'YO24 4LW',
       'property_type': 'terraced_house',
@@ -210,7 +210,7 @@ all_property_params = [
       'off_street_parking' : 0,
       'database_ref': 16
       },
-                                                                                         {
+   {
       'key': apiKey, 
       'postcode': 'HA03JE',
       'property_type': 'semi-detached_house',
@@ -223,7 +223,7 @@ all_property_params = [
       'off_street_parking' : 3,
       'database_ref': 17
       },
-                                                                                                                                                                           {
+  {
       'key': apiKey, 
       'postcode': 'OX3 7SH',
       'property_type': 'flat',
@@ -236,11 +236,99 @@ all_property_params = [
       'off_street_parking' : 1,
       'database_ref': 18
       },
+   {
+      'key': apiKey, 
+      'postcode': 'CO1 1PW',
+      'property_type': 'detached_house',
+      'construction_date': '1914_2000',
+      'internal_area' : 3900,
+      'bedrooms': 4, 
+      'bathrooms' : 4,
+      'finish_quality' : 'high',
+      'outdoor_space' : 'garden_very_large',
+      'off_street_parking' : 2,
+      'database_ref': 19
+      },
+    {
+      'key': apiKey, 
+      'postcode': 'WD18 6GF',
+      'property_type': 'semi-detached_house',
+      'construction_date': '1914_2000',
+      'internal_area' : 1112,
+      'bedrooms': 3, 
+      'bathrooms' : 1,
+      'finish_quality' : 'average',
+      'outdoor_space' : 'garden',
+      'off_street_parking' : 1,
+      'database_ref': 20
+      },
+    {
+      'key': apiKey, 
+      'postcode': 'HD2 2GD',
+      'property_type': 'semi-detached_house',
+      'construction_date': '1914_2000',
+      'internal_area' : 1600,
+      'bedrooms': 3, 
+      'bathrooms' : 2,
+      'finish_quality' : 'average',
+      'outdoor_space' : 'garden',
+      'off_street_parking' : 0,
+      'database_ref': 21
+      },
+     {
+      'key': apiKey, 
+      'postcode': 'PL7 1TF',
+      'property_type': 'terraced_house',
+      'construction_date': '1914_2000',
+      'internal_area' : 1600,
+      'bedrooms': 3, 
+      'bathrooms' : 1,
+      'finish_quality' : 'average',
+      'outdoor_space' : 'garden',
+      'off_street_parking' : 1,
+      'database_ref': 22
+      },
+       {
+      'key': apiKey, 
+      'postcode': 'CO4 5EY',
+      'property_type': 'flat',
+      'construction_date': '2000_onwards',
+      'internal_area' : 1000,
+      'bedrooms': 2, 
+      'bathrooms' : 2,
+      'finish_quality' : 'very_high',
+      'outdoor_space' : 'balcony_terrace',
+      'off_street_parking' : 1,
+      'database_ref': 23
+      },
+        {
+      'key': apiKey, 
+      'postcode': 'SE19 2QT',
+      'property_type': 'terraced_house',
+      'construction_date': '1914_2000',
+      'internal_area' : 1173,
+      'bedrooms': 3, 
+      'bathrooms' : 2,
+      'finish_quality' : 'high',
+      'outdoor_space' : 'garden',
+      'off_street_parking' : 1,
+      'database_ref': 24
+      },
+           {
+      'key': apiKey, 
+      'postcode': 'YO1 6DW',
+      'property_type': 'flat',
+      'construction_date': '1914_2000',
+      'internal_area' : 504,
+      'bedrooms': 1, 
+      'bathrooms' : 1,
+      'finish_quality' : 'average',
+      'outdoor_space' : 'none',
+      'off_street_parking' : 1,
+      'database_ref': 25
+      },
       ]
  
-
-
-
 
 
 
@@ -339,7 +427,7 @@ all_prop_growth_params = [{
       'bedrooms' : 2,
       'database_ref': 15
       },
-           {
+   {
       'key': apiKey, 
       'postcode': 'YO24 4LW',
       'bedrooms' : 4,
@@ -351,10 +439,55 @@ all_prop_growth_params = [{
       'bedrooms' : 5,
       'database_ref': 17
       },
-             {
+      {
       'key': apiKey, 
       'postcode': 'OX3 7SH',
       'bedrooms' : 2,
       'database_ref': 18
       },
+              {
+      'key': apiKey, 
+      'postcode': 'CO1 1PW',
+      'bedrooms' : 4,
+      'database_ref': 19
+      },
+                  {
+      'key': apiKey, 
+      'postcode': 'WD18 6GF',
+      'bedrooms' : 3,
+      'database_ref': 20
+      },
+    {
+      'key': apiKey, 
+      'postcode': 'HD2 2GD',
+      'bedrooms' : 3,
+      'database_ref': 21
+      },
+      {
+      'key': apiKey, 
+      'postcode': 'PL7 1TF',
+      'bedrooms' : 3,
+      'database_ref': 22
+      },
+      {
+      'key': apiKey, 
+      'postcode': 'CO4 5EY',
+      'bedrooms' : 2,
+      'database_ref': 23
+      },
+      {
+      'key': apiKey, 
+      'postcode': 'SE19 2QT',
+      'bedrooms' : 3,
+      'database_ref': 24
+      },
+       {
+      'key': apiKey, 
+      'postcode': 'YO1 6DW',
+      'bedrooms' : 1,
+      'database_ref': 25
+      }
                           ]
+
+
+
