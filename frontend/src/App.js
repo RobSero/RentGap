@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Home from './components/home/Home'
 import Navbar from './components/navbar/Navbar'
+import NavbarRevised from './components/navbar/NavbarRevised'
 import Register from './components/user/Register'
 import LoginPage from './components/user/LoginPage'
 import SignedInRouter from './components/common/SignedInRouter'
@@ -10,7 +11,7 @@ import NotFound from './components/common/NotFound'
 const App = () => {
   return (
     <BrowserRouter>
-      <Navbar />
+      <NavbarRevised />
       <Switch>
         <Route exact path='/' component={Home} />
         <Route exact path='/register' component={Register} />
