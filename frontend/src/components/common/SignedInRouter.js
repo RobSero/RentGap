@@ -12,6 +12,8 @@ import WatchlistPage from '../watchlist/WatchlistPage'
 import PropertiesPage from '../properties/PropertiesPage'
 import PropertyShowPage from '../singleProperty/PropertyShow'
 import LeaderboardPage from '../leaderboard/LeaderboardPage'
+import TestSide from './TestSide'
+
 
 function SignedInRouter (){
   // const [page, setPage] = React.useState(null)
@@ -25,7 +27,7 @@ function SignedInRouter (){
   return (
     <BrowserRouter>
       <div className="columns no-column-margin" style={{ position: 'fixed', width: '100% ' }}>
-        <Sidebar />
+        <TestSide />
         <div className="column is-four-fifths main-section  ">
           <Switch>
             <Route exact path='/dashboard' component={DashboardPage} />

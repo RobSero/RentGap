@@ -30,7 +30,7 @@ const moneyStyleMobile = {
 
 
 
-function NavbarRevised(props){
+function NavbarRevised(){
   
   const history = useHistory()
   const location = useLocation()

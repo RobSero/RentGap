@@ -59,7 +59,11 @@ function LineChart(props){
     ]
   }
   console.log(rentOverTime.monthSix)
- 
+  if (!rentOverTime.monthOne || !rentOverTime.monthSix){
+    return null
+  }
+
+
   if (rentOverTime.monthSix){
     return (
       <Line data={data} />

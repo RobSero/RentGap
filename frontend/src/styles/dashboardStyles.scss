@@ -1,3 +1,9 @@
+
+$menu-item-active-background-color: rgb(44, 38, 44);
+$menu-item-color: white;
+$menu-label-spacing: 1em;
+
+
 .side-bar{
  background-color: rgba(17, 15, 15, 0.822);
  height: 100vh;
@@ -22,3 +28,5 @@
 .watch-buttons:hover {
   cursor: pointer;
 }
+
+@import "~bulma/bulma.sass";

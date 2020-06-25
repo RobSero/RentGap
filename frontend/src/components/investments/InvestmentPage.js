@@ -7,6 +7,9 @@ import BarChart from './BarChart'
 import LoadingSpinner from '../common/LoadingSpinners'
 import { loadingTimer } from '../../lib/settings'
 import LineChart from './LineChart'
+import { notification } from 'antd'
+import { WarningOutlined } from '@ant-design/icons'
+
 
 
 class InvestmentPage extends React.Component {
@@ -25,12 +28,24 @@ class InvestmentPage extends React.Component {
           orderData: res.data,
           user: userRes.data
         })
+        if (res.data.length === 0) {
+          this.openNotification()
+        }
       } catch (err){
         console.log(err)
       }
     }, loadingTimer)
   }
 
+
+  openNotification = () => {
+    notification.open({
+      message: 'Start investing to see your analysis data',
+      description:
+        'Once you have begun investing in properties, you will be able to see all your investment data and how you have diversified your portfolio',
+      icon: <WarningOutlined style={{ color: '#108ee9' }} />
+    })
+  };
 
   render(){
     const { orderData, user } = this.state
