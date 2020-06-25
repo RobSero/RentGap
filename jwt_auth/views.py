@@ -10,6 +10,7 @@ import jwt
 from .serializers import UserSerializer
 User = get_user_model()
 
+# FIND USER AND RAISE ERROR IF THEY DO NOT EXIST
 def get_user(email):
         try:
             return User.objects.get(email=email)
@@ -42,14 +43,17 @@ class LoginView(APIView):
     def post(self,req):
         email = req.data.get('email')
         password = req.data.get('password')
+        # Check for missing email or password
         if not email:
           return Response({'email' : 'Please enter email'}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
         if not password:
           return Response({'password' : 'Please enter password'}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+        # Get user
         user = get_user(email)
         if not user.check_password(password):
             raise PermissionDenied()
         user = get_user(email)
+        # set expiry date and encode token
         dt = datetime.now() + timedelta(days=7)
         token = jwt.encode({
             'sub': user.id,

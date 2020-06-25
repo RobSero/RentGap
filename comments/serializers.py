@@ -11,6 +11,7 @@ class CommentSerializer(serializers.ModelSerializer):
     model = Comment
     fields = '__all__'
     
+# FOR USER WHEN RETRIEVING COMMENTS ON A PROPERTY - WILL INCLUDE THE OWNER DETAILS IN THE JSON RESPONSE
 class PopulatedCommentSerializer(CommentSerializer):
       
       owner = UserSerializer()

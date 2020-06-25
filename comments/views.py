@@ -12,6 +12,7 @@ User = get_user_model()
 from properties.models import Property
 from .models import Comment
 
+
 def get_user(pk):
     try:
       return User.objects.get(pk=pk)
@@ -30,7 +31,8 @@ def get_comment(pk):
     except Comment.DoesNotExist:
       raise NotFound()
 
-# Create your views here.
+
+
 class CommentHandler(APIView):
   
   permission_classes = (IsAuthenticated,)
@@ -41,7 +43,6 @@ class CommentHandler(APIView):
   #  'content' : String
   # }
   #  Valid Token Required
-  
   def post(self,req,pk):
     # get user
     owner = get_user(req.user.id) 
@@ -64,17 +65,16 @@ class CommentHandler(APIView):
 
 class CommentEdit(APIView):
   permission_classes = (IsAuthenticated,)
-  
-   #  -------------------- Delete a Comment  -------------------------
-  # DELETE request to '/comment/<int:pk>/'  pk=commentId
-  # no body required
-  # Valid Token Required - Owner of comment or admin
+  #  checks if user is the owner of the comment, will raise error if not
   def is_owner(self, comment, user):
     if comment.owner.id == user.id:
       return 
     raise PermissionDenied()
   
-  
+  #  -------------------- Delete a Comment  -------------------------
+  # DELETE request to '/comment/<int:pk>/'  pk=commentId
+  # no body required
+  # Valid Token Required - Owner of comment or admin
   def delete(self,req,pk):
     # get user
     user = get_user(req.user.id) 
@@ -89,7 +89,6 @@ class CommentEdit(APIView):
   # PUT request to '/comment/<int:pk>/'  pk=commentId
   # body required = { "content" : String }
   # Valid Token Required - Owner of comment or admin
-  
   def put(self,req,pk):
       # get user
     user = get_user(req.user.id) 
@@ -97,8 +96,10 @@ class CommentEdit(APIView):
     # Get Comment
     comment_to_edit = get_comment(pk)
     self.is_owner(comment=comment_to_edit, user=user)
+    # set owner and property to request object
     req.data['owner'] = req.user.id
     req.data['property_detail'] = comment_to_edit.property_detail.id
+    # serialize and validate
     updated_comment = CommentSerializer(comment_to_edit, data=req.data)
     if updated_comment.is_valid():
         updated_comment.save()

@@ -26,15 +26,18 @@ def update_value_rent_data_artificial():
         property_to_update.margin = random.randint(int(property_to_update.margin * 0.98), int(property_to_update.margin * 1.02))
         property_to_update.save()
 
-
+#  CRON FUNCTION - PROPERTY VALUES AND RENTAL UPDATES
+#  THIS WILL HANDLE CONSUMING VALUE AND RENTAL VALUE DATA FROM 'PROPERTY DATA' THIRD PARTY API
 def update_value_rent_data():
     url_path_value = 'https://api.propertydata.co.uk/valuation-sale'
     url_path_rent = 'https://api.propertydata.co.uk/valuation-rent'
-    
+    # loop through each property and send a request to property data to collect latest values and rent
     for property_params in all_property_params:
-      # Make HTTP request to third party API
+      # Make HTTP request to third party API - Get latest property value
       http_response_value = requests.get(url_path_value, params=property_params)
+      # PropertyData requires 3-5 second delay between requests or they will decline
       sleep(3)
+      # Make HTTP request to third party API - Get latest property rental
       http_response_rent = requests.get(url_path_rent, params=property_params)
       property_value = http_response_value.json()
       property_rent = http_response_rent.json()
@@ -47,11 +50,15 @@ def update_value_rent_data():
       sleep(5)
       
 
+#  CRON FUNCTION - PROPERTY LATEST GROWTH DATA
+#  THIS WILL HANDLE CONSUMING THE LATEST GROWTH DATA FROM 'PROPERTY DATA' THIRD PARTY API
 def update_growth_data():
     url_path_growth = 'https://api.propertydata.co.uk/growth'
+    # loop through each property and send a request to property data to collect latest growth data
     for property_params in all_prop_growth_params:
       # Make HTTP request to third party API
       http_response_growth = requests.get(url_path_growth, params=property_params)
+      # PropertyData requires 3-5 second delay between requests or they will decline
       sleep(3)
       property_growth = http_response_growth.json()
       print(property_growth)

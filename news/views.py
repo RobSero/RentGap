@@ -7,15 +7,31 @@ from rest_framework import status
 from .models import NewsArticle
 from .serializers import NewsSerializer
 import json
-# Create your views here.
+
+
+
+# THIS UPDATES THE NEWS ARTICLES AND REQUIRES A POST REQUEST
+#  Body required - an array of news articles:
+#           {
+  #         'title' : String
+  #         'description': String
+  #         'published_at' : String
+  #         'url_link' : String
+  #         'image': String
+  #         'source' : String
+  #         'author' : String
+#           }
+# No valid token required
 
 class NewsUploads(APIView):
   
   def post(self, req):
+    # Clear all existing news articles from database
     NewsArticle.objects.all().delete()
     article_list = []
+    # loop through each json article
     for article in req.data['articles']:
-        
+        # create dictionary of article
         new_article = {
           'title' : article['title'],
           'description':  article['description'],
@@ -26,7 +42,7 @@ class NewsUploads(APIView):
           'author' : article['author']
         }
         article_list.append(new_article)
-        
+        #  serialize and validate
         new_article_serialized = NewsSerializer(data=new_article)
         if new_article_serialized.is_valid():
           print('article saved')
