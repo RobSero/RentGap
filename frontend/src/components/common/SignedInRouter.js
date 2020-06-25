@@ -1,6 +1,5 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route, withRouter } from 'react-router-dom'
-import Sidebar from './Sidebar'
 import DashboardPage from '../dashboard/DashboardPage'
 import PortfolioPage from '../portfolio/PortfolioPage'
 import InvestmentPage from '../investments/InvestmentPage'
@@ -12,22 +11,53 @@ import WatchlistPage from '../watchlist/WatchlistPage'
 import PropertiesPage from '../properties/PropertiesPage'
 import PropertyShowPage from '../singleProperty/PropertyShow'
 import LeaderboardPage from '../leaderboard/LeaderboardPage'
+import ArrowDropDownCircleIcon from '@material-ui/icons/ArrowDropDownCircle'
 import TestSide from './TestSide'
+
+const sidebarDesktopStyle = {
+  position: 'fixed',
+  width: '100%'
+}
+
+const sidebarResponsiveStyle = {
+  width: '100%'
+}
+
+const sidebarOpen = {
+  height: '100vh'
+}
+const sidebarCollapsed = {
+  height: '50px'
+}
 
 
 function SignedInRouter (){
-  // const [page, setPage] = React.useState(null)
-  // const location = useLocation()
+  const [menu, toggleMenu] = React.useState(false)
+  const [windowSize, setSize] = React.useState(window.innerWidth)
 
-  // React.useEffect(()=> {
-  //   setPage(location)
-  // }, [location])
+  React.useEffect(()=> {
+    function changeWidth(){
+      setSize(window.innerWidth)
+    }
+
+    window.addEventListener('resize', changeWidth)
+  })
+
+  const menuToggle = () => {
+    toggleMenu(!menu)
+  }
 
 
   return (
     <BrowserRouter>
-      <div className="columns no-column-margin" style={{ position: 'fixed', width: '100% ' }}>
-        <TestSide />
+      <div className="columns no-column-margin" style={windowSize > 768 ? sidebarDesktopStyle : sidebarResponsiveStyle}>
+        <div className="column side-bar is-one-fifth" style={menu || windowSize > 768 ? sidebarOpen : sidebarCollapsed}>
+          {windowSize < 768 ? <div className='sidebar-toggle' onClick={menuToggle}><ArrowDropDownCircleIcon /></div> : '' }
+          {menu || windowSize > 768 ?
+            <TestSide /> : ''
+          }
+          
+        </div>
         <div className="column is-four-fifths main-section  ">
           <Switch>
             <Route exact path='/dashboard' component={DashboardPage} />

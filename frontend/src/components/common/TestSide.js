@@ -38,6 +38,8 @@ const locations = {
 }
 
 
+
+
 function TestSide() {
   const [selectedIndex, setSelectedIndex] = React.useState(1)
   const location = useLocation()
@@ -59,35 +61,37 @@ function TestSide() {
     updateSideBar()
   }, [])
 
+
+
   return (
-    <div className="column side-bar is-one-fifth">
-      <aside className="menu" >
-        <p className="menu-label" style={menuLabelStyle}>
+    
+    <aside className="menu" style={{ overflow: 'scroll' }} >
+      <p className="menu-label" style={menuLabelStyle}>
         Welcome, {user ? user.username : 'Friend'}
-        </p>
-        <ul className="menu-list">
-          <li><Link className={selectedIndex === 0 ? 'is-active' : ''}  to='/dashboard'><HomeIcon style={iconStyle} /> Home</Link></li>
-          <li><Tooltip title="Review your current property investments" arrow><Link className={selectedIndex === 1 ? 'is-active' : ''}  to='/portfolio'><FolderSharedIcon style={iconStyle} />Portfolio ({orders})</Link></Tooltip></li>
-          <li><Tooltip title="Use analytics to predict your next move" arrow><Link className={selectedIndex === 2 ? 'is-active' : ''}  to='/investments'><PieChartIcon  style={iconStyle}/>Analysis</Link></Tooltip></li>
-          <li><Tooltip title="Track properites before investing" arrow><Link className={selectedIndex === 3 ? 'is-active' : ''}  to='/watchlist'><FavoriteIcon style={iconStyle} />WatchList</Link></Tooltip></li>
-        </ul>
-        <p className="menu-label" style={menuLabelStyle}>
+      </p>
+      <ul className="menu-list">
+        <li><Link className={selectedIndex === 0 ? 'is-active' : ''}  to='/dashboard'><HomeIcon style={iconStyle} /> Home</Link></li>
+        <li><Tooltip title="Review your current property investments" arrow><Link className={selectedIndex === 1 ? 'is-active' : ''}  to='/portfolio'><FolderSharedIcon style={iconStyle} />Portfolio ({orders})</Link></Tooltip></li>
+        <li><Tooltip title="Use analytics to predict your next move" arrow><Link className={selectedIndex === 2 ? 'is-active' : ''}  to='/investments'><PieChartIcon  style={iconStyle}/>Analysis</Link></Tooltip></li>
+        <li><Tooltip title="Track properites before investing" arrow><Link className={selectedIndex === 3 ? 'is-active' : ''}  to='/watchlist'><FavoriteIcon style={iconStyle} />WatchList</Link></Tooltip></li>
+      </ul>
+      <p className="menu-label" style={menuLabelStyle}>
     The Marketplace
-        </p>
-        <ul className="menu-list">
-          <li><Tooltip title="View all available properties we have on offer" arrow><Link className={selectedIndex === 4 ? 'is-active' : ''}  to='/properties'><AppsIcon style={iconStyle} />Properties</Link></Tooltip></li>
-          <li><Tooltip title="Learn about the market and strategies" arrow><Link className={selectedIndex === 5 ? 'is-active' : ''}  to='/advice'><LiveHelpIcon style={iconStyle}/>Investor Advice</Link></Tooltip></li>
-          <li><Tooltip title="Keep up to date with news and events" arrow><Link className={selectedIndex === 6 ? 'is-active' : ''}  to='/news'><ImportContactsIcon style={iconStyle}/>Property News</Link></Tooltip></li>
-          <li><Tooltip title="Keep up to date with news and events" arrow><Link className={selectedIndex === 7 ? 'is-active' : ''}  to='/leaderboard'><StorageIcon style={iconStyle}/>Leaderboards</Link></Tooltip></li>
-        </ul>
-        <p className="menu-label" style={menuLabelStyle}>
+      </p>
+      <ul className="menu-list">
+        <li><Tooltip title="View all available properties we have on offer" arrow><Link className={selectedIndex === 4 ? 'is-active' : ''}  to='/properties'><AppsIcon style={iconStyle} />Properties</Link></Tooltip></li>
+        <li><Tooltip title="Learn about the market and strategies" arrow><Link className={selectedIndex === 5 ? 'is-active' : ''}  to='/advice'><LiveHelpIcon style={iconStyle}/>Investor Advice</Link></Tooltip></li>
+        <li><Tooltip title="Keep up to date with news and events" arrow><Link className={selectedIndex === 6 ? 'is-active' : ''}  to='/news'><ImportContactsIcon style={iconStyle}/>Property News</Link></Tooltip></li>
+        <li><Tooltip title="Keep up to date with news and events" arrow><Link className={selectedIndex === 7 ? 'is-active' : ''}  to='/leaderboard'><StorageIcon style={iconStyle}/>Leaderboards</Link></Tooltip></li>
+      </ul>
+      <p className="menu-label" style={menuLabelStyle}>
     Settings
-        </p>
-        <ul className="menu-list">
-          <li><Tooltip title="Update your account details" arrow><Link className={selectedIndex === 8 ? 'is-active' : ''}  to='/settings'><SettingsIcon style={iconStyle} />Account Settings</Link></Tooltip></li>
-        </ul>
-      </aside>
-    </div>
+      </p>
+      <ul className="menu-list">
+        <li><Tooltip title="Update your account details" arrow><Link className={selectedIndex === 8 ? 'is-active' : ''}  to='/settings'><SettingsIcon style={iconStyle} />Account Settings</Link></Tooltip></li>
+      </ul>
+    </aside>
+    
   )
 }
 

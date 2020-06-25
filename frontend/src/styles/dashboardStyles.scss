@@ -4,12 +4,17 @@ $menu-item-color: white;
 $menu-label-spacing: 1em;
 
 
-.side-bar{
+.side-bar {
  background-color: rgba(17, 15, 15, 0.822);
- height: 100vh;
 
  .link {
    color: white
+ }
+
+ .sidebar-toggle {
+   color: white;
+   text-align: center;
+   font-size: 1.2em;
  }
 }
 
