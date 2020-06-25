@@ -9,7 +9,7 @@ class NewsPage extends React.Component {
   state={
     articles: null
   }
-
+  // Retrieve all news articles from database on mount
   async componentDidMount(){
     setTimeout(async() => {
       try {
@@ -21,27 +21,22 @@ class NewsPage extends React.Component {
         console.log(err)
         
       }
-    }, loadingTimer)
+    }, loadingTimer) // small timeout set so page does not transition too quickly and feel unnatural
    
   }
 
   render(){
+    // Temporary loading screen
     if (!this.state.articles){
       return <LoadingSpinner />
     }
     return (
-      <div style={{ overflowY: 'scroll',overflowX: 'hidden', height: '90vh', position: 'relative', width: '100%' }}>
+      <>
         <div style = {{ backgroundColor: 'white', margin: '15px 30px' }} className='shadow'>
           <NewsHeader  />
         </div>
-      
         <NewsFeed articles={this.state.articles} />
-        
-      </div>
-      
-     
-      
-      
+      </>
     )
   }
 }

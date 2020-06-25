@@ -32,5 +32,6 @@ class SimplePropertySerializer(serializers.ModelSerializer):
           'rental_value',
           'image_main',
           'finish',
-          'parking'
+          'parking',
+          'description'
         )

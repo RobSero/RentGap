@@ -7,7 +7,7 @@ import LoginPage from './components/user/LoginPage'
 import SignedInRouter from './components/common/SignedInRouter'
 import NotFound from './components/common/NotFound'
 
-
+// All pages to be redirected to SignedInRouter with exception of Home, Register & Login Pages
 const App = () => {
   return (
     <BrowserRouter>

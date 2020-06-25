@@ -4,11 +4,13 @@ import ArticleCard from './ArticleCard'
 import { loadingTimer } from '../../lib/settings'
 import LoadingSpinner from '../common/LoadingSpinners'
 
+
 class AdvicePage extends React.Component {
   state={
     articles: null
   }
 
+  // Get all articles from database
   async componentDidMount(){
     setTimeout(async()=> {
       try {
@@ -19,26 +21,23 @@ class AdvicePage extends React.Component {
       } catch (err){
         console.log(err)
       }
-    },loadingTimer)
+    },loadingTimer) // small timeout set so page does not transition too quickly and feel unnatural
   }
 
   render(){
     const { articles } = this.state
-    if (!articles){
-      return <LoadingSpinner />
+    if (!articles){ // temporary display loading spinner
+      return <LoadingSpinner /> 
     }
     return (
-      
-      <div style={{ overflowY: 'scroll',overflowX: 'hidden', height: '90vh', position: 'relative', width: '100%' }}>
+      <>
         {articles.map(article => {
           return (
             <ArticleCard article={article} key={article.id} />
           )
         })}
         
-      </div>
-     
-      
+      </>
     )
   }
 }

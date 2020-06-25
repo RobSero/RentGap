@@ -31,6 +31,7 @@ class SettingsPage extends React.Component {
     }
   }
 
+  //  GET USERS INFORMATION
   async componentDidMount(){
     try {
       const res = await getProfile()
@@ -43,7 +44,7 @@ class SettingsPage extends React.Component {
   }
 
   
-
+  // HANDLE ANY INPUTS AND SET STATE
   handleChange = ({ target }) => {
     const inputValue = target.value
     console.log(`${target.name} : ${inputValue}`)
@@ -55,6 +56,7 @@ class SettingsPage extends React.Component {
     })
   }
 
+  // SUBMIT NEW INFORMATION TO BACKEND
   handleSubmit = async() => {
     this.openNotification()
     // try {
@@ -79,19 +81,25 @@ class SettingsPage extends React.Component {
   render(){
     const { user } = this.state
     return (
-      <div style={{ overflowY: 'scroll',overflowX: 'hidden', height: '90vh', position: 'relative', width: '100%' }}>
+      <>
+        {/* HEADER SECTION */}
         <div className='shadow' style = {{ backgroundColor: 'white', margin: '15px 30px' }}>
           <SettingsHeader />
         </div>
+
         <div className='columns'>
+          {/* LEFT SIDE OF MAIN PAGE - USER INFORMATION FORM */}
           <div className='column is-8'>
+            {/* COLLAPSABLE FORM SECTION */}
             <div className='shadow' style = {{ backgroundColor: 'white', margin: '15px 30px' }}>
               <Collapse accordion>
+                {/* SECTION 1 - IMAGE */}
                 <Panel header="Avatar Settings" key="1">
                   <div className='centered'>
                     <EditProfileImageUpload handleChange={this.handleChange} image={user.profile_image}/>
                   </div>
                 </Panel>
+                {/* SECTION 2 - PERSONAL DETAILS */}
                 <Panel header="Personal Details" key="2">
                   <div>
                     <TextField className='input-fields' id="standard-error" label="First Name" name='first_name' onChange={this.handleChange} value={user.first_name} />
@@ -101,13 +109,14 @@ class SettingsPage extends React.Component {
                     <TextField className='input-fields' id="standard-error" label="Username" name='username' onChange={this.handleChange} value={user.username} />
                     <br />
                     <TextField className='input-fields' id="standard-error" label="Email" name='email' onChange={this.handleChange} value={user.email} />
-                    
                   </div>
                 </Panel>
+                {/* SECTION 3 - INVESTING DETAILS */}
                 <Panel header="Investing Details" key="3">
                   <SimpleSelect handleChange={this.handleChange} />
                   <SwitchLabels  handleChange={this.handleChange} />
                 </Panel>
+                {/* SECTION 4 - PASSWORD */}
                 <Panel header="Password" key="4">
                   <div>
                     <TextField className='input-fields' id="standard-error" label="Existing Password" name='existing_password' onChange={this.handleChange} value={user.existing_password} />
@@ -116,10 +125,10 @@ class SettingsPage extends React.Component {
                   </div>
                 </Panel>
               </Collapse>
-              
             </div>
-            
           </div>
+
+          {/* RIGHT SIDE OF MAIN PAGE - BUTTONS */}
           <div className='column centered'>
             <Button
               variant="contained"
@@ -141,7 +150,7 @@ class SettingsPage extends React.Component {
             </Button> 
           </div>
         </div>
-      </div>
+      </>
       
     )
   }

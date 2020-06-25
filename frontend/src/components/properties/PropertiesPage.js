@@ -30,11 +30,13 @@ class PropertiesPage extends React.Component {
     watching: null
   } 
 
+  // GATHER ALL PROPERTIES AND USER'S WATCHLIST
   async componentDidMount(){
     setTimeout(async()=> {
       try {
         const res = await getProperties()
         const watchRes = await getWatchlist()
+        // map the watched properties prior to setting state as only the id of each property is required.
         const watchingArray = watchRes.data.map(watchedProperty => {
           return watchedProperty.id
         })
@@ -47,9 +49,11 @@ class PropertiesPage extends React.Component {
       } catch (err){
         console.log(err)
       }
-    },loadingTimer)
+    },loadingTimer) // small timeout set so page does not transition too quickly and feel unnatural
   }
 
+
+  // Set state of filtered data when user selects - a delay of 1s prior to list updating
 handleChange = ({ target }) => {
   this.setState({
     filterData: {
@@ -62,6 +66,7 @@ handleChange = ({ target }) => {
   },1000)
 }
 
+// Handles revising the list of properties shown based on the filtered criteria
 filteredProperties = () => {
   const { propertyData } = this.state
   const { region, price, outdoorSpace, finish, type } = this.state.filterData
@@ -84,9 +89,11 @@ filteredProperties = () => {
   this.setState({ filteredProperties: filteredPropertyList })
 }
 
+// handles watch/unwatch when user clicks on heart icon. Re-retrieves watchlist from database after
 handleWatch = async(propertyId) => {
   await watchToggle(propertyId)
   const watchRes = await getWatchlist()
+  // map the watched properties prior to setting state as only the id of each property is required.
   const watchingArray = watchRes.data.map(watchedProperty => {
     return watchedProperty.id
   })
@@ -97,13 +104,13 @@ handleWatch = async(propertyId) => {
 
 
 render(){
-
+  // Temporary loading screen
   if (!this.state.filteredProperties) {
     return <LoadingSpinner />
   }
     
   return (
-    <div style={{ overflowY: 'scroll', height: '90vh', position: 'relative', width: '100%' }}>
+    <>
       <div className='centered'>
         <h1 className='page-title'>Our Property List</h1>
       </div>
@@ -154,11 +161,13 @@ render(){
               // PROPERTY DESCRIPTION
               description={property.address}
             />
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            {property.description ? <p>{property.description}</p> : 
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>}
           </List.Item>
         )}
       />
-    </div>
+    </>
       
   )
 }

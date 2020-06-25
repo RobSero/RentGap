@@ -18,6 +18,7 @@ const IconText = ({ icon, text }) => (
   </Space>
 )
 
+//  Gathers and displays all user's current orders and displays value changes 
 class PortfolioPage extends React.Component {
   state={
     orderData: null,
@@ -31,15 +32,18 @@ class PortfolioPage extends React.Component {
     watching: null,
     filteredOrders: null
   }
-
+  
+  // Gather users watchlist and current orders
   async componentDidMount(){
     setTimeout(async()=> {
       try {
         const res = await getOrders()
         const watchRes = await getWatchlist()
-        const watchingArray = watchRes.data.map(watchedProperty => {
+        // map the watched properties prior to setting state as only the id of each property is required.
+        const watchingArray = watchRes.data.map(watchedProperty => { 
           return watchedProperty.id
         })
+        // formatting dates of when the orders were made prior to setting state
         const portfolioFormatted = res.data.map(order => {
           const date = new Date(order.created_at)
           order.created_at = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
@@ -53,9 +57,10 @@ class PortfolioPage extends React.Component {
       } catch (err){
         console.log(err)
       }
-    }, loadingTimer )
+    }, loadingTimer ) // small timeout set so page does not transition too quickly and feel unnatural
   }
 
+  // Set state of filtered data when user selects - a delay of 1s prior to list updating
 handleChange = ({ target }) => {
   this.setState({
     filterData: {
@@ -68,6 +73,7 @@ handleChange = ({ target }) => {
   },1000)
 }
 
+// Handles revising the list of properties shown based on the filtered criteria
 filteredOrders = () => {
   const { orderData  } = this.state
   const { region, price, outdoorSpace, finish, type } = this.state.filterData
@@ -90,9 +96,11 @@ filteredOrders = () => {
   this.setState({ filteredOrders: filteredOrderList })
 }
 
+// handles watch/unwatch when user clicks on heart icon. Re-retrieves watchlist from database after
 handleWatch = async(propertyId) => {
   await watchToggle(propertyId)
   const watchRes = await getWatchlist()
+  // map the watched properties prior to setting state as only the id of each property is required.
   const watchingArray = watchRes.data.map(watchedProperty => {
     return watchedProperty.id
   })
@@ -103,18 +111,22 @@ handleWatch = async(propertyId) => {
 
 
 render(){
+  // Temporary loading screen
   if (!this.state.filteredOrders) {
     return <LoadingSpinner />
   }
     
   return (
-    <div style={{ overflowY: 'scroll', height: '90vh', position: 'relative', width: '100%' }}>
+    <>
       <div className='centered'>
         <h1 className='page-title'>Your Portfolio</h1>
       </div>
+      {/* Search and Filter Section */}
       <div className='centered shadow' style = {{ backgroundColor: 'white', margin: '15px 30px', padding: '10px' }}>
         <SearchSection handleChange={this.handleChange} {...this.state.filterData} />
       </div>
+
+      {/* Property List - filtered by the state filteredOrders */}
       <List
         itemLayout="vertical"
         size="large"
@@ -165,6 +177,7 @@ render(){
               // PROPERTY DESCRIPTION
               description={order.property_detail.address}
             />
+            {/* INFORMATION ABOUT THE USER'S INVESTMENT COMPARED TO THE MARKET VALUES */}
             <p>You invested in this property on <span style={{ fontWeight: '800' }}>{order.created_at}</span> at a valuation of :<span style={{ fontWeight: '800' }}> £{order.value_at_time.toLocaleString(undefined, {
               maximumFractionDigits: 2
             })}</span></p>
@@ -179,7 +192,7 @@ render(){
           </List.Item>
         )}
       />
-    </div>
+    </>
       
   )
 }

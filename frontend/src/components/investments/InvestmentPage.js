@@ -18,26 +18,27 @@ class InvestmentPage extends React.Component {
     user: null
   }
 
+  //   Get user's profile and current orders on load
   async componentDidMount(){
     setTimeout(async()=> {
       try {
         const res = await getOrders()
         const userRes = await getProfile()
-      
         this.setState({
           orderData: res.data,
           user: userRes.data
         })
+        // Notification pops up if user has no properties invested in
         if (res.data.length === 0) {
           this.openNotification()
         }
       } catch (err){
         console.log(err)
       }
-    }, loadingTimer)
+    }, loadingTimer) // small timeout set so page does not transition too quickly and feel unnatural
   }
 
-
+  
   openNotification = () => {
     notification.open({
       message: 'Start investing to see your analysis data',
@@ -49,11 +50,13 @@ class InvestmentPage extends React.Component {
 
   render(){
     const { orderData, user } = this.state
+    // Temporary loading screen
     if (!orderData){
       return <LoadingSpinner />
     }
     return (
-      <div style={{ overflowY: 'scroll',overflowX: 'hidden', height: '90vh', position: 'relative', width: '100%' }}>
+      <>
+        {/* Header Section */}
         <div className='shadow' style = {{ backgroundColor: 'white', margin: '15px 30px' }}>
           <InvestmentHeader orders={orderData} user={user} />
         </div>
@@ -77,7 +80,7 @@ class InvestmentPage extends React.Component {
             <DoughnutChart orders={orderData}/>
           </div>
         </div>
-      </div>
+      </>
      
     )
   }

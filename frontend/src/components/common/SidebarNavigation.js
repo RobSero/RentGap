@@ -40,7 +40,7 @@ const locations = {
 
 
 
-function TestSide() {
+function SidebarNavigation() {
   const [selectedIndex, setSelectedIndex] = React.useState(1)
   const location = useLocation()
   const [user, setUser] = React.useState(null)
@@ -96,4 +96,4 @@ function TestSide() {
 }
 
 
-export default TestSide
+export default SidebarNavigation

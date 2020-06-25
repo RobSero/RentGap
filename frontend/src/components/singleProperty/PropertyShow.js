@@ -156,7 +156,7 @@ render(){
   return (
 
       
-    <div style={{ overflowY: 'scroll',overflowX: 'hidden', height: '90vh', position: 'relative', width: '100%' }}>
+    <>
       {orderData ? <Alert message={`Your investment of £${orderData.investment.toLocaleString(undefined, {
         maximumFractionDigits: 2
       })} in this property is currently worth £${(propertyData.current_valuation * orderData.ownership).toLocaleString(undefined, {
@@ -209,7 +209,7 @@ render(){
             
         </div>
       </div>
-    </div>
+    </>
       
   )
 }

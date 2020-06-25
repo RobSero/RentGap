@@ -112,7 +112,7 @@ render(){
   }
     
   return (
-    <div style={{ overflowY: 'scroll', height: '90vh', position: 'relative', width: '100%' }}>
+    <>
       <div className='centered '>
         <h1 className='page-title'>Your {months[thisMonth]} Watchlist</h1>
       </div>
@@ -170,7 +170,7 @@ render(){
           </List.Item>
         )}
       />
-    </div>
+    </>
       
   )
 }

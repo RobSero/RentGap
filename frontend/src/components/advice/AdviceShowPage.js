@@ -3,11 +3,14 @@ import { getArticle } from '../../lib/api'
 import AdviceHeader from './AdviceHeader'
 import { Avatar } from 'antd'
 
+
+//  Display advice article in view
 class AdviceShowPage extends React.Component {
   state={
     article: null
   }
 
+  //  Get single article from database
   async componentDidMount(){
     const articleId = this.props.match.params.id
     try {
@@ -29,17 +32,16 @@ class AdviceShowPage extends React.Component {
       return null
     }
     return (
-      
-      <div style={{ overflowY: 'scroll',overflowX: 'hidden', height: '90vh', position: 'relative', width: '100%' }}>
+      <>
         <div style = {{ backgroundColor: 'white', margin: '15px 30px' }}>
           <AdviceHeader  {...article}/>
         </div>
         <div className='columns' style = {{ margin: '15px 30px', padding: 0 }}>
     
           <div className='column' style={{ padding: '25px', backgroundColor: 'white', marginRight: '10px' }}>
-            <div style={{ backgroundColor: 'rgba(231, 231, 231, 0.947)' }}>
-              <p>Author:</p>
-              <Avatar src={article.author.profile_image} /><span style={{ margin: '2px 5px', color: 'grey', fontSize: '11px' }}>{article.author.username}</span>
+            <div className='shadow side-bar' style={{ padding: '10px',color: 'white' }}>
+              <p style={{ display: 'inline', marginRight: '15px' }}>Author:</p>
+              <Avatar src={article.author.profile_image} /><span style={{ margin: '2px 5px' }}>{article.author.username}</span>
             </div>
             <hr />
             <p>{article.content}</p>
@@ -57,11 +59,7 @@ class AdviceShowPage extends React.Component {
           <p>{article.content}</p>
           <p>{article.content}</p>
         </div>
-      
-        
-      </div>
-     
-      
+      </>
     )
   }
 }
