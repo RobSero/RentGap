@@ -12,6 +12,7 @@ class ReviseOrderModal extends React.Component {
     visibleWithdraw: false
   };
 
+  // MODAL WILL SHOW IF USER WANTS TO CHANGE INVESTMENT
   showModalRevise = () => {
     this.setState({
       ModalTextRevise: `Are you sure you wish to alter your current investment of £${this.props.existingInvestment.toLocaleString(undefined, {
@@ -30,6 +31,7 @@ class ReviseOrderModal extends React.Component {
     })
   };
 
+  // ON CONFIRMATION OF INVESTMENT CHANGE, INVOKE PARENT FUNCTION TO SUBMIT IT
   handleOkRevise = () => {
     
     this.setState({
@@ -45,6 +47,7 @@ class ReviseOrderModal extends React.Component {
     }, 2000)
   };
 
+  //  MODAL WILL SHOW IF USER CHOOSES TO WITHDRAW ALL INVESTMENT
   showModalWithdraw = () => {
     this.setState({
       ModalTextWithdraw: `Are you sure you wish to withdraw ALL of your investment of £${this.props.existingInvestment.toLocaleString(undefined, {
@@ -56,6 +59,7 @@ class ReviseOrderModal extends React.Component {
     })
   };
 
+  // ON CONFIRMATION OF WITHDRAWING ALL, INVOKE PARENT FUNCTION TO SUBMIT IT
   handleOkWithdraw = () => {
     
     this.setState({
@@ -71,6 +75,7 @@ class ReviseOrderModal extends React.Component {
     }, 2000)
   };
 
+  // CANCEL AND HIDE THE MODAL
   handleCancel = () => {
     console.log('Clicked cancel button')
     this.setState({
@@ -83,6 +88,7 @@ class ReviseOrderModal extends React.Component {
     const { visibleRevise, confirmLoading, ModalTextRevise, visibleWithdraw, ModalTextWithdraw } = this.state
     return (
       <div>
+        {/* BUTTON WILL ONLY APPEAR IF USER CHANGES THEIR INVESTMENT - WILL NOT BE CLICKABLE IF USER'S INVESTMENT EXCEEDS THEIR ACCOU FUNDS */}
         {this.props.investment !== this.props.existingInvestment ?  <Button
           variant="contained"
           color={this.props.investment !== this.props.existingInvestment && this.props.fundsAvailable  ? 'primary' : ''}
@@ -91,7 +97,7 @@ class ReviseOrderModal extends React.Component {
         >
         Change Investment
         </Button> : ''}
-       
+        {/* WITHDRAW ALL BUTTON */}
         <Button
           variant="contained"
           style={{ marginLeft: '10px' }}
@@ -100,7 +106,7 @@ class ReviseOrderModal extends React.Component {
         Withdraw All
         </Button>
         
-        
+        {/* REVISE INVESTMENT MODAL */}
         <Modal
           title="Revise Your Investment"
           visible={visibleRevise}
@@ -111,6 +117,7 @@ class ReviseOrderModal extends React.Component {
         >
           <p>{ModalTextRevise}</p>
         </Modal>
+        {/* WITHDRAW ALL MODAL */}
         <Modal
           title="Withdraw All Your Investment"
           visible={visibleWithdraw}

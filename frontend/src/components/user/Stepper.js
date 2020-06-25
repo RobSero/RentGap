@@ -9,6 +9,9 @@ import TextFieldsOne from './forms/TextFieldsOne'
 import TextFieldsTwo from './forms/TextFieldsTwo'
 import TextFieldsThree from './forms/TextFieldsThree'
 import LoadingSpinners from '../common/LoadingSpinners'
+
+
+// MATERIAL UI STYLING
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%'
@@ -28,25 +31,29 @@ function getSteps() {
   return ['Personal Information', 'Investing Background', 'Avatar']
 }
 
-
-
+// RETURNED COMPONENT
 function RegisterStepper(props) {
   const classes = useStyles()
   const [activeStep, setActiveStep] = React.useState(0)
   const [skipped, setSkipped] = React.useState(new Set())
   const steps = getSteps()
 
+
+  //  THIS SECTION DETERMINES WHICH CONTAINER TO PUT IN THE MAIN BODY OF THE STEPPER
   function getStepContent(step) {
     switch (step) {
+      // FIRST SECTION - PERSONAL DETAILS
       case 0:
         return (
           <>
+          
             <div className='centered full-height-form'>
               <TextFieldsOne handleChange={props.onChange} {...props} errors={props.errors} />
             </div>
             
           </>
         )
+        // SECOND SECTION - INVESTING EXPERIENCE
       case 1:
         return (
           <>
@@ -56,6 +63,7 @@ function RegisterStepper(props) {
             
           </>
         )
+        // FINAL SECTION - PROFILE IMAGE AND PASSWORD
       case 2:
         return (
           <>
@@ -79,10 +87,6 @@ function RegisterStepper(props) {
   }
 
   const handleNext = () => {
-    // if (!props.first_name || !props.last_name || !props.username || !props.email){
-    //   return
-      
-    // }
     let newSkipped = skipped
     if (isStepSkipped(activeStep)) {
       newSkipped = new Set(newSkipped.values())
@@ -99,8 +103,6 @@ function RegisterStepper(props) {
 
   const handleSkip = () => {
     if (!isStepOptional(activeStep)) {
-      // You probably want to guard against something like this,
-      // it should never occur unless someone's actively trying to break something.
       throw new Error('You can\'t skip a step that isn\'t optional.')
     }
 
@@ -112,6 +114,7 @@ function RegisterStepper(props) {
     })
   }
 
+  // RETURNED COMPONENT
   return (
     <div className={classes.root}>
       

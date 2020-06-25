@@ -1,5 +1,5 @@
 import React from 'react'
-import ImageSlider2 from './ImageSlider2'
+import ImageSlider from './ImageSlider'
 import TabDisplay from './TabDisplay'
 import Description from './Description'
 import PropertyHeader from './PropertyHeader'
@@ -14,12 +14,12 @@ import LoadingSpinner from '../common/LoadingSpinners'
 
 
 
-
+//  PAGE SHOWS ONE PROPERTY ALONG WITH INVESTMENT CALUCLATOR
 class propertyShowPage extends React.Component {
   state={
     propertyData: null,
     orderData: null,
-    newOrder: {
+    newOrder: { // NEW ORDER RELATES TO THE CHANGES IN THE INVESTMENT CALCULATOR (INCLUDING EXISTING ORDERS WHICH ARE UPDATED). THIS WILL KEEP INVESTMENT CALCULATOR A CONTROLLED COMPONENT
       investment: null
     },
     revisedOrder: {
@@ -28,15 +28,14 @@ class propertyShowPage extends React.Component {
     }
   }
 
-
+  // ON MOUNT - GET PROPERTY DATA/USER DATA - IF USER HAS AN INVESTMENT (ORDER) FOR THIS PROPERTY, SET IT TO STATE
   async componentDidMount(){
     const propertyId = this.props.match.params.id
     try {
       const res = await getOneProperty(propertyId)
       const userRes = await getProfile()
-      console.log(res.data)
+      // IF BACKEND CONTROLLER CAN FIND AN ORDER WHICH MATCHES USER ID AND PROPERTY ID, SET IT TO STATE. RETURN NULL IF NOT
       if (res.data.order){
-        console.log('WE HAVE ORDER DATA')
         this.openNotificationIfInvested()
         this.setState({
           propertyData: res.data.property,
@@ -53,32 +52,30 @@ class propertyShowPage extends React.Component {
           user: userRes.data 
         })
       }
-     
     } catch (err){
       console.log(err)
-      
     }
   }
 
 
 
-
+//  HANDLES CHANGE IN INVESTMENT (NEW OR EXISTING) WHEN USER CHANGES INVESTMENT CALCULATOR
 handleChange = ({ target }) => {
   const value = target.value
-  // console.log(`${target.name}: ${value}`)
   this.setState({
-    newOrder: {
+    newOrder: { // THIS WILL KEEP THE INVESTMENT CALCULATOR A CONTROLLED COMPONENT
       [target.name]: value
     }
   })
 }
 
+
+// SUBMIT A NEW ORDER TO THE BACKEND, CURRENTLY RELOADS ENTIRE APP IN BROWSER SO NAVBAR AND SIDEBAR ALSO RE-RENDER WITH NEW DATA 
 handleNewOrderSubmit = async() => {
   const propertyId = this.state.propertyData.id
   if (this.state.newOrder.investment && this.state.orderData === null){
     try {
-      const res = await submitNewOrder(propertyId, this.state.newOrder)
-      console.log(res.data)
+      await submitNewOrder(propertyId, this.state.newOrder)
       window.location.reload(true)
     } catch (err){
       console.log(err)
@@ -88,6 +85,7 @@ handleNewOrderSubmit = async() => {
   }
 }
 
+// RESET STATE AND CALCULATOR VALUES
 handleClearData = () => {
   this.setState({
     newOrder: {
@@ -96,49 +94,49 @@ handleClearData = () => {
   })
 }
 
+// UPDATES STATE DEPENDING ON IF THE USER IS INCREASING/DECREASING THEIR INVESTMENT. SAVED TO STATE IN A FORMAT THAT BACKEND WILL ACCEPT IN JSON
 handleChangeRevisedOrder = ({ target }) => {
   const value = target.value
-  console.log(`${target.name}: ${value}`)
   if (value < 0){
     this.setState({
       revisedOrder: {
         withdraw: '',
-        invest: Math.abs(value)
+        invest: Math.abs(value) // ENSURE NO NEGATIVE VALUE IS SENT TO BACKEND
       }
     })
   } else {
     this.setState({
       revisedOrder: {
         invest: '',
-        withdraw: Math.abs(value)
+        withdraw: Math.abs(value) // ENSURE NO NEGATIVE VALUE IS SENT TO BACKEND
       }
     })
   }
 }
 
+// SUBMIT A REVISED ORDER TO THE BACKEND, CURRENTLY RELOADS ENTIRE APP IN BROWSER SO NAVBAR AND SIDEBAR ALSO RE-RENDER WITH NEW DATA 
 handleRevisedOrderSubmit = async() => {
   const orderId = this.state.orderData.id
   try {
-    const res = await reviseOrder(orderId, this.state.revisedOrder)
-    console.log(res.data)
+    await reviseOrder(orderId, this.state.revisedOrder)
     window.location.reload(true)
   } catch (err){
     console.log(err)
   }
 }
 
+// RETURNS ALL FUNDS TO USER ON PROPERTY AND RELOADS PAGE SO NAVBAR AND SIDEBAR ALSO RE-RENDER WITH NEW DATA 
 handleWithdrawAll = async() => {
   const orderId = this.state.orderData.id
   try {
-    const res = await clearOrder(orderId)
-    console.log(res.data)
-    console.log('WITHDRAWING ALL!')
+    await clearOrder(orderId)
     window.location.reload(true)
   } catch (err){
     console.log(err)
   }
 }
 
+// NOTIFICATION IF USER HAS INVESTED IN PROPERTY ON MOUNTING
 openNotificationIfInvested = () => {
   notification.open({
     message: 'You have an investment in this property!',
@@ -150,34 +148,34 @@ openNotificationIfInvested = () => {
 
 render(){
   const { propertyData, orderData, newOrder, user } = this.state
+  // TEMPORARY LOADING SCREEN
   if (!propertyData){
     return <LoadingSpinner />
   }
   return (
-
-      
     <>
+      {/* ALERT USER OF THEIR INVESTMENT (IF REQUIRED) */}
       {orderData ? <Alert message={`Your investment of £${orderData.investment.toLocaleString(undefined, {
         maximumFractionDigits: 2
       })} in this property is currently worth £${(propertyData.current_valuation * orderData.ownership).toLocaleString(undefined, {
         maximumFractionDigits: 2
       })}`} type="success" closeText="Close Now" style={{ margin: '5px 30px' }} /> : '' }
-      
+      {/* HEADER SECTION */}
       <div className='shadow' style = {{ backgroundColor: 'white', margin: '15px 30px' }}>
         <PropertyHeader {...propertyData} orderData={orderData}/>
-          
       </div>
-       
       {/* LEFT SIDE OF PROPERTY SHOW PAGE */}
-        
       <div className='columns'>
+        {/* LEFT SIDE OF PAGE - IMAGES, FLOORPLANS, MAPS, CALCULATOR */}
         <div className='column is-half'>
           <div className='information-container shadow'>
-            <ImageSlider2 {...propertyData} />
+            <ImageSlider {...propertyData} />
           </div>
+          {/* MAPS AND FLOORPLAN TABS */}
           <div className='information-container shadow'>
             <TabDisplay floorplan={propertyData.image_floorplan} lat={propertyData.latitude} lon={propertyData.longitude}/>
           </div>
+          {/* INVESTMENT CALCULATOR */}
           <div className={'information-container shadow'}>
             <InvestmentCalculator {...propertyData} {...newOrder} 
               handleChange={this.handleChange} 
@@ -190,10 +188,9 @@ render(){
               userMoney = {user.money}
             />
           </div>
-            
-          {/* RIGHT SIDE OF PROPERTY SHOW PAGE */}
-
+          {/* RIGHT SIDE OF PROPERTY SHOW PAGE - DETAILS, CHART, COMMENTS */}
         </div>
+        {/* DETAILS SECTION */}
         <div className='column is-half'>
           <div className='details-container shadow'>
             <h5>Property Overview:</h5>
@@ -203,10 +200,10 @@ render(){
             <Description {...propertyData}/>
             <LineChart {...propertyData} />
           </div>
+          {/* COMMENTS SECTION */}
           <div className='details-container shadow'>
             <CommentSection propertyId={propertyData.id} />
           </div>
-            
         </div>
       </div>
     </>

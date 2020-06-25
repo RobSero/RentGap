@@ -30,15 +30,14 @@ class WatchlistPage extends React.Component {
     watching: null
   }
 
+  // GET ALL PROPERTIES WHICH ARE ON USERS WATCHLIST ON MOUNT
   async componentDidMount(){
     setTimeout(async()=> {
       try {
         const res = await getWatchlist()
-        console.log(res.data)
         const watchingArray = res.data.map(watchedProperty => {
           return watchedProperty.id
         })
-      
         this.setState({
           propertyData: res.data,
           filteredProperties: res.data,
@@ -47,9 +46,10 @@ class WatchlistPage extends React.Component {
       } catch (err){
         console.log(err)
       }
-    },loadingTimer)
+    },loadingTimer) //SLIGHT DELAY TO FEEL MORE NATURAL
   }
 
+  // HANDLES CHANGES TO STATE WHEN USER FILTERS PROPERTY
 handleChange = ({ target }) => {
   console.log(target)
   this.setState({
@@ -58,11 +58,13 @@ handleChange = ({ target }) => {
       [target.name]: target.value
     }
   })
+  // MINOR DELAY BEFORE REFRESHING LIST 
   setTimeout(()=>{
     this.filteredProperties()
   },1000)
 }
 
+// HANDLES THE FILTERING OF PROPERTIES AND SETTING STATE WITH THE FILTERED PROPERTIES - RERENDERS THE LIST OF PROPERTIES
 filteredProperties = () => {
   const { propertyData } = this.state
   const { region, price, outdoorSpace, finish, type } = this.state.filterData
@@ -74,8 +76,6 @@ filteredProperties = () => {
     case 4: max = 1500000; min = 500000; break
     default: max = 1500000; min = 0
   }
-  console.log(`max: ${max} & min: ${min}`)
-  console.log(propertyData[0])
   
   const filteredPropertyList = propertyData.filter(property => {
     return (property.region === region || region  === null) &&
@@ -87,6 +87,7 @@ filteredProperties = () => {
   this.setState({ filteredProperties: filteredPropertyList })
 }
 
+// TOGGLES A PROPERTY TO WATCH IF USER CLICKS HEART, RE-RETRIEVES THE WATCHLIST DATA
 handleWatch = async(propertyId) => {
   await watchToggle(propertyId)
   const res = await getWatchlist()
@@ -106,7 +107,7 @@ handleWatch = async(propertyId) => {
 
 
 render(){
-
+// TEMPORARY LOADING
   if (!this.state.filteredProperties) {
     return <LoadingSpinner />
   }
@@ -116,9 +117,11 @@ render(){
       <div className='centered '>
         <h1 className='page-title'>Your {months[thisMonth]} Watchlist</h1>
       </div>
+      {/* SEARCH AND FILTER SECTION */}
       <div className='centered shadow' style = {{ backgroundColor: 'white', margin: '15px 30px', padding: '10px' }}>
         <SearchSection handleChange={this.handleChange} {...this.state.filterData} />
       </div>
+      {/* LIST COMPONENT PARENT */}
       <List
         itemLayout="vertical"
         size="large"
@@ -171,7 +174,6 @@ render(){
         )}
       />
     </>
-      
   )
 }
 }

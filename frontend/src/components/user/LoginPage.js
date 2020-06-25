@@ -18,10 +18,9 @@ state = {
   error: {}
 }
 
+// HANDLE USERS INPUTS - KEEPS COMPONENTS CONTROLLED
 handleChange = ({ target }) => {
   const inputValue = target.value
-  console.log(`${target.name} : ${inputValue}`)
-  
   this.setState({
     formData: {
       ...this.state.formData,
@@ -30,18 +29,20 @@ handleChange = ({ target }) => {
   })
 }
 
+// SUBMIT DETAILS TO THE BACKEND FOR VALIDATION - WILL RETURN ERRORS AND SAVE TO STATE SO INPUTS CAN NOTIFY USER
 handleSubmit = async (e) => {
   e.preventDefault()
   try {
     const res = await axios.post('/api/auth/login/', { ...this.state.formData })
+    // SAVE TOKEN TO LOCAL STORAGE
     setToken(res.data.token)
     this.openNotification(res.data.username)
+    // SMALL DELAY SO IT FEELS MORE NATURAL
     setTimeout(()=> {
       this.props.history.push('/dashboard')
     }, 500)
-    console.log(res)
   } catch (err){
-    console.log(err.response.data)
+    // SET ERRORS TO STATE IF REQUIRED
     this.setState({
       error: {
         ...err.response.data
@@ -50,6 +51,7 @@ handleSubmit = async (e) => {
   }
 }
 
+// WELCOME NOTIFICATION
 openNotification = (user) => {
   notification.open({
     message: `Hey ${user}, Have a good day for investing!`,
@@ -59,18 +61,19 @@ openNotification = (user) => {
   })
 }
 
+
 render(){
-  
   const { formData } = this.state
   return (
-    
     <>
+      {/* ALERT USER IF WRONG CREDENTIALS */}
       {'detail' in this.state.error ? <div className='sub-section'><Alert  message='Invalid Credentials, please try again' type="error" closeText="Close Now" style={{ margin: '5px 30px' }} /></div>  : '' }
       <div className='columns main-section'>
         
         <div className='column is-half is-offset-one-quarter clear-background centered shadow' style={{ height: '300px', marginTop: '5%' }}>
           <h1 style={{ marginTop: '10px' }}>Welcome Back</h1>
           <p>Sign In</p>
+          {/* FORM SECTION */}
           <div style={{  width: '60%', margin: '0 auto' }}>
             <form  onSubmit={this.handleSubmit} Validate autoComplete="off" style={{ width: '100%', padding: '0 60px' }}>
               <div className='centered' style={{ margin: '0 auto' }}>
@@ -82,6 +85,7 @@ render(){
                 }
            
               </div>
+              {/* REDIRECT LINK TO REGISTER */}
               <Link to='/register'>
                 <p style={{ marginTop: '5px' }}>Not got an account? Sign Up Here!</p>
               </Link>

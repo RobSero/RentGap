@@ -10,8 +10,7 @@ import Box from '@material-ui/core/Box'
 import Map from './Map'
 import ReactImagePinch from './ReactImagePinch'
 
-
-
+// MATERIAL UI COMPONENT SETTINGS 
 function TabPanel(props) {
   const { children, value, index, ...other } = props
 
@@ -31,20 +30,18 @@ function TabPanel(props) {
     </div>
   )
 }
-
+// MATEIRAL UI STYLING
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.any.isRequired,
   value: PropTypes.any.isRequired
 }
-
 function a11yProps(index) {
   return {
     id: `full-width-tab-${index}`,
     'aria-controls': `full-width-tabpanel-${index}`
   }
 }
-
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.paper,
@@ -52,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
+// RETURNED COMPONENT - SHOWS MAPS AND FLOORPLAN
 function TabDisplay(props) {
   const classes = useStyles()
   const theme = useTheme()
@@ -67,7 +65,6 @@ function TabDisplay(props) {
 
   return (
     <div className='container centered'>
-      
       <div className={classes.root}>
         <AppBar position="static" color="default">
           <Tabs
@@ -98,10 +95,6 @@ function TabDisplay(props) {
         </SwipeableViews>
       </div>
     </div>
-   
- 
-
-   
   )
 }
 

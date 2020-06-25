@@ -53,11 +53,13 @@ class NewComment extends React.Component {
     }
   };
 
+  // ON LOAD, GET THE PROPERTY AND ALL RELATED COMMENTS ARE SET TO STATE
   async componentDidMount(){
     const propertyId = this.props.propertyId
     try {
       const res = await getOneProperty(propertyId)
       const userRes = await getProfile()
+      // FORMAT DATE ON ALL COMMENTS
       const commentsFormatted = res.data.property.comments.map(comment => {
         const date = new Date(comment.created_at)
         comment.created_at = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
@@ -72,7 +74,7 @@ class NewComment extends React.Component {
     }
   }
 
-
+  // SUBMIT COMMENT TO BACKEND AND RE-RETRIEVE ALL COMMENT DATA
   handleSubmit = () => {
     if (!this.state.newComment.content) {
       return
@@ -83,14 +85,14 @@ class NewComment extends React.Component {
     setTimeout(async() => {
       const propertyId = this.props.propertyId
       try {
-        const res = await postComment(propertyId,this.state.newComment)
+        await postComment(propertyId,this.state.newComment)
         const CommentsRes = await getOneProperty(propertyId)
+        // FORMAT DATE ON ALL COMMENTS
         const commentsFormatted = CommentsRes.data.property.comments.map(comment => {
           const date = new Date(comment.created_at)
           comment.created_at = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
           return comment
         })
-        console.log(res.data)
         this.setState({
           comments: commentsFormatted,
           submitting: false,
@@ -101,9 +103,10 @@ class NewComment extends React.Component {
       } catch (err){
         console.log(err)
       }
-    }, 1000)
+    }, 1000) // ONE SECOND DELAY SO IT FEELS MORE NATURAL
   };
 
+  // HANDLES USER INPUT - KEEPS COMPONENT CONTROLLED
   handleChange = ({ target }) => {
     
     this.setState({
@@ -113,11 +116,14 @@ class NewComment extends React.Component {
     })
   };
 
+
+  // HANDLES DELETE COMMENT, RE-RETRIEVES ALL COMMENTS
   handleDelete = async(commentId) => {
     const propertyId = this.props.propertyId
     try {
       await deleteComment(commentId)
       const CommentsRes = await getOneProperty(propertyId)
+      // FORMAT DATE ON ALL COMMENTS
       const commentsFormatted = CommentsRes.data.property.comments.map(comment => {
         const date = new Date(comment.created_at)
         comment.created_at = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
@@ -140,7 +146,9 @@ class NewComment extends React.Component {
 
     return (
       <>
+        {/* LIST OF COMMENTS */}
         {comments.length > 0 && <CommentList handleDelete={this.handleDelete} comments={comments} user={user} />}
+        {/* USER INPUT SECTION FOR NEW COMMENT */}
         <Comment
           avatar={
             <Avatar
