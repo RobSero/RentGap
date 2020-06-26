@@ -59,7 +59,7 @@ class ConfirmationModal extends React.Component {
           variant="contained"
           color={this.props.investment && this.props.fundsAvailable ? 'primary' : ''}
           style={{ marginRight: '10px' }}
-          onClick={this.props.investment && this.props.fundsAvailable ? this.showModal : ''}
+          onClick={this.props.investment && this.props.fundsAvailable ? this.showModal : null}
         >
         Invest
         </Button>

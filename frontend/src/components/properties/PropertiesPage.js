@@ -55,12 +55,21 @@ class PropertiesPage extends React.Component {
 
   // Set state of filtered data when user selects - a delay of 1s prior to list updating
 handleChange = ({ target }) => {
-  this.setState({
-    filterData: {
-      ...this.state.filterData,
-      [target.name]: target.value
-    }
-  })
+  if (target.value === ''){
+    this.setState({
+      filterData: {
+        ...this.state.filterData,
+        [target.name]: null
+      }
+    })
+  } else {
+    this.setState({
+      filterData: {
+        ...this.state.filterData,
+        [target.name]: target.value
+      }
+    })
+  }
   setTimeout(()=>{
     this.filteredProperties()
   },1000)

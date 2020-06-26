@@ -28,6 +28,7 @@ function FeaturedPropCard(props) {
 
   return (
     <Card className={`shadow ${classes.root}`}>
+      
       <CardActionArea>
         <Link to={`property/${props.id}`}>
           <CardMedia
@@ -35,18 +36,21 @@ function FeaturedPropCard(props) {
             image={props.image_main}
             title="Contemplative Reptile"
           />
+        
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="p" style={{ fontSize: '15px' }}>
+              {props.title}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {props.prop_type}
+              {props.region[0].toUpperCase() + props.region.substring(1)}
+            </Typography>
+          </CardContent>
         </Link>
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="p" style={{ fontSize: '15px' }}>
-            {props.title}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            <p>{props.prop_type}</p>
-            {props.region[0].toUpperCase() + props.region.substring(1)}
-          </Typography>
-        </CardContent>
       </CardActionArea>
+      
       <CardActions>
+      
         <Button size="small" color="primary">
           {props.watching && props.watching.includes(props.id) ? <FavoriteIcon className='watch-buttons' onClick = {() =>{
             props.handleWatch(props.id)
@@ -61,6 +65,7 @@ function FeaturedPropCard(props) {
         </Button>
         
       </CardActions>
+      
     </Card>
   )
 }

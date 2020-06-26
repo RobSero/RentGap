@@ -7,7 +7,7 @@ import RoomIcon from '@material-ui/icons/Room'
 function Map(props) {
 
   return (
-    <div style={{ width: '100%', height: '350px', backgroundColor: 'blue' }}>
+    <div style={{ width: '100%', height: '350px' }}>
       <MapGL 
         mapboxApiAccessToken={process.env.REACT_APP_MAP_API}
         height={'100%'} // size

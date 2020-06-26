@@ -11,6 +11,7 @@ function LeaderTable() {
     const getUsers = async() => {
       const res = await getLeaders()
       const ranked = res.data.map((user,index) => {
+        user.key = index
         user.rank = index + 1
         const date = new Date(user.date_joined)
         user.date_joined = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
@@ -52,15 +53,6 @@ function LeaderTable() {
     }
   
   ]
-
-  // const data = [
-  //   {
-  //     id: '1',
-  //     username: 'John Brown',
-  //     age: 32,
-  //     total_money: 'New York No. 1 Lake Park'
-  //   }
-  // ]
 
   if (!users) {
     return <LoadingSpinner />

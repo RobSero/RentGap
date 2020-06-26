@@ -11,6 +11,7 @@ import ImportContactsIcon from '@material-ui/icons/ImportContacts'
 import SettingsIcon from '@material-ui/icons/Settings'
 import Tooltip from '@material-ui/core/Tooltip'
 import StorageIcon from '@material-ui/icons/Storage'
+import NoPropertyNotify from './NoPropertyNotify'
 
 
 const menuLabelStyle = {
@@ -68,6 +69,7 @@ function SidebarNavigation() {
     <aside className="menu" style={{ overflow: 'scroll' }} >
       <p className="menu-label" style={menuLabelStyle}>
         Welcome, {user ? user.username : 'Friend'}
+        
       </p>
       <ul className="menu-list">
         <li><Link className={selectedIndex === 0 ? 'is-active' : ''}  to='/dashboard'><HomeIcon style={iconStyle} /> Home</Link></li>
@@ -79,7 +81,7 @@ function SidebarNavigation() {
     The Marketplace
       </p>
       <ul className="menu-list">
-        <li><Tooltip title="View all available properties we have on offer" arrow><Link className={selectedIndex === 4 ? 'is-active' : ''}  to='/properties'><AppsIcon style={iconStyle} />Properties</Link></Tooltip></li>
+        <li><Tooltip title="View all available properties we have on offer" arrow><Link className={selectedIndex === 4 ? 'is-active' : ''}  to='/properties'><AppsIcon style={iconStyle} />Properties<span>{orders ? '' : <NoPropertyNotify /> }</span></Link></Tooltip></li>
         <li><Tooltip title="Learn about the market and strategies" arrow><Link className={selectedIndex === 5 ? 'is-active' : ''}  to='/advice'><LiveHelpIcon style={iconStyle}/>Investor Advice</Link></Tooltip></li>
         <li><Tooltip title="Keep up to date with news and events" arrow><Link className={selectedIndex === 6 ? 'is-active' : ''}  to='/news'><ImportContactsIcon style={iconStyle}/>Property News</Link></Tooltip></li>
         <li><Tooltip title="Keep up to date with news and events" arrow><Link className={selectedIndex === 7 ? 'is-active' : ''}  to='/leaderboard'><StorageIcon style={iconStyle}/>Leaderboards</Link></Tooltip></li>

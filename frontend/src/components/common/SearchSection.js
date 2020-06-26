@@ -43,7 +43,7 @@ function SearchSection(props){
             name ='region'
             value={props.region}
           >
-            <MenuItem value={null}>All</MenuItem>
+            <MenuItem value={''}>All</MenuItem>
             <MenuItem value={'london'}><em>London</em></MenuItem>
             <MenuItem value={'southeast'}>South-East</MenuItem>
             <MenuItem value={'southwest'}>South-West</MenuItem>
@@ -61,10 +61,9 @@ function SearchSection(props){
             name ='outdoorSpace'
             value={props.outdoor_space}
           >
-            <MenuItem value={null}>All</MenuItem>
+            <MenuItem value={''}>All</MenuItem>
             <MenuItem value={'Garden'}><em>Garden</em></MenuItem>
             <MenuItem value={'Balcony Terrace'}>Balcony-Terrace</MenuItem>
-            <MenuItem value={'Large Garden'}>Large Garden</MenuItem>
             <MenuItem value={'None'}>None</MenuItem>
           </Select>
           <FormHelperText>Refine by Outdoor Area</FormHelperText>
@@ -78,11 +77,10 @@ function SearchSection(props){
             name ='finish'
             value={props.finish}
           >
-            <MenuItem value={null}>All</MenuItem>
+            <MenuItem value={''}>All</MenuItem>
             <MenuItem value={'Very High'}><em>Very High</em></MenuItem>
             <MenuItem value={'High'}>High</MenuItem>
             <MenuItem value={'Average'}>Average</MenuItem>
-            <MenuItem value={'Below Average'}>Below Average</MenuItem>
           </Select>
           <FormHelperText>Refine by overall Quality</FormHelperText>
         </FormControl>
@@ -95,7 +93,7 @@ function SearchSection(props){
             name ='price'
             value={props.price}
           >
-            <MenuItem value={null}>All</MenuItem>
+            <MenuItem value={''}>All</MenuItem>
             <MenuItem value={1}><em>Up to £100,000</em></MenuItem>
             <MenuItem value={2}>£100,000 - £250,000</MenuItem>
             <MenuItem value={3}>£250,000 - £500,000</MenuItem>

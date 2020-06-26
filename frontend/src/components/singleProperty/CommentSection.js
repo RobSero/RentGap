@@ -8,7 +8,6 @@ const { TextArea } = Input
 const CommentList = ({ comments,user,handleDelete }) => (
 
   <List
-    handleDelete = {handleDelete}
     className="comment-list"
     header={`${comments.length} Comments`}
     itemLayout="horizontal"
@@ -30,13 +29,13 @@ const CommentList = ({ comments,user,handleDelete }) => (
   />
 )
 
-const Editor = ({ onChange, onSubmit, submitting, value }) => (
+const Editor = ({ onChange, onSubmit, value }) => (
   <>
     <Form.Item>
       <TextArea rows={4} onChange={onChange} value={value} />
     </Form.Item>
     <Form.Item>
-      <Button htmlType="submit"  variant="contained" loading={submitting} onClick={onSubmit} type="primary" color="primary">
+      <Button   variant="contained" onClick={onSubmit} type="submit" color="primary">
         Add Comment
       </Button>
     </Form.Item>
@@ -47,7 +46,6 @@ class NewComment extends React.Component {
   state = {
     user: null,
     comments: [],
-    submitting: false,
     newComment: {
       content: ''
     }
@@ -79,9 +77,6 @@ class NewComment extends React.Component {
     if (!this.state.newComment.content) {
       return
     }
-    this.setState({
-      submitting: true
-    })
     setTimeout(async() => {
       const propertyId = this.props.propertyId
       try {
@@ -95,7 +90,6 @@ class NewComment extends React.Component {
         })
         this.setState({
           comments: commentsFormatted,
-          submitting: false,
           newComment: {
             content: ''
           }
@@ -142,7 +136,7 @@ class NewComment extends React.Component {
   }
 
   render() {
-    const { comments, submitting, newComment,user } = this.state
+    const { comments, newComment,user } = this.state
 
     return (
       <>
@@ -160,7 +154,6 @@ class NewComment extends React.Component {
             <Editor
               onChange={this.handleChange}
               onSubmit={this.handleSubmit}
-              submitting={submitting}
               value={newComment.content}
             />
           }

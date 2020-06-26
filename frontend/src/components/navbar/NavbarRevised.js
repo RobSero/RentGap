@@ -93,11 +93,11 @@ function NavbarRevised(){
           <img src='https://res.cloudinary.com/dy7eycl8m/image/upload/v1591804026/my_images/logo_utimcd.png' alt='logo' onClick={handleClickHome} style={{ padding: '5px' }} />
         </span>
 
-        <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" onClick={menuToggle}>
+        <span role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" onClick={menuToggle}>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
-        </a>
+        </span>
       </div>
 
       <div id="navbarBasicExample" className={`navbar-menu ${menu && windowSize < 1000  ? 'is-active' : ''}`}>
@@ -116,19 +116,19 @@ function NavbarRevised(){
 
                 <span className="navbar-dropdown is-right">
                   <Link className='link' to='/dashboard' onClick={handleClickDashboard}>
-                    <a className="navbar-item">
+                    <span className="navbar-item">
                     Profile
-                    </a>
+                    </span>
                   </Link>
                   <Link className='link' to='/settings' onClick={handleClickAccount}>
-                    <a className="navbar-item">
+                    <span className="navbar-item">
                     My account
-                    </a>
+                    </span>
                   </Link>
                   <hr className="navbar-divider" />
-                  <a className="navbar-item" onClick={() =>{
+                  <span className="navbar-item" onClick={() =>{
                     handleLogout()
-                  }}>Log out</a>
+                  }}>Log out</span>
                 </span>
               </span> </div> : <div className={menu ? 'centered navbar-item' : 'navbar-item'}><Link to='/login'><Button style={ menu && windowSize < 1000 ? { color: 'navy' } : { color: 'white' }}>Login</Button></Link> </div>
           }
