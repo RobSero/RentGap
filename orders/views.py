@@ -39,8 +39,9 @@ def is_order_owner(order, user):
       raise PermissionDenied()
     print('SAME OWNER')
 
-def order_exists(userId,propertyId):
-    return Order.objects.filter(user=userId).filter(active=True).filter(property_detail=propertyId).exists()
+def order_exists(user_id,property_id):
+  # filter by user, then filter out inactive orders, then filter by property id
+    return Order.objects.filter(user=user_id).filter(active=True).filter(property_detail=property_id).exists()
     
 
 
@@ -55,14 +56,14 @@ class NewOrder(APIView):
   def post(self,req,pk):
     
     # get user ID
-    userId = req.user.id
-    user = get_user(userId)
+    user_id = req.user.id
+    user = get_user(pk=user_id)
     if user.money < (req.data['investment'] * 1.01):
       return Response({'message': 'Insufficient funds in account'}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
     req.data['user'] = req.user.id
     # get property
-    property_to_invest = get_property(pk)
-    if order_exists(userId,pk):
+    property_to_invest = get_property(pk=pk)
+    if order_exists(user_id=user_id,property_id=pk):
       return Response({'message': 'Already got an open order'}, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
     req.data['property_detail'] = property_to_invest.id
     # Compare property value with investment amount

@@ -45,10 +45,10 @@ class Portfolio(APIView):
     user = self.get_user(pk=req.user.id)
     print(user)
     # get orders
-    orderList = self.get_active_orders(user_id=user.id)
+    order_list = self.get_active_orders(user_id=user.id)
     
     # serialize and populate
-    order_json = PopulatedOrderSerializer(orderList, many=True)
+    order_json = PopulatedOrderSerializer(order_list, many=True)
     for order in order_json.data:
       order['value_change'] = value_change(previous=order['value_at_time'], current=order['property_detail']['current_valuation'])  
  

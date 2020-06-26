@@ -20,8 +20,8 @@ class ArticleIndex(APIView):
   # GET request,
   # No body or token required
   def get(self,req):
-    articles = Article.objects.all()
-    serialized_articles = ArticleSerializer(articles,many=True)
+    all_articles = Article.objects.all()
+    serialized_articles = ArticleSerializer(all_articles,many=True)
     return Response(serialized_articles.data, status=status.HTTP_200_OK )
   
   

@@ -130,7 +130,7 @@ function NavbarRevised(){
                     handleLogout()
                   }}>Log out</a>
                 </span>
-              </span> </div> : <div className="navbar-item"><Link to='/login'><Button style={{ color: 'white' }}>Login</Button></Link> </div>
+              </span> </div> : <div className={menu ? 'centered navbar-item' : 'navbar-item'}><Link to='/login'><Button style={ menu && windowSize < 1000 ? { color: 'navy' } : { color: 'white' }}>Login</Button></Link> </div>
           }
         </div>
       </div>

@@ -15,18 +15,18 @@ User = get_user_model()
 
 class LeaderboardIndex(APIView):
   
-  # used to sort orders 
+  # used to sort orders by total money
   def most_money(self, user):
     return user.total_money
   
   
   # RETURN TOP 20 USERS RANKED BY TOTAL MONEY (MONEY + ALL CURRENT ORDER VALUES)
-  # GET request to baseurl/leaderboard
+  # GET request to - baseurl/leaderboard
   # No body required or valid token
   def get(self,req):
     # get all users
     all_users = User.objects.all()
-    all_users_leaderboard = []
+    users_leaderboard = []
     # Go through each user and sum all their orders. Save the users' total to the database
     for user in all_users:
       user.total_money = user.money
@@ -37,16 +37,16 @@ class LeaderboardIndex(APIView):
         property_owned = Property.objects.get(pk=order.property_detail.id)
         # Add the value of their investment to the users total_money
         user.total_money += property_owned.current_valuation * order.ownership
-      # print(f'{user} after! : {user.totalMoney}')
+        # If user has exactly £500k, they have never made any investements at all so should not be included
       if user.total_money != 500000:
-        all_users_leaderboard.append(user)
+        users_leaderboard.append(user)
       user.save()
     
     
     # Sort List in decending order by total money
-    all_users_leaderboard.sort(key=self.most_money, reverse=True)
-    serialized_leaderboard = UserSerializer(all_users_leaderboard, many=True)
+    users_leaderboard.sort(key=self.most_money, reverse=True)
+    serialized_leaderboard = UserSerializer(users_leaderboard, many=True)
     
-    
+    # Only send first 20 users
     return Response(serialized_leaderboard.data[:20])
     

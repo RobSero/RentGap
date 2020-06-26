@@ -13,17 +13,24 @@ def get_property(pk):
       return Property.objects.get(pk=pk)
     except Property.DoesNotExist:
       raise NotFound()
+    
+# returns a value roughly between 98%-102% of argument
+def random_value_changer(value):
+  return random.randint(int(value * 0.98), int(value * 1.02))
 
-
-def update_value_rent_data_artificial():
+#  CRON FUNCTION - CHANGES SOME PROPERTIES RANDOMLY DURING TIMES WHEN PROPERTY VALUES ARE NOT CHANGING FOR LONG PERIODS
+#  THIS WILL VARY THE PROPERTY VALUES RANDOMLY BY A FEW PERCENT
+def update_value_rent_ata_artificial():
+  # Select properties to be randomized - list containing property ids
     properties = [3,7,10,13,17]
-    for prop_id in properties:
-      # Randomly Alter property value and rentals
-      property_to_update = get_property(pk=prop_id)
+    # Loop through properties
+    for property_id in properties:
+      # Randomly alter property value and rentals
+      property_to_update = get_property(pk=property_id)
       if property_to_update:
-        property_to_update.current_valuation = random.randint(int(property_to_update.current_valuation * 0.98), int(property_to_update.current_valuation * 1.02))
-        property_to_update.rental_value = random.randint(int(property_to_update.rental_value * 0.98), int(property_to_update.rental_value * 1.02))
-        property_to_update.margin = random.randint(int(property_to_update.margin * 0.98), int(property_to_update.margin * 1.02))
+        property_to_update.current_valuation = random_value_changer(value=property_to_update.current_valuation) 
+        property_to_update.rental_value = random_value_changer(value=property_to_update.rental_value) 
+        property_to_update.margin = random_value_changer(value=property_to_update.margin) 
         property_to_update.save()
 
 #  CRON FUNCTION - PROPERTY VALUES AND RENTAL UPDATES
