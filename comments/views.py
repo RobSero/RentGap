@@ -47,11 +47,9 @@ class CommentHandler(APIView):
     # get user
     owner = get_user(req.user.id) 
     req.data['owner'] = owner.id
-    
     # get property
     property_to_comment = get_property(pk)
     req.data['property_detail'] = property_to_comment.id
-    
      # serialize and send
     new_comment = CommentSerializer(data=req.data)   
     if new_comment.is_valid():

@@ -16,13 +16,13 @@ def get_property(pk):
     
 # returns a value roughly between 98%-102% of argument
 def random_value_changer(value):
-  return random.randint(int(value * 0.98), int(value * 1.02))
+  return random.randint(int(value * 0.98), int(value * 1.04))
 
 #  CRON FUNCTION - CHANGES SOME PROPERTIES RANDOMLY DURING TIMES WHEN PROPERTY VALUES ARE NOT CHANGING FOR LONG PERIODS
 #  THIS WILL VARY THE PROPERTY VALUES RANDOMLY BY A FEW PERCENT
-def update_value_rent_ata_artificial():
+def update_value_rent_data_artificial():
   # Select properties to be randomized - list containing property ids
-    properties = [3,7,10,13,17]
+    properties = [1,3,7,8,10,13,15,17,19,22,25]
     # Loop through properties
     for property_id in properties:
       # Randomly alter property value and rentals

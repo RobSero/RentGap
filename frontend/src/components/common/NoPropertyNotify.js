@@ -21,14 +21,17 @@ function NoPropertyNotify(){
 
 
   return (
-    <Popover
-      placement="right"
-      content={<span onClick={hide}>You have no properties in your portfolio at the moment</span>}
-      title={<span onClick={hide}>Start investing in Properties here!</span>}
-      trigger="click"
-      visible={visible}
-    >
-    </Popover>
+    <span onClick={hide}>
+      <Popover
+        placement="right"
+        content={<span className='watch-buttons'>You have no properties in your portfolio at the moment</span>}
+        title={<span className='watch-buttons'>Start investing in Properties here!</span>}
+        trigger="click"
+        visible={visible}
+      
+      >
+      </Popover>
+    </span>
   )
  
 }
