@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactGA from 'react-ga'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Home from './components/home/Home'
 import NavbarRevised from './components/navbar/NavbarRevised'
@@ -9,6 +10,14 @@ import NotFound from './components/common/NotFound'
 
 // All pages to be redirected to SignedInRouter with exception of Home, Register & Login Pages
 const App = () => {
+
+  React.useEffect(() => {
+    ReactGA.initialize('UA-171026512-1')
+    //  Report page view
+    ReactGA.pageview(window.location.pathname + window.location.search)
+  }, [])
+
+
   return (
     <BrowserRouter>
       <NavbarRevised />
