@@ -28,7 +28,7 @@ class ImageUpload extends React.Component {
   render(){
     return (
       <>
-        <Button><label htmlFor="file-input-id"><img src={this.state.image} alt='upload' className='avatar-upload' /></label><input type="file" id="file-input-id" onChange={this.handleUpload} /></Button> 
+        <Button><label htmlFor="file-input-id"><img style={{ marginTop: 0 }} src={this.state.image} alt='upload' className='avatar-upload' /></label><input type="file" id="file-input-id" onChange={this.handleUpload} /></Button> 
         
 
         
