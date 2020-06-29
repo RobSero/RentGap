@@ -24,8 +24,9 @@ function TextFieldsThree(props) {
     <form className={classes.root} noValidate autoComplete="off">
       <div>
         <ImageUpload handleChange={props.handleChange} />
+        <p style={{ margin: 0, fontSize: '8px' }}>Click image to upload an avatar</p>
         <br />
-        {'password' in props.errors ? <TextField fullWidth error helperText={props.errors.password[0]} id="standard-error" label="Password" name='password' type='password' onChange={props.handleChange} value={props.password} /> : <TextField fullWidth id="standard-error" label="Password" name='password' onChange={props.handleChange}  type='password' value={props.password} /> 
+        {'password' in props.errors ? <TextField style={{ marginTop: '-10px' }} fullWidth error helperText={props.errors.password[0]} id="standard-error" label="Password" name='password' type='password' onChange={props.handleChange} value={props.password} /> : <TextField style={{ marginTop: '-10px' }} fullWidth id="standard-error" label="Password" name='password' onChange={props.handleChange}  type='password' value={props.password} /> 
         }
         {'password_confirmation' in props.errors ? <TextField fullWidth error helperText={props.errors.password_confirmation[0]} id="standard-error" label="Confirm Password" name='password_confirmation' onChange={props.handleChange} value={props.password_confirmation} type='password' /> : <TextField fullWidth id="standard-error" label="Confirm Password" name='password_confirmation' onChange={props.handleChange}  type='password' value={props.password_confirmation} /> 
         }
