@@ -27,7 +27,7 @@ function InvestmentCalculator(props){
       {/* CHECKS TO ENSURE USER IS NOT TRYING TO INVEST MORE THAN THEIR ACCOUNT FUNDS  */}
       {!existingOrder && props.userMoney < investment ? <Alert message='Insufficient Funds, Please revise your investment' type="warning" style={{ margin: '5px 15px' }} /> : '' }
       {existingOrder && !fundsAvailable ? <Alert message='Insufficient Funds, Please revise your investment' type="warning" style={{ margin: '5px 15px' }} /> : '' }
-      <p className='font-14'>Use the calculator to find which investment strategy is right for you</p>
+      <p className='font-14' style={{ marginTop: '4px' }}>Use the calculator to find which investment strategy is right for you</p>
       {/* CALCULATOR ADAPTS BASED ON IF THERE IS AN EXISTING ORDER, RETURNS APPROPRIATE CALCULATOR */}
       {!existingOrder ?   
         <div style={{ padding: '15px' }}>
@@ -114,7 +114,7 @@ function InvestmentCalculator(props){
             {/* DETAILS WILL SHOW ABOUT THE INVESTMENT CHANGE IF THE USER INPUTS NEW VALUES */}
             <Row style={{ margin: '15px' }}>
               {investment - existingOrder.ownership * propValue !== 0 ? 
-                <p>{investment - (existingOrder.ownership * propValue)  > 0 ? <span style={{ color: 'green' }}>You are increasing your investment by</span> : <span style={{ color: 'red' }}>You are decreasing your investment by</span>}  £{(Math.abs(investment - (existingOrder.ownership * propValue))).toLocaleString(undefined, {
+                <p>{investment - (existingOrder.ownership * propValue)  > 0 ? <span style={{ color: 'green' }} className='font-14'>You are increasing your investment by</span> : <span style={{ color: 'red' }} className='font-14'>You are decreasing your investment by</span>}  £{(Math.abs(investment - (existingOrder.ownership * propValue))).toLocaleString(undefined, {
                   maximumFractionDigits: 2
                 })}</p> : ''
               }
