@@ -126,7 +126,7 @@ function NavbarRevised(){
                     </span>
                   </Link>
                   <hr className="navbar-divider" />
-                  <span className="navbar-item" onClick={() =>{
+                  <span className="navbar-item watch-buttons" onClick={() =>{
                     handleLogout()
                   }}>Log out</span>
                 </span>

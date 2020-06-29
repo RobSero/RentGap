@@ -21,13 +21,13 @@ function InvestmentCalculator(props){
     <div style={{ backgroundColor: 'white', textAlign: 'center' }}>
       <p style={{ backgroundColor: 'rgb(30, 21, 73)', width: '100%', height: '35px', color: 'white', fontSize: '20px' }}>Investment Calculator</p>
       {/* ALERT USER IF THEY HAVE AN INVESTMENT ALREADY */}
-      {existingOrder ? <Alert message={`You have an investment of £${(propValue * existingOrder.ownership).toLocaleString(undefined, {
+      {existingOrder ? <Alert className='font-14' message={`You have an investment of £${(propValue * existingOrder.ownership).toLocaleString(undefined, {
         maximumFractionDigits: 2
       })} in this property, but you can still edit your existing investment`} type="success" style={{ margin: '5px 15px' }} /> : '' }
       {/* CHECKS TO ENSURE USER IS NOT TRYING TO INVEST MORE THAN THEIR ACCOUNT FUNDS  */}
       {!existingOrder && props.userMoney < investment ? <Alert message='Insufficient Funds, Please revise your investment' type="warning" style={{ margin: '5px 15px' }} /> : '' }
       {existingOrder && !fundsAvailable ? <Alert message='Insufficient Funds, Please revise your investment' type="warning" style={{ margin: '5px 15px' }} /> : '' }
-      <p>Use the calculator to find which investment strategy is right for you</p>
+      <p className='font-14'>Use the calculator to find which investment strategy is right for you</p>
       {/* CALCULATOR ADAPTS BASED ON IF THERE IS AN EXISTING ORDER, RETURNS APPROPRIATE CALCULATOR */}
       {!existingOrder ?   
         <div style={{ padding: '15px' }}>
@@ -61,14 +61,15 @@ function InvestmentCalculator(props){
           <div>
             {/* DETAILS WILL SHOW ABOUT THE INVESTMENT THE USER IS GOING TO MAKE - OWNERSHIP */}
             <Row style={{ margin: '15px' }}>
-              <p>Current Value: £{propValue.toLocaleString()}</p>
-              <p style={{ marginLeft: '25px', fontWeight: 700 }}>Your Ownership: {(( investment / propValue ) * 100).toFixed(2)}%</p>
+              <p className='font-14'>Current Value: £{propValue.toLocaleString()}</p>
+              <p style={{ marginLeft: '25px', fontWeight: 700 }} className='font-14'>Your Ownership: {(( investment / propValue ) * 100).toFixed(2)}%</p>
             </Row>
             <Row style={{ margin: '15px' }}>
-              <p>Current Rental: £{propRent}</p>
-              <p style={{ marginLeft: '25px', fontWeight: 700 }}>Your Monthly Rental: £{(( investment / propValue ) * propRent).toFixed(2)}pcm</p>
+              <p className='font-14'>Current Rental: £{propRent}</p>
+              <p style={{ marginLeft: '25px', fontWeight: 700 }} className='font-14'>Your Monthly Rental: £{(( investment / propValue ) * propRent).toFixed(2)}pcm</p>
             </Row>
-            <p>Please note there will be a 1% fee to your investment upon opening this order and withdrawal of investment </p>
+            <p className='font-14'>Please note there will be a 1% fee to your investment upon opening this order and withdrawal of investment </p>
+            <br />
             {/* MODAL AND BUTTONS ARE AT THE BOTTOM TO CONFIRM CHANGES */}
             <ConfirmationModal handleNewOrderSubmit = {props.handleNewOrderSubmit} clearData={props.clearData} investment={investment} fundsAvailable={props.userMoney > investment} />
           </div>
@@ -108,7 +109,7 @@ function InvestmentCalculator(props){
           <div>
             {/* USER'S INVESTMENT DESCRIPTION */}
             <Row style={{ margin: '15px' }}>
-              <p>You currently own {(existingOrder.ownership * 100).toFixed(2)}% of this property</p>
+              <p className='font-14'>You currently own {(existingOrder.ownership * 100).toFixed(2)}% of this property</p>
             </Row>
             {/* DETAILS WILL SHOW ABOUT THE INVESTMENT CHANGE IF THE USER INPUTS NEW VALUES */}
             <Row style={{ margin: '15px' }}>
@@ -118,19 +119,20 @@ function InvestmentCalculator(props){
                 })}</p> : ''
               }
               {/* IF NO CHANGE TO INVESTMENT, A MESSAGE IS RETURNED */}
-              {investment - (existingOrder.ownership * propValue) === 0 ? <p>No Change to your investment</p> : '' }
+              {investment - (existingOrder.ownership * propValue) === 0 ? <p className='font-14'>No Change to your investment</p> : '' }
             </Row>
             {/* IF THE USER CHANGES THEIR INVESTMENT, THIS SECTION WILL RENDER AND SHOW THE CHANGES TO THEIR OWNERSHIP AND RENTAL */}
             {investment - (existingOrder.ownership * propValue) !== 0 ? <><Row style={{ margin: '15px' }}>
-              <p>Current Value: £{propValue.toLocaleString()}</p>
-              <p style={{ marginLeft: '25px', fontWeight: 700 }}>Your NEW Ownership: {(( investment / propValue ) * 100).toFixed(2)}%</p>
+              <p className='font-14'>Current Value: £{propValue.toLocaleString()}</p>
+              <p style={{ marginLeft: '25px', fontWeight: 700 }} className='font-14'>Your NEW Ownership: {(( investment / propValue ) * 100).toFixed(2)}%</p>
             </Row>
             <Row style={{ margin: '15px' }}>
-              <p>Current Rental: £{propRent}</p>
-              <p style={{ marginLeft: '25px', fontWeight: 700 }}>Your NEW Rental: £{(( investment / propValue ) * propRent).toFixed(2)}pcm</p>
+              <p className='font-14'>Current Rental: £{propRent}</p>
+              <p style={{ marginLeft: '25px', fontWeight: 700 }} className='font-14'>Your NEW Rental: £{(( investment / propValue ) * propRent).toFixed(2)}pcm</p>
             </Row></> : '' }
             {/* MODAL AND BUTTONS ARE AT THE BOTTOM TO CONFIRM CHANGES */}
-            <p>Please note there will be a 1% fee to your investment upon opening this order and withdrawal of investment </p>
+            <p className='font-14'>Please note there will be a 1% fee to your investment upon opening this order and withdrawal of investment </p>
+            <br />
             <ReviseOrderModal 
               handleNewOrderSubmit = {props.handleNewOrderSubmit} 
               clearData={props.clearData} 

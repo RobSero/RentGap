@@ -193,10 +193,12 @@ render(){
         {/* DETAILS SECTION */}
         <div className='column is-half'>
           <div className='details-container shadow'>
-            <h5>Property Overview:</h5>
-            {propertyData.description ? <p>{propertyData.description}</p> : 
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            <h5 style={{ fontWeight: 600 }}>Property Overview:</h5>
+            <br />
+            {propertyData.description ? <p style={{ fontWeight: 300 }} className='font-14'>{propertyData.description}</p> : 
+              <p style={{ fontWeight: 300 }} className='font-14'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
               </p>}
+            <br />
             <Description {...propertyData}/>
             <LineChart {...propertyData} />
           </div>

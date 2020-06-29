@@ -39,8 +39,8 @@ function LineChart(props){
 
   return (
     <div style={{ margin: '10px', textAlign: 'center', marginTop: '25px' }}>
-      <h3>Average Growth Chart for {props.postcode}</h3>
-      <p>This chart represents the overall growth of the area accouting for all property types and finishes. This does not necessarily reflect the growth of this property</p>
+      <h3 className='font-14' style={{ fontWeight: 700 }}>Average Growth Chart for {props.postcode}</h3>
+      <p className='font-14'>This chart represents the overall growth of the area accouting for all property types and finishes. This does not necessarily reflect the growth of this property</p>
       <Line data={data} />
       
     </div>
