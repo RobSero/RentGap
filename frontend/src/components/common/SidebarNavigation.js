@@ -62,9 +62,9 @@ function SidebarNavigation() {
     updateSideBar()
   }, [])
 
-
-
   return (
+  
+    
     
     <aside className="menu" style={{ overflow: 'scroll' }} >
       <p className="menu-label" style={menuLabelStyle}>
@@ -81,7 +81,7 @@ function SidebarNavigation() {
     The Marketplace
       </p>
       <ul className="menu-list">
-        <li><Tooltip title="View all available properties we have on offer" arrow><Link className={selectedIndex === 4 ? 'is-active' : ''}  to='/properties'><AppsIcon style={iconStyle} />Properties<span>{orders && orders === 0 ? '' : <NoPropertyNotify  /> }</span></Link></Tooltip></li>
+        <li><Tooltip title="View all available properties we have on offer" arrow><Link className={selectedIndex === 4 ? 'is-active' : ''}  to='/properties'><AppsIcon style={iconStyle} />Properties<span>{orders === 0 ? <NoPropertyNotify  />  : '' }</span></Link></Tooltip></li>
         <li><Tooltip title="Learn about the market and strategies" arrow><Link className={selectedIndex === 5 ? 'is-active' : ''}  to='/advice'><LiveHelpIcon style={iconStyle}/>Investor Advice</Link></Tooltip></li>
         <li><Tooltip title="Keep up to date with news and events" arrow><Link className={selectedIndex === 6 ? 'is-active' : ''}  to='/news'><ImportContactsIcon style={iconStyle}/>Property News</Link></Tooltip></li>
         <li><Tooltip title="Keep up to date with news and events" arrow><Link className={selectedIndex === 7 ? 'is-active' : ''}  to='/leaderboard'><StorageIcon style={iconStyle}/>Leaderboards</Link></Tooltip></li>
