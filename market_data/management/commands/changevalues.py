@@ -11,7 +11,7 @@ def get_property(pk):
     
 # returns a value roughly between 98%-102% of argument
 def random_value_changer(value):
-  return random.randint(int(value * 0.98), int(value * 1.02))
+  return random.randint(int(value * 0.995), int(value * 1.005))
 
 
 
