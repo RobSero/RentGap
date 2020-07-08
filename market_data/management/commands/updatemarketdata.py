@@ -19,7 +19,7 @@ def random_value_changer(value):
 
 
 class Command(BaseCommand):
-  help = 'Will artificial adjust some property values at random every few hours'
+  help = 'Will update market values based on third party API results'
   
   def handle(self, *args, **options):
     url_path_value = 'https://api.propertydata.co.uk/valuation-sale'

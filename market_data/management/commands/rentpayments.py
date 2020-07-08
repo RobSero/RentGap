@@ -7,7 +7,7 @@ User = get_user_model()
 
 
     
-# THIS HANDLES THE PAYMENTS INTO USERS ACCOUTS BASED ON HOW MUCH MONTHLY RENTAL INCOME THEY OWN. FUNCTION WILL RUN DAILY
+# THIS HANDLES THE PAYMENTS INTO USERS ACCOUNTS BASED ON HOW MUCH MONTHLY RENTAL INCOME THEY OWN. FUNCTION WILL RUN DAILY
 class Command(BaseCommand):
   help = 'Will make payments into all users accounts based on how much rental income they are owed'
   

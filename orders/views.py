@@ -50,7 +50,7 @@ def order_exists(user_id,property_id):
   # body required = {'investment': <int>}, valid token required
   
 class NewOrder(APIView):
-  
+  # user must have valid auth token to proceed
   permission_classes = (IsAuthenticated,)
   
   def post(self,req,pk):
@@ -70,15 +70,15 @@ class NewOrder(APIView):
     req.data['value_at_time'] = property_to_invest.current_valuation
      # set ownership field to a float % value
     req.data['ownership']  = req.data['investment'] / req.data['value_at_time']
+    # serialize and validate
     new_order = OrderSerializer(data=req.data)
     if new_order.is_valid():
+      # deduct funds from user account
       user.money -= (req.data['investment'] * 1.01)
+      # save user and new order
       user.save()
       new_order.save()
       return Response(req.data, status=status.HTTP_201_CREATED)
-    # create order
-    # property_to_invest.save()
-    # return order details
     return Response(new_order.errors, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
     
   
