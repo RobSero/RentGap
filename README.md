@@ -1,6 +1,7 @@
-(Insert logo)
-
 # RentGap - Investment Simulation
+
+*Deployed Site:* https://rentgap.herokuapp.com/
+
 ## Brief: Solo Project - Seven Day Timespan
 The brief for this project focused mainly on what the core technologies would be required which was to build a full stack application using React app supplemented with a client-side Django framework and PostgreSQL database. 
 
@@ -9,18 +10,19 @@ The brief for this project focused mainly on what the core technologies would be
 
 
 
-***Note: Since the seven day period, I have added in more features and bug fixes since then - The app in it's current state was not solely completed in seven days. As it is a project I would like to continue working on in the long term and add more features over time. It is also an app which people may actually find real use from as it does reflect real property data so I would like to make sur eit is running smoothly.***
+***Note: Since the seven day period, I have added in more features and bug fixes since then - The app in its current state was not solely completed in seven days. As it is a project I would like to continue working on in the long term and add more features over time. It is also an app which people may actually find real use from as it does reflect real property data so I would like to make sure it is running smoothly.***
 
 
 ## **1.0 - Overview**
 
 RentGap is a RESTful full stack property investment virtual experience allowing users to experiment on the real life property market using virtual currency. Users will be able to earn rental income over the month and compare their portfolios with other users. A tool designed for anybody to learn the basics of investing, experiment with different strategies and build confidence before considering real world investing.
-
-Similar to how estate agent websites work, there is a lot of different information out there which could be presented and I had many options how to do this with various components such as ChartJS (for producing detailed charts) and Mapbox (for showing property locations). It was a challenge at the start to decide what information I wanted to show so I needed to be quite specific with my goals as I only had seven days to build it. I also wanted to spend a large portion of my time using python and getting a stronger grasp on Django's model systems. 
-
-The layout I made various sketches in Adobe XD however I settled quickly on the design below as it enabled me to use React Rotuer sparingly thorughout the site (only change the main portion of the site) while keeping a lot of static navigation and information showing contantly. 
-
+ 
+Similar to how estate agent websites work, there is a lot of different information out there which could be presented and I had many options how to do this with various components such as ChartJS (for producing detailed charts) and Mapbox (for showing property locations). It was a challenge at the start to decide what information I wanted to show so I needed to be quite specific with my goals as I only had seven days to build it. I also wanted to spend a large portion of my time using python and getting a stronger grasp on Django's model systems.
+ 
+The layout I made various sketches in Adobe XD however I settled quickly on the design below as it enabled me to use React Router sparingly throughout the site (only change the main portion of the site) while keeping a lot of static navigation and information showing constantly.
+ 
 I also settled on designing each part of the page site in isolation and it meant that I could easily stack them together when it was needed, or reshuffle them if it meant the presentation of data would be clearer.
+
 
 ![database diagram](staticfiles/media/readME_xddesign.png)
 
@@ -37,7 +39,7 @@ I also settled on designing each part of the page site in isolation and it meant
 - NPM 
 - Mapbox
 
-At its core, the client side follows common RESTful patterns with index and show pages for properties however this has been layered with additional systems which is largely where the complexity exists in this project (section A).
+At its core, the client side follows common RESTful patterns with index and show pages for properties however this has been layered with additional systems which is largely where the complexity exists for this project *(section 3.1)*.
 
 The client side handles a lot of heavy lifting in terms of manipulating the data and clearly presenting it to users. It also utilizes react components from a variety of sources and frameworks, predominantly NPM and Ant Design.
 It also shares equal responsibility for handling many of the calculations and dealing with user’s investments once the data has been consumed from the server. To ensure stronger protection or wrongful manipulation by the user, form validation has been implemented on the client and server side when making investments. 
@@ -54,14 +56,14 @@ It also shares equal responsibility for handling many of the calculations and de
 - Heroku Hosted - Heroku Scheduler Addon
 
 
-The server side follows Django’s pre-determined patterns along with Rest Framework’s responses, serializers and exceptions utility. The app is quite heavily maths orientated and so there is still a lot of pure python programming required within controllers to deal with all the transactions. In addition to serving up data to the frontend, the backend is responsible for many other functions including: User Authentication (section X), consuming third party property data (section Y), dealing with daily payments to users (section Z) and typical CRUD options with validation. 
+The server side follows Django’s pre-determined patterns along with Rest Framework’s responses, serializers and exceptions utility. The app is quite heavily maths orientated and so there is still a lot of pure python programming required within controllers to deal with all the transactions. In addition to serving up data to the frontend, the backend is responsible for many other functions including: User Authentication *(section 5.1)*, consuming third party property data *(section 5.2)*, dealing with daily payments to users *(section 5.3)* and typical CRUD options with validation. 
 
 
 ## **3.0 - Database Structure**
 
 ![database diagram](https://res.cloudinary.com/dy7eycl8m/image/upload/v1593459710/Property_investor/Screenshot_2020-06-29_at_20.41.33_y7irce.png)
 
-PostgreSQL is used and heavily focuses on the relationships between users/properties through the order models. Most of the complexity stems from snapshotting data when users make an investment and this data is stored within the orders model. This data is crucial to determine how user’s investments change over time and working out how much rental income they earn monthly. The client and server side both have the capability to calculate the changes over time as they use this information for different purposes - 
+PostgreSQL is used and heavily focuses on the relationships between users/properties through the order models. Most of the complexity stems from snapshotting data when users make an investment and this data is stored within the orders model. This data is crucial to determine how user’s investments change over time and work out how much rental income they earn monthly. The client and server side both have the capability to calculate the changes over time as they use this information for different purposes - 
 - The front end will handle the comparisons so that the information can be displayed clearly to the user showing them if their investments have increased/decreased and feed this information to ChartJS.
 
 ![client-side investments](https://res.cloudinary.com/dy7eycl8m/image/upload/v1593460708/Property_investor/Screenshot_2020-06-29_at_20.57.44_rotd8z.png)
@@ -106,7 +108,7 @@ The analysis page allows the user to see all their current investment statistics
 
 JWT Authentication was incorporated into this project to handle client login and actions. Most actions on the site require to be logged in which is evaluated on the client side to determine if the user has a valid token saved within localstorage on their browser. Actions which involve a valid token include viewing properties, investing, leaving comments.
 
-The server side controllers will also carry out checks on whether the user has a valid token which is sent within the headers of most api requests from the react app. Unless a valid token is included in the request, rest framework will respond with a 402 errors.
+The server side controllers will also carry out checks on whether the user has a valid token which is sent within the headers of most api requests from the react app. Unless a valid token is included in the request, REST framework will respond with 402 errors.
 
 Rest framework’s serializers will handle the validation of user’s forms to ensure all fields are included and valid. In the event of an invalid attempt to login or register, the json response from the server will be reviewed by the frontend and warnings on the required form fields will appear.
 
@@ -114,7 +116,7 @@ Rest framework’s serializers will handle the validation of user’s forms to e
 
 ![investment calculator](staticfiles/media/readME_marketData.png)
 
-During development, PyPi package CronTab was used to set intervals for the server to automatically make requests to the third party API for the property data. Due to the vast amount of data the third party has of the UK market, strict queries are required by the api in order for it to send back the relevent data. If any of the parameters are incorrect, the response will fail to give back the information.
+During development, the PyPI package CronTab was used to set intervals for the server to automatically make requests to the third party API for the property data. Due to the vast amount of data the third party has of the UK market, strict queries are required by the api in order for it to send back the relevant data. If any of the parameters are incorrect, the response will fail to give back the information.
 
 As the properties on the app are scattered throughout the UK, there needed to be a http request per property to get the specific data for each area they are located in. The http address is also different for getting property values and rental values and therefore 2 requests are needed per property per day. 
 
@@ -131,7 +133,7 @@ Rental payments are handled by crontab and was originally set to pay users once 
 When deployed to Heroku, CronTab is not available due to the nature of how Heroku servers handle the app (the app is moved between different servers and is not always active) and so Heroku offers their own addon Heroku Scheduler to handle cron functions. The free version of this only allows intervals up to once per day so the rental payments have been changed to daily.
 
 ### **5.5 - Custom Django Management Commands**
-In order for Heroku Scheduler to carry out the functions, custom management commands have been setup within *market_data/management/commands* and this allows for  `python manage.py updatemarketdata` script to be run from the CLI and Heroku
+In order for Heroku Scheduler to carry out the functions, custom management commands have been setup within *market_data/management/commands* and this allows for  `python manage.py updatemarketdata` script to be run from the CLI and Heroku.
 
 
 
@@ -143,15 +145,22 @@ Components like the investment calculator were very specific to my project and s
 
 Styling was also a difficult aspect as I was utilising various different CSS frameworks which all have their own different options for how they should be styled. For example, Bulma required styling to be done within the sass file and re-assigning Bulma’s default variable values whereas material ui generally required objects to be created and then used as inline html attributes. As a result, I feel the styling can be a bit inconsistent throughout and certainly there are some opportunities to refactor and apply DRY code.
 
-### **6.1 - Pro’s**
+### **6.1 - Key Learning Points**
 
-- Lots of experience reading and understanding documentation from a variety of sources as much the frontend used react components from NPM or frameworks.
+- This project was good exposure to using many of python's in-built functions as there were quite a lot of loops and editing lists on the server side when orders needed to be collected. This was important for me as I wanted to learn more about Python and did not want to solely rely on Django to do everything for me.
+- I learnt about a variety of new pip packages such as CronTab and also became more familiar with some of the standard libraries of python including time, request and random.
+- Error Handling was something I began to appreciate the importance of far more in a project like this as there are so many parts of the app that a user could do something wrong such as all the form inputs and also trying to make an investment when they do not have the funds.
+- This was the first project using Django Rest Framework and I hope to become far more familiar with this as I thought the tools it provided such as the serializers made building the backend far smoother.
+
+### **6.2 - Pro’s**
+
+- Lots of experience reading and understanding documentation from a variety of sources as much of the frontend used react components from NPM or frameworks which gave me time to focus on how the data is passed around the app.
 
 - Despite Django handling much of the heavy lifting - There was still a lot of python logic I had to write myself for handling orders/payments/money etc which was an important aspect for me as I wanted to apply my own python raw knowledge to the project.
 
 - I refactored a lot of the code to use hooks to ensure I was improving on more relevant technologies.
 
-### **6.2 - Cons**
+### **6.3 - Cons**
 
 - Styling components became a bit difficult as using sass would occasionally fight against the component. Used some pre-built components (predominantly Material-ui) were causing a fair few console errors/warnings which I was not able to resolve without dissecting the component up.
 
@@ -167,9 +176,9 @@ Styling was also a difficult aspect as I was utilising various different CSS fra
 
 ## **7.0 - Noteable Bugs**
 
-- Occasionally the live version will not render the component correctly as the ComponentDidMount Axios request failed however this seems to happen unpredicatably and can occur on any page. Refreshing the page generally solves the problem however I am looking into this bug and will fix in a future patch.
-- When reszing the browser window on the investments page, the chart components grow in size to be full width and do not return to their normal size when the browser is resized back. This is likely a Bulma columns issue and will be resolved in due course.
-- Occasionally the featured properties on the home page do not follow their link to show that property when they are clicked. Rare occurance but does happen at times, unclear why this happens at this stage but this is to be investigated.
+- Occasionally the live version will not render the component correctly as the ComponentDidMount Axios request failed however this seems to happen unpredictably and can occur on any page. Refreshing the page generally solves the problem however I am looking into this bug and will fix in a future patch.
+- When resizing the browser window on the investments page, the chart components grow in size to be full width and do not return to their normal size when the browser is resized back. This is likely a Bulma columns issue and will be resolved in due course.
+- Occasionally the featured properties on the home page do not follow their link to show that property when they are clicked. Rare occurrence but does happen at times, unclear why this happens at this stage but this is to be investigated.
 - Currently working on the user settings page to allow users to delete and edit their accounts.
 
 
