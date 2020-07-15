@@ -2,14 +2,16 @@ import React from 'react'
 import SettingsHeader from './SettingsHeader'
 import { Collapse } from 'antd'
 import EditProfileImageUpload from '../user/forms/EditProfileImageUpload'
-import { getProfile } from '../../lib/api'
+import { getProfile, updateUserDetails } from '../../lib/api'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import SimpleSelect from '../user/forms/SimpleSelect'
 import SwitchLabels from '../user/forms/SwitchLabels'
 import { notification } from 'antd'
 import { WarningOutlined } from '@ant-design/icons'
+import { SmileOutlined } from '@ant-design/icons'
 import { isAuthenticated } from '../../lib/auth'
+import { Alert } from 'antd'
 const { Panel } = Collapse
 
 
@@ -22,14 +24,12 @@ class SettingsPage extends React.Component {
       bio: null,
       first_name: null,
       last_name: null,
-      existing_password: null,
       password: null,
       password_confirmation: null,
       experience: null
     },
-    existingUser: {
-      
-    }
+    existingUser: null,
+    error: {}
   }
 
   //  GET USERS INFORMATION
@@ -37,7 +37,8 @@ class SettingsPage extends React.Component {
     try {
       const res = await getProfile()
       this.setState({
-        user: res.data
+        user: res.data,
+        existingUser: res.data
       })
     } catch (err){
       console.log(err)
@@ -59,15 +60,33 @@ class SettingsPage extends React.Component {
 
   // SUBMIT NEW INFORMATION TO BACKEND
   handleSubmit = async() => {
-    this.openNotification()
-    // try {
-    //   const res = await updateUserDetails(this.state.user)
-    //   console.log(res.data)
-    //   window.location.reload(true)
-    // } catch (err){
-    //   console.log(err)
-    // }
+    const { user, existingUser } = this.state
+    for (const details in user){
+      if (user[details] === '') {
+        user[details] = existingUser[details]
+      }
+    }
+    try {
+      const res = await updateUserDetails(user)
+      console.log(res.data)
+      this.openSuccessNotification()
+      this.props.history.push('/dashboard')
+    } catch (err){
+      // SET ERRORS TO STATE
+      this.setState({
+        error: {
+          ...err.response.data
+        }
+      })
+    }
+
   }
+
+    // HANDLE DELETE
+    handleDelete = async() => {
+      this.openNotification()
+  
+    }
   
 
   openNotification = () => {
@@ -76,6 +95,15 @@ class SettingsPage extends React.Component {
       description:
         'Please check back very soon if you would like to edit your profile',
       icon: <WarningOutlined style={{ color: '#108ee9' }} />
+    })
+  };
+
+  openSuccessNotification = () => {
+    notification.open({
+      message: 'Successfully updated your details',
+      description:
+        'Feel free to change anytime',
+      icon: <SmileOutlined style={{ color: '#108ee9' }} />
     })
   };
 
@@ -96,7 +124,10 @@ class SettingsPage extends React.Component {
         <div className='shadow' style = {{ backgroundColor: 'white', margin: '15px 30px' }}>
           <SettingsHeader />
         </div>
-
+        {/* ALERTS USER OF ERRORS */}
+        {'message' in this.state.error ? <div className='sub-section'><Alert  message={this.state.error.message[0]} type="error" closeText="Close Now" style={{ margin: '5px 30px' }} /></div>  : '' }
+        {/* ALERTS USER OF INVALID INPUTS */}
+        {'password' in this.state.error || 'password_confirmation' in this.state.error ? <div className='sub-section'><Alert  message='Invalid Attempt, Please enter your password and ensure they match' type="error" closeText="Close Now" style={{ margin: '5px 30px' }} /></div>  : '' }
         <div className='columns'>
           {/* LEFT SIDE OF MAIN PAGE - USER INFORMATION FORM */}
           <div className='column is-8'>
@@ -127,11 +158,11 @@ class SettingsPage extends React.Component {
                   <SwitchLabels  handleChange={this.handleChange} />
                 </Panel>
                 {/* SECTION 4 - PASSWORD */}
-                <Panel header="Password" key="4">
+                <Panel header="Password (required to change details)" key="4">
                   <div>
-                    <TextField className='input-fields' id="standard-error" label="Existing Password" name='existing_password' onChange={this.handleChange} value={user.existing_password} />
-                    <TextField className='input-fields' id="standard-error" label="New Password" name='password' onChange={this.handleChange} value={user.password} />
-                    <TextField className='input-fields' id="standard-error" label="Password Confirmation" name='password_confirmation' onChange={this.handleChange} value={user.password_confirmation} />
+                    <p>You may change your password or keep your existing one</p>
+                    <TextField className='input-fields' id="standard-error" type='password' label="New Password" name='password' onChange={this.handleChange} value={user.password} />
+                    <TextField className='input-fields' id="standard-error" type='password' label="Password Confirmation" name='password_confirmation' onChange={this.handleChange} value={user.password_confirmation} />
                   </div>
                 </Panel>
               </Collapse>
@@ -154,7 +185,7 @@ class SettingsPage extends React.Component {
               color="secondary"
               style={{ margin: '15px' }}
               className='shadow'
-              onClick={this.handleSubmit}
+              onClick={this.handleDelete}
             >
                 Delete Account
             </Button> 
