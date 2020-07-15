@@ -8,6 +8,7 @@ import SearchSection from '../common/SearchSection'
 import { Link } from 'react-router-dom'
 import LoadingSpinner from '../common/LoadingSpinners'
 import { loadingTimer } from '../../lib/settings'
+import { isAuthenticated } from '../../lib/auth'
 
 const IconText = ({ icon, text }) => (
   <Space>
@@ -111,8 +112,17 @@ handleWatch = async(propertyId) => {
   })
 }
 
+notAuthRedirectHome = () => {
+  this.props.history.push('/')
+  window.location.reload(true)
+}
+
 
 render(){
+  // Check if Auth
+  if (!isAuthenticated()){
+    this.notAuthRedirectHome()
+  }
   // Temporary loading screen
   if (!this.state.filteredProperties) {
     return <LoadingSpinner />

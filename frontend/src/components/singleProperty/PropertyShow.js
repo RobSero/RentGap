@@ -11,7 +11,7 @@ import { Alert } from 'antd'
 import { notification } from 'antd'
 import { SmileOutlined } from '@ant-design/icons'
 import LoadingSpinner from '../common/LoadingSpinners'
-
+import { isAuthenticated } from '../../lib/auth'
 
 
 //  PAGE SHOWS ONE PROPERTY ALONG WITH INVESTMENT CALUCLATOR
@@ -146,7 +146,16 @@ openNotificationIfInvested = () => {
   })
 };
 
+notAuthRedirectHome = () => {
+  this.props.history.push('/')
+  window.location.reload(true)
+}
+
 render(){
+  // Check if Auth
+  if (!isAuthenticated()){
+    this.notAuthRedirectHome()
+  }
   const { propertyData, orderData, newOrder, user } = this.state
   // TEMPORARY LOADING SCREEN
   if (!propertyData){

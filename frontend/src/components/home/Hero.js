@@ -20,7 +20,7 @@ function Hero(){
         Start Your Investments Today
           </h1>
           <h2 className="subtitle title-main">
-        Easy, Stress-Free, Safe
+        Easy, Stress-free, Safe
           </h2>
           <Link to='/register'>
             <Button
@@ -28,7 +28,7 @@ function Hero(){
               color="primary"
               className={classes.button}
             >
-        Start Investing Today
+        Get Started
             </Button>
           </Link>
         </div>

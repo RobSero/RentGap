@@ -6,7 +6,7 @@ import FeaturedPropCard from './FeaturedPropertyCard'
 import DashboardNewsFeed from './DashboardNewsFeed'
 import LoadingSpinner from '../common/LoadingSpinners'
 import { loadingTimer, thisMonth, months } from '../../lib/settings'
-
+import { isAuthenticated } from '../../lib/auth'
 
 // Handles and displays general user, property and news data
 class DashboardPage extends React.Component {
@@ -56,9 +56,16 @@ class DashboardPage extends React.Component {
     })
   }
 
-
+  notAuthRedirectHome = () => {
+    this.props.history.push('/')
+    window.location.reload(true)
+  }
 
   render(){
+    // Check if Auth
+    if (!isAuthenticated()){
+      this.notAuthRedirectHome()
+    }
     const { orderData, user, propertyData, watching } = this.state
 
     // temporary display loading spinner

@@ -30,8 +30,13 @@ export const getUserId = () => {
 // WILL DETERMINE IF USER IS VALIDATED - CHECKS IF TOKEN EXISTS, IF IT DOES, CHECKS IF THE DATE IS WITHIN THE TOKEN EXPIRY DATE
 export const isAuthenticated = () => {
   const payload = getPayload()
-  if (!payload) return false
+  console.log(`payload = ${payload}`)
+  if (!payload) {
+    console.log('the payload should be false if this logs')
+    return false
+  }
   const now = Math.round(Date.now() / 1000)
+  console.log(now < payload.exp)
   return now < payload.exp
 }
 

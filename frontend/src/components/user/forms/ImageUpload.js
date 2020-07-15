@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button'
 
 class ImageUpload extends React.Component {
   state = {
-    image: 'https://res.cloudinary.com/dy7eycl8m/image/upload/v1591819721/empty-avatar-png-transparent_mighcw.png'
+    image: 'https://res.cloudinary.com/dy7eycl8m/image/upload/v1594820547/thing-654750_1280_xwusfb.png'
   }
  
   uploadURL = 'https://api.cloudinary.com/v1_1/dy7eycl8m/image/upload' // get this info from cloudinary

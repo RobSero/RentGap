@@ -9,6 +9,7 @@ import SimpleSelect from '../user/forms/SimpleSelect'
 import SwitchLabels from '../user/forms/SwitchLabels'
 import { notification } from 'antd'
 import { WarningOutlined } from '@ant-design/icons'
+import { isAuthenticated } from '../../lib/auth'
 const { Panel } = Collapse
 
 
@@ -78,7 +79,16 @@ class SettingsPage extends React.Component {
     })
   };
 
+  notAuthRedirectHome = () => {
+    this.props.history.push('/')
+    window.location.reload(true)
+  }
+
   render(){
+    // Check if Auth
+    if (!isAuthenticated()){
+      this.notAuthRedirectHome()
+    }
     const { user } = this.state
     return (
       <>

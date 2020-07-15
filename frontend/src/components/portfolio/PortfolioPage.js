@@ -10,6 +10,7 @@ import LoadingSpinner from '../common/LoadingSpinners'
 import { loadingTimer } from '../../lib/settings'
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
+import { isAuthenticated } from '../../lib/auth'
 
 const IconText = ({ icon, text }) => (
   <Space>
@@ -109,8 +110,16 @@ handleWatch = async(propertyId) => {
   })
 }
 
+notAuthRedirectHome = () => {
+  this.props.history.push('/')
+  window.location.reload(true)
+}
 
 render(){
+  // Check if Auth
+  if (!isAuthenticated()){
+    this.notAuthRedirectHome()
+  }
   // Temporary loading screen
   if (!this.state.filteredOrders) {
     return <LoadingSpinner />

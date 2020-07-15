@@ -124,6 +124,8 @@ function RegisterStepper(props) {
           const labelProps = {}
           if (isStepOptional(index)) {
             labelProps.optional = <Typography variant="caption">Optional</Typography>
+          } else {
+            labelProps.optional = <Typography variant="caption">Required</Typography>
           }
           if (isStepSkipped(index)) {
             stepProps.completed = false

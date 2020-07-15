@@ -32,7 +32,7 @@ function DashboardNewsFeed(props){
           style = {{ margin: '15px', backgroundColor: 'white', marginLeft: '30px', marginRight: '30px' }}
           key={article.title}
           actions={[
-            <a href={article.url_link} key={article.publishedAt}>
+            <a href={article.url_link} key={article.publishedAt} target='_blank' rel='noreferrer'>
               <IconText icon={StarOutlined} text={`Read more at the source - ${article.source}`} key="list-vertical-star-o" />
             </a>
           ]}
@@ -45,7 +45,7 @@ function DashboardNewsFeed(props){
           }
         >
           <List.Item.Meta
-            title={<a href={article.url}>{article.title}</a>}
+            title={<a href={article.url_link} target='_blank' rel='noreferrer'>{article.title}</a>}
             description={`Author - ${article.author}, ${article.source} `}
           />
           {article.description}

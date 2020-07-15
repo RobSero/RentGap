@@ -9,7 +9,7 @@ import { loadingTimer } from '../../lib/settings'
 import LineChart from './LineChart'
 import { notification } from 'antd'
 import { WarningOutlined } from '@ant-design/icons'
-
+import { isAuthenticated } from '../../lib/auth'
 
 
 class InvestmentPage extends React.Component {
@@ -48,7 +48,15 @@ class InvestmentPage extends React.Component {
     })
   };
 
+  notAuthRedirectHome = () => {
+    this.props.history.push('/')
+    window.location.reload(true)
+  }
+
   render(){
+    if (!isAuthenticated()){
+      this.notAuthRedirectHome()
+    }
     const { orderData, user } = this.state
     // Temporary loading screen
     if (!orderData){
