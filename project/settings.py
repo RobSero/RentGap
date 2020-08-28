@@ -12,18 +12,11 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import django_heroku
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+SECRET_KEY = '@ee+on-58xp_iy4$^a#ten)6+@1j+p1a#!e!_)4&aimop3nq8t'
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-
-
-# SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -50,6 +43,8 @@ INSTALLED_APPS = [
     'django_crontab'
 ]
 
+#  RUN THE TIMED FUNCTIONS TO UPDATE DATABASE WITH LIVE PROPERTY DATA.
+#  NOTE: FOR DEVELOPMENT TESTING ONLY - HEROKU SCHEDULER HANDLES THE LIVE SITE UPDATES
 CRONJOBS = [
     # ('0 3 */2 * *', 'market_data.cron_functions.update_growth_data'),
     # ('0 3 */2 * *', 'market_data.cron_functions.update_value_rent_data'),
@@ -97,7 +92,6 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
      'default': {
@@ -110,7 +104,6 @@ DATABASES = {
 
 
 # Password validation
-# https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -129,7 +122,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/3.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -143,7 +135,6 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 REST_FRAMEWORK = { 
     'DEFAULT_RENDERER_CLASSES': [
@@ -158,9 +149,8 @@ REST_FRAMEWORK = {
 AUTH_USER_MODEL = 'jwt_auth.User'
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-ROOT_URLCONF = 'project.urls' #check if you have this already, if not add it in
+ROOT_URLCONF = 'project.urls' 
 
 STATIC_URL = '/static/'
 
@@ -170,4 +160,4 @@ STATICFILES_DIRS = (
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-django_heroku.settings(locals()) # put this last
+django_heroku.settings(locals())

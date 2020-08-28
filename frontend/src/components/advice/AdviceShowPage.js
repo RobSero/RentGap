@@ -33,6 +33,7 @@ class AdviceShowPage extends React.Component {
     }
     return (
       <>
+      {/* HEADER */}
         <div style = {{ backgroundColor: 'white', margin: '15px 30px' }}>
           <AdviceHeader  {...article}/>
         </div>
