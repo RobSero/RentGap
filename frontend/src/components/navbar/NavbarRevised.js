@@ -90,7 +90,7 @@ function NavbarRevised(){
     <nav className="navbar is-dark theme-color-background" role="navigation" aria-label="main navigation" style={{ boxShadow: '0 0 2px black' }}>
       <div className="navbar-brand">
         <span className="watch-buttons">
-          <img src='https://res.cloudinary.com/dy7eycl8m/image/upload/v1591804026/my_images/logo_utimcd.png' alt='logo' onClick={handleClickHome} style={{ padding: '5px' }} />
+          <img src='https://res.cloudinary.com/dy7eycl8m/image/upload/v1600098076/my_images/logoonly_zcajtv.png' alt='logo' onClick={handleClickHome} style={{ padding: '5px', height: '50px' }} />
         </span>
 
         <span role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample" onClick={menuToggle}>

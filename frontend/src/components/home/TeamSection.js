@@ -9,7 +9,7 @@ function TeamSection() {
   return (
     <>
       <div className='columns' style={{ marginBottom: '1px', padding: '3px' }}>
-        <div className='column team-Title styled-theme-background' style={{ padding: '10px' }}>
+        <div className='column team-Title styled-theme-background' style={{ padding: '20px' }}>
           <div style={{ width: '60%', margin: '0 auto', padding: '3px' }}>
             <p style={{ color: 'white', fontSize: '22px', marginBottom: '2px' }}>RISK-FREE INVESTING</p>
             <p style={{ fontSize: '18px', fontWeight: '200'  }}>RentGap is a property investment simulation allowing you to track properties throughout the UK and invest using virtual currency based on live property data. You will be able to learn about property investing and build confidence in a RISK-FREE environment before you are ready to commit to anything serious. No card details required. </p>
